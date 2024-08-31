@@ -1,8 +1,9 @@
 AUTHOR = 'Ashly Lorenzana'
 SITENAME = 'The Casual Gamer'
-SITEURL = ""
+SITEURL = "https://ashloren.github.io/the-casual-gamer/"
+RELATIVE_URLS = False
 
-PATH = "content"
+PATH = "C:\Users\Ash\Downloads\Blog\content"
 
 TIMEZONE = 'UTC'
 
@@ -32,4 +33,3 @@ SOCIAL = (
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
