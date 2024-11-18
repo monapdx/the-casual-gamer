@@ -1,0 +1,277 @@
+
+
+
+<p><mark>Principle #1:</mark> When you save anything that is digital, you must be able to then find it when you need it in the future. If you cannot, then you might as well have never saved it at all.
+
+<p><details><summary>Fact:</summary> Storage space for digital data (photos, documents, videos, etc) is NOT unlimited. </details>
+
+<p>If you are saving a local copy of a file, then you are limited by the size of your hard drive. Another limit is the amount of space needed in order to run your operating system and other software, as they take up considerable space and you cannot then use it for saving other files.
+
+<p>The big risk with relying on a locally saved file is hardware failure. If something happens to your machine (desktop, laptop, tablet) then the data saved on it may be lost.
+
+<p>Okay, so we should probably save the most important files in more than one place, right?
+
+<p>Sure, that makes sense.
+
+<p>The next natural thought would be to back up your files to the cloud.
+
+<p>What are your options for cloud storage?
+
+<p>Well, the options are virtually endless...
+
+<p>Most of them are not free of cost...
+
+<p>There are services like Dropbox and Google Drive, two popular choices that have good track records and have been around for a long time.
+
+<p><mark>A quick story to explain why those factors make a difference:</mark>
+
+	<blockquote>Many years ago, I signed up for a new startup called MessageSling.
+
+	It was a service that synced to your phone's voicemail box so that you could save all your messages and organize them (which I went through the trouble of doing, in fact). 
+
+	This was in the pre-Google Voice era, mind you...
+
+	So I had LOTS of saved voicemails on the app.
+
+	Then, Message Sling failed and shut down.
+
+	And did not give me notice or an opportunity to download or export all of my voicemails.
+
+	Yep, they are gone now. Forever.</blockquote>
+
+<p>That is the real life reason that I strongly suggest that you avoid newer startups with uncertain futures when deciding who to trust with the digital data that you consider important.
+
+<p><mark>Choose a file naming convention, and use it consistently.</mark>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Mind System</title>
+  <style>
+    .container {
+      margin: 20px;
+    }
+    .dropdown {
+      margin: 10px;
+    }
+    #generatedText {
+      margin-top: 20px;
+      white-space: pre-wrap; /* Preserves line breaks */
+    }
+	
+	.directory {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.directory li {
+    margin: 5px 0;
+}
+
+.folder::before {
+    content: "📁 ";
+    font-weight: bold;
+}
+
+.file::before {
+    content: "📄 ";
+}
+
+.folder, .file {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.folder:hover, .file:hover {
+    color: #007BFF;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 20px;
+}
+  </style>
+</head>
+<body>
+
+
+
+
+<fieldset><legend>File Naming Conventions:</legend>
+      <div><label for="option1">All of the letters in my file names will be:</label>
+    <select id="option1" class="dropdown">
+      <option value="UPPERCASE">UPPERCASE</option>
+      <option value="lowercase">lowercase</option>
+      <option value="SentenceCase">SentenceCase</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="option2">I will separate words using:</label>
+    <select id="option2" class="dropdown">
+      <option value="_">underscores</option>
+      <option value="-">dashes</option>
+      <option value=" ">spaces</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="option3">Date format:</label>
+    <select id="option3" class="dropdown">
+      <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+      <option value="MM-DD-YYYY">MM-DD-YYYY</option>
+      <option value="MM.DD.YYYY">MM.DD.YYYY</option>
+    </select>
+  </div>
+
+  <button onclick="generateText()">Generate Text</button>
+
+  <div id="generatedText"></div>
+
+  <button id="copyButton" style="display:none;" onclick="copyText()">Copy Text</button>
+</div>
+
+<script>
+  function generateText() {
+    const option1 = document.getElementById('option1').value;
+    const option2 = document.getElementById('option2').value;
+    const option3 = document.getElementById('option3').value;
+
+    const generatedText = `\n ${option1}\n ${option2}\n ${option3}`;
+
+    document.getElementById('generatedText').textContent = generatedText;
+    document.getElementById('copyButton').style.display = 'inline'; // Show the copy button
+  }
+
+  function copyText() {
+    const text = document.getElementById('generatedText').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Text copied to clipboard!');
+    });
+  }
+</script>
+</fieldset>
+
+
+
+<p>For example, I always name my files with dashes to separate words and all lowercase letters.
+
+<p><mark>research-paper-11-2020.docx</mark> would be an example,  using my chosen file naming rules.
+
+<ol>
+
+<li>Upper or lower case letters? Will you use sentence case, all upper, or all lower case letters in your file names?</li>
+<li>How will you separate words in your file names? Two popular choices are underscores_like_this or dashes-like-this</li>
+<li>If dates will be included in file names, how will they be formatted? Lots of options for this one: 1.1.2024, 1/1/2024, 1-1-2024, 01-01-2024, January-2024, Jan-2024, Jan-01-2024...</li>
+
+
+</ol>
+
+
+ <ul class="directory">
+	<li><span class="folder">Images</span>
+    <ul>
+	<li><span class="folder">Photos</span>
+                <li>
+				<ul>
+				<li><span class="file">date-night.jpg</span></li>
+                <li><span class="file">headshot.jpg</span></li>
+				</ul>
+                <span class="folder">Screenshots</span>
+                <ul>
+                <li><span class="file">google-search.png</span></li>
+                <li><span class="file">wikipedia.png</span></li>
+                </ul></li>
+				</ul></li>
+				<li><span class="folder">Finance</span>
+                <ul>
+				<li><span class="folder">Taxes</span>
+				<ul>
+                <li><span class="file">tax-return-2019.pdf</span></li>
+                <li><span class="file">tax-return-2020.pdf</span></li>
+            </ul>
+				<li><span class="folder">Bank-Statements</span> 
+				<ul>
+                <li><span class="file">jan-2019.pdf</span></li>
+                <li><span class="file">feb-2019.pdf</span></li>
+				</ul></li>
+				</ul>
+
+<p>Folder Rules:
+
+<ol>
+<li>Keep folders as broadly named as possible (i.e. "Photos" rather than "Birthday-Photos")</li>
+<li>Never create a new sub folder unless you have AT LEAST [enter number here] of files which would need to be moved there upon creation</li>
+</ol>
+
+
+  
+  
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+		        button {
+            margin-top: 20px;
+            padding: 10px;
+            cursor: pointer;
+        }
+		
+        .output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+        <fieldset><legend>Minimum Number of Files Needed?</legend><label for="dropdown">Do I have <b><u>AT LEAST</u></b> </label><select id="dropdown">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+        </select>
+
+        <div>
+            <label>
+                <input type="radio" name="choice" value="Yes"> Yes
+            </label>
+            <label>
+                <input type="radio" name="choice" value="No"> No
+            </label>
+        </div>
+
+        <button id="generateButton">Add New Folder?</button>
+
+        <div class="output" id="output"></fieldset></div>
+    </div>
+
+    <script>
+        document.getElementById('generateButton').addEventListener('click', () => {
+            const dropdownValue = document.getElementById('dropdown').value;
+            const radioValue = document.querySelector('input[name="choice"]:checked');
+            
+            if (!radioValue) {
+                alert('Please select a radio button option.');
+                return;
+            }
+
+            const outputText = radioValue.value === "No" ? "NO! You do not have the minimum number of required files to create this new folder" : "YES! You have the minimum number of required files to create this new folder";
+            document.getElementById('output').textContent = ` ${outputText}`;
+        });
+    </script>
