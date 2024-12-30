@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nested Tag Generator</title>
+    <title>Empty Tag Generator</title>
     <style>
 body {
     font-family: Arial, sans-serif;
@@ -64,6 +64,8 @@ button:hover {
         <option value="input">INPUT</option>
         <option value="section">SECTION</option>
         <option value="option">OPTION</option>
+        <option value="ul">UL</option>
+        <option value="ol">OL</option>
         <!-- Add other tags as needed -->
     </select>
 </div>
@@ -81,9 +83,12 @@ button:hover {
 <div>
     <label for="tagCount">How Many?</label>
     <select id="tagCount">
-        <option value="1">1</option>
         <option value="5">5</option>
         <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="10">25</option>
+        <option value="15">30</option>
         <!-- Add more options as needed -->
     </select>
 </div>
@@ -107,22 +112,26 @@ button:hover {
     <label for="parentTagType">Parent Tag:</label>
     <select id="parentTagType">
         <option value="div">DIV</option>
-        <option value="section">SECTION</option>
+        <option value="article">ARTICLE</option>
+        <option value="h1">H1</option>
+        <option value="h2">H2</option>
+        <option value="ul">UL</option>
+        <option value="ol">OL</option>
         <!-- Add more parent tags as needed -->
     </select>
     
     <label for="childCount">Child Count:</label>
     <select id="childCount">
-        <option value="1">1</option>
-        <option value="3">3</option>
         <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
         <!-- Add more options as needed -->
     </select>
 </div>
 
 <button onclick="generateTags()">Generate Tags</button>
 
-<textarea id="output" rows="10" cols="50"></textarea>
+<textarea id="output" rows="15" cols="50"></textarea>
 
 
 
@@ -157,43 +166,38 @@ function generateTags() {
 
     if (isNested) {
         const parentTagType = document.getElementById('parentTagType').value;
+        const childTagType = document.getElementById('tagTypeNested').value;
         const childCount = parseInt(document.getElementById('childCount').value);
 
         for (let i = 0; i < tagCount; i++) {
             generatedHTML += `<${parentTagType}${buildAttributes()}>\n`;
 
             for (let j = 0; j < childCount; j++) {
-                generatedHTML += `  <${tagType}`;
-                if (tagType === 'input') {
-                    const inputType = document.getElementById('inputType').value;
-                    generatedHTML += ` type="${inputType}"`;
-                } else if (tagType === 'img') {
-                    generatedHTML += ` src="" alt=""`;
-                } else if (tagType === 'a') {
-                    generatedHTML += ` href=""`;
-                }
-                generatedHTML += `></${tagType}>\n`;
+                generatedHTML += `  <${childTagType}${buildAttributes()}></${childTagType}>\n`;
             }
 
             generatedHTML += `</${parentTagType}>\n\n`;
         }
     } else {
         for (let i = 0; i < tagCount; i++) {
-            generatedHTML += `<${tagType}${buildAttributes()}`;
             if (tagType === 'input') {
                 const inputType = document.getElementById('inputType').value;
-                generatedHTML += ` type="${inputType}"`;
+                generatedHTML += `<${tagType} type="${inputType}"${buildAttributes()}/>\n`;
             } else if (tagType === 'img') {
-                generatedHTML += ` src="" alt=""`;
+                generatedHTML += `<${tagType} src="" alt=""${buildAttributes()}/>\n`;
             } else if (tagType === 'a') {
-                generatedHTML += ` href=""`;
+                generatedHTML += `<${tagType} href=""${buildAttributes()}></${tagType}>\n`;
+            } else {
+                generatedHTML += `<${tagType}${buildAttributes()}></${tagType}>\n`;
             }
-            generatedHTML += `></${tagType}>\n`;
         }
     }
 
     document.getElementById('output').value = generatedHTML;
 }
+
+
+
 
 
 
