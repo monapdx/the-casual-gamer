@@ -1,0 +1,138 @@
+
+<style type="text/css">
+/* General resets */
+body {
+    font-family: serif; /* Kindle supports serif and sans-serif */
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    background-color: #fff;
+}
+
+header, footer {
+    text-align: center;
+    margin: 20px 0;
+}
+
+header h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+header h2 {
+    font-size: 1.5em;
+    margin: 0;
+    font-weight: normal;
+    color: #555;
+}
+
+main {
+    padding: 0 20px;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin: 20px 0 10px;
+}
+
+p {
+    text-indent: 1.5em; /* Standard ebook paragraph indentation */
+    margin: 0;
+}
+
+/* Table of Contents Styles */
+nav#toc {
+    margin: 20px;
+}
+
+nav#toc h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+nav#toc ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav#toc ul li {
+    margin: 5px 0;
+}
+
+nav#toc ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+img {
+    max-width: 100%; /* Ensure image fits within screen width */
+    height: auto;
+    display: block;
+    margin: 20px 0; /* Space around images */
+}
+
+footer {
+    font-size: 0.8em;
+    color: #555;
+}
+
+
+
+
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebook Title</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ebook Title</h1>
+        <h2>Author Name</h2>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav id="toc">
+        <h3>Table of Contents</h3>
+        <ul>
+            <li><a href="#chapter1">Chapter 1: Introduction</a></li>
+            <li><a href="#chapter2">Chapter 2: Another Chapter</a></li>
+            <li><a href="#chapter3">Chapter 3: Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="chapter1">
+            <h3>Chapter 1: Introduction</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
+
+ <section id="chapter2">
+    <h3>Chapter 2: Another Chapter</h3>
+    <p>Here is an example of an image:</p>
+    <img src="https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/repro-wordcloud-transparent-bg.png" alt="An example image" width="100%">
+    <p>Continuing with the text after the image...</p>
+</section>
+
+
+        <section id="chapter3">
+            <h3>Chapter 3: Conclusion</h3>
+            <p>Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+ <img src="https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/image%20(2).png" alt="An example image" width="100%">
+ <p>Continuing with the text after the image...</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Author Name. All rights reserved.</p>
+        </footer>
+    </main>
+</body>
+</html>

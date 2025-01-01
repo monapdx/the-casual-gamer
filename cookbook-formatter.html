@@ -1,0 +1,321 @@
+
+<style type="text/css">
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+/* Header styling */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Form styling */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Button styling */
+button {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Recipes section */
+.recipes-section {
+    margin-top: 40px;
+}
+
+/* Output Section */
+#htmlOutput {
+    margin-top: 40px;
+}
+
+pre {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 40px;
+}
+
+
+
+
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookbook Formatter Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Cookbook Formatter Tool</h1>
+        <p>Generate your Kindle cookbook with ease.</p>
+    </header>
+
+    <form id="cookbookForm">
+        <div class="form-group">
+            <label for="authorName">Author Name</label>
+            <input type="text" id="authorName" name="authorName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="bookTitle">Book Title</label>
+            <input type="text" id="bookTitle" name="bookTitle" required>
+        </div>
+
+        <div class="form-group">
+            <label for="bookUrl">Book URL</label>
+            <input type="url" id="bookUrl" name="bookUrl" required>
+        </div>
+
+        <div class="form-group">
+            <label for="numRecipes">Number of Recipes</label>
+            <input type="number" id="numRecipes" name="numRecipes" min="1" required>
+        </div>
+
+        <button type="submit">Generate Cookbook</button>
+    </form>
+
+    <div id="recipesSection" class="recipes-section"></div>
+
+    <div id="htmlOutput">
+        <h2>Generated HTML</h2>
+        <pre id="htmlCode"></pre>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Cookbook Formatter</p>
+    </footer>
+	
+	       <textarea id="myTextarea" rows="85" cols="200" readonly>
+<style type="text/css">
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and general layout */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Recipe section */
+.recipe {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.recipe h2 {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.recipe img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+ul li, ol li {
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+
+</style>
+</textarea><br><br>
+<button onclick="copyText()">Copy to Clipboard</button>
+
+    <script>
+        document.getElementById('numRecipes').addEventListener('input', function() {
+            const numRecipes = parseInt(this.value);
+            const recipesSection = document.getElementById('recipesSection');
+            recipesSection.innerHTML = ''; // Clear previous inputs
+
+            // Generate recipe name inputs based on number
+            for (let i = 1; i <= numRecipes; i++) {
+                const recipeDiv = document.createElement('div');
+                recipeDiv.classList.add('form-group');
+                recipeDiv.innerHTML = `
+                    <label for="recipe${i}">Recipe ${i} Name</label>
+                    <input type="text" id="recipe${i}" name="recipe${i}" required>
+                `;
+                recipesSection.appendChild(recipeDiv);
+            }
+        });
+
+        document.getElementById('cookbookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form data
+            const authorName = document.getElementById('authorName').value;
+            const bookTitle = document.getElementById('bookTitle').value;
+            const bookUrl = document.getElementById('bookUrl').value;
+            const numRecipes = parseInt(document.getElementById('numRecipes').value);
+
+            // Create the Table of Contents and recipes HTML
+            let tocHtml = '<h2>Table of Contents</h2><ul>';
+            let recipesHtml = '';
+
+            for (let i = 1; i <= numRecipes; i++) {
+                const recipeName = document.getElementById(`recipe${i}`).value;
+                tocHtml += `<li><a href="#recipe${i}">${recipeName}</a></li>`;
+                recipesHtml += `
+                    <section id="recipe${i}" class="recipe">
+                        <h2>${recipeName}</h2>
+                        <h3>Ingredients</h3>
+                        <ul>
+                            <li>Insert ingredients here...</li>
+                        </ul>
+                        <h3>Instructions</h3>
+                        <ol>
+                            <li>Insert instructions here...</li>
+                        </ol>
+                    </section>
+                `;
+            }
+            tocHtml += '</ul>';
+
+            // Combine everything into final HTML
+            const finalHtml = `
+                <header>
+                    <h1>${bookTitle}</h1>
+                    <p>By ${authorName}</p>
+                    <p><a href="${bookUrl}">Book URL</a></p>
+                </header>
+                ${tocHtml}
+                ${recipesHtml}
+            `;
+
+            // Display generated HTML
+            document.getElementById('htmlCode').textContent = finalHtml;
+        });
+		
+		
+		
+    </script>
+<script>
+    function copyText() {
+        const textarea = document.getElementById("myTextarea");
+        textarea.select();
+        document.execCommand("copy");
+        alert("Text copied to clipboard!");
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<style type="text/css">
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+#chat-container {
+  width: 300px;
+  margin: 20px auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  overflow-y: auto;
+}
+
+#chat-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Base styling for messages */
+.message {
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-width: 80%;
+  word-wrap: break-word;
+  line-height: 1.4;
+  clear: both;
+}
+
+.message b {
+  font-weight: bold;
+  margin-right: 4px
+
+
+
+
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Simulation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="chat-container">
+    <div id="chat-box"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+  <script type="text/javascript">
+document.addEventListener("DOMContentLoaded", () => {
+  const chatBox = document.getElementById("chat-box");
+
+  const messages = [
+    { sender: "Ashly", text: "This might sound strange or silly, but when I see old photos or video that features large steam-powered trains from past eras, I find them frightening to look at....", delay: 1000 },
+    { sender: "AI", text: "Hey! How are you?", delay: 2000 },
+    { sender: "Ashly", text: "I'm good, thanks! You?", delay: 1500 },
+    { sender: "AI", text: "Doing well! Just working on a project.", delay: 2500 },
+  ];
+
+  function addMessage(sender, text) {
+    const messageElement = document.createElement("div");
+    messageElement.className = `message ${sender === "Ashly" ? "user" : "other"}`;
+    messageElement.innerHTML = `<b>${sender}:</b> ${text}`;
+    chatBox.appendChild(messageElement);
+    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+  }
+
+  let delay = 0;
+  messages.forEach(({ sender, text, delay: messageDelay }) => {
+    delay += messageDelay;
+    setTimeout(() => addMessage(sender, text), delay);
+  });
+});
+
+
+
+
+
+</script>
+  
+  
+  
+  
+</body>
+</html>
