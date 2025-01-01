@@ -1,1 +1,232 @@
+<style type="text/css">
+/* Base Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
 
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    background-color: #0073e6;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.header p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ff5439;
+}
+
+/* Features Section */
+.features {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.feature-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.feature-item {
+    flex: 1 1 30%;
+    background-color: #fff;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: #0073e6;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.testimonial-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.testimonial-item {
+    flex: 1 1 45%;
+    background-color: #005bb5;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-item p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* CTA Section */
+.cta {
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .feature-list,
+    .testimonial-list {
+        flex-direction: column;
+    }
+
+    .feature-item,
+    .testimonial-item {
+        flex: 1 1 100%;
+    }
+}
+
+
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paypal Problems</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h2>If You Are Reading This Right Now, Chances Are...</h2>
+<h1>Your Paypal Account Has Been Permanently Limited</h1>
+<h2>And You Need Help Creating a New Account!</h2>
+            <a href="#buy-now" class="btn-primary">Buy Now</a>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="container">
+        
+        <center><img src="Graphics/ebook-cover.png" width="250"></center>
+		
+
+            <h2>What's Inside</h2>
+           <center> <img src=""><br>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>Get a FREE Prepaid Payoneer Card</h3>
+                    <p>Easy-to-follow instructions to help you achieve your goals.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Get a FREE Prepaid Netspend Card</h3>
+                    <p>Insider knowledge from industry experts.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Purchase eBay Stealth</h3>
+                    <p>Access to premium tools and resources to maximize your success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Customers Are Saying</h2>
+            <div class="testimonial-list">
+                <div class="testimonial-item">
+                    <p>"This guide completely changed my life. I can't recommend it enough!"</p>
+                    <span>- Happy Customer</span>
+                </div>
+                <div class="testimonial-item">
+                    <p>"The best investment I've ever made. Worth every penny!"</p>
+                    <span>- Satisfied Client</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="buy-now" class="cta">
+        <div class="container">
+            <h2>Get Instant Access Now</h2>
+            <p>Don't miss out on this opportunity to transform your life.</p>
+            <a href="#" class="btn-primary">Buy Now</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
