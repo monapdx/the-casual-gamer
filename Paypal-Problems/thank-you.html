@@ -1,0 +1,508 @@
+<style type="text/css">
+/* Base Styles */
+body {
+    font-family: "Lato", serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+font-family: "Lato", serif;
+font-size:1.2rem;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+#header {
+    background-color: #0073e6;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+#headline {
+font-family: "Lobster", serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.header p {
+font-family: "Lato", serif;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+font-family: "Lobster", serif;
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ff5439;
+}
+
+/* Features Section */
+.features {
+   
+    padding: 60px 0;
+}
+
+.features h2 {
+font-family: "Lobster", serif;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.feature-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.feature-item {
+    flex: 1 1 30%;
+    background-color: #fff;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item h3 {
+font-family: "Lobster", serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: #0073e6;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.testimonials h2 {
+font-family: "Lobster", serif;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.testimonial-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.testimonial-item {
+    flex: 1 1 45%;
+    background-color: #005bb5;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-item p {
+font-family: "Lato", serif;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* CTA Section */
+.cta {
+font-family: "Lobster", serif;
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.cta h2 {
+font-family: "Lobster", serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.cta p {
+font-family: "Lato", serif;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+.footer {
+font-family: "Lato", serif;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .feature-list,
+    .testimonial-list {
+        flex-direction: column;
+    }
+
+    .feature-item,
+    .testimonial-item {
+        flex: 1 1 100%;
+    }
+}
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--dur: 3s;
+	--arrowA: polygon(33% 0%,67% 0%,67% 60%,100% 60%,50% 100%,0% 60%,33% 60%);
+	--arrowB: polygon(0% 37.5%,100% 37.5%,100% 62.5%,100% 62.5%,50% 62.5%,0% 62.5%,0% 62.5%);
+
+}
+button {
+	display: flex;
+	font: 1em/1.5 Hind, sans-serif;
+}
+
+
+button {
+	background: #255ff4;
+	border-radius: 0.2em;
+	color: #fff;
+	cursor: pointer;
+	display: flex;
+	margin: auto;
+	padding: 0.5em 1em;
+	position: relative;
+	transition: background 0.15s linear;
+	width: 10.5em;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	-webkit-tap-highlight-color: transparent;
+}
+button:focus {
+	outline: transparent;
+}
+button::-moz-focus-inner {
+	border: 0;
+}
+button:not(:disabled):focus, button:not(:disabled):hover {
+	background: #0b46da;
+}
+button:not(:disabled):active {
+	transform: translateY(1px);
+}
+button:disabled {
+	cursor: not-allowed;
+}
+button span, button:before, button:after {
+	display: inline-block;
+	pointer-events: none;
+}
+button:before, button:after {
+	border-radius: 0.25em;
+	opacity: 0;
+	top: 1em;
+	left: 1.3em;
+	height: 0.5em;
+	transform-origin: 0.25em 50%;
+	z-index: 2;
+}
+button:before {
+	transform: rotate(-180deg);
+	width: 0.8em;
+}
+button:after {
+	width: 1.2em;
+}
+button:before, button:after, .dl-icon:before, .dl-icon:after {
+	content: "";
+	display: block;
+	position: absolute;
+}
+button:before, button:after, .dl-icon:before {
+	background: currentColor;
+}
+button span + span {
+	margin: auto;
+}
+.dl-icon {
+	margin-right: 0.5em;
+	position: relative;
+	width: 1.5em;
+	height: 1.5em;
+}
+.dl-icon:before {
+	clip-path: var(--arrowA);
+	-webkit-clip-path: var(--arrowA);
+	top: 0;
+	left: calc(50% - 0.55em);
+	transform-origin: 50% 100%;
+	width: 1.1em;
+	height: 1em;
+	z-index: 1;
+}
+.dl-icon:after {
+	background-image: linear-gradient(#0b46da,#0b46da);
+	background-position: -1.5em 0;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	box-shadow:
+		0.25em 0 0 inset,
+		-0.25em 0 0 inset,
+		0 -0.25em 0 inset;
+	bottom: 0;
+	width: 100%;
+	height: 0.5em;
+}
+.dl-working:before {
+	animation: checkOutA var(--dur) linear forwards;
+}
+.dl-working:after {
+	animation: checkOutB var(--dur) linear forwards;
+}
+.dl-working .dl-icon {
+	animation: impact var(--dur) linear forwards;
+}
+.dl-working .dl-icon:before {
+	animation: arrowToBar var(--dur) linear forwards;
+}
+.dl-working .dl-icon:after {
+	animation: trayToBar var(--dur) linear forwards;
+}
+
+/* Animation */
+@keyframes impact {
+	from, 15% {
+		transform: translateY(0);
+	}
+	17.5% {
+		transform: translateY(0.25em);
+	}
+	20%, to {
+		transform: translateY(0);
+	}
+}
+@keyframes arrowToBar {
+	from {
+		clip-path: var(--arrowA);
+		-webkit-clip-path: var(--arrowA);
+	}
+	10% {
+		clip-path: var(--arrowB);
+		-webkit-clip-path: var(--arrowB);
+		transform: translateY(0);
+	}
+	15% {
+		clip-path: var(--arrowB);
+		-webkit-clip-path: var(--arrowB);
+		transform: translateY(0.625em);
+	}
+	30% {
+		clip-path: var(--arrowB);
+		-webkit-clip-path: var(--arrowB);
+		opacity: 1;
+		transform: translateY(0.125em);
+	}
+	35%, to {
+		clip-path: var(--arrowB);
+		-webkit-clip-path: var(--arrowB);
+		opacity: 0;
+		transform: translateY(0.125em);
+	}
+}
+@keyframes trayToBar {
+	from, 15% {
+		background-color: transparent;
+		border-radius: 0;
+		box-shadow:
+			0.25em 0 0 inset,
+			-0.25em 0 0 inset,
+			0 -0.25em 0 inset;
+		transform: translateY(0);
+	}
+	15.1% {
+		background-color: currentColor;
+		border-radius: 0;
+		box-shadow:
+			0 0 0 inset,
+			0 0 0 inset,
+			0 0 0 0.1em inset;
+		transform: translateY(0);
+	}
+	30% {
+		background-color: currentColor;
+		background-position: -1.5em 0;
+		border-radius: 0.25em;
+		box-shadow:
+			0 0 0 inset,
+			0 0 0 inset,
+			0 0 0 0.1em inset;
+		transform: translateY(-0.5em);
+	}
+	90% {
+		background-color: currentColor;
+		background-position: 0 0;
+		border-radius: 0.25em;
+		box-shadow:
+			0 0 0 inset,
+			0 0 0 inset,
+			0 0 0 0.1em inset;
+		opacity: 1;
+		transform: translateY(-0.5em);
+	}
+	90.1%, to {
+		background-color: currentColor;
+		background-position: 0 0;
+		border-radius: 0.25em;
+		box-shadow:
+			0 0 0 inset,
+			0 0 0 inset,
+			0 0 0 0.1em inset;
+		opacity: 0;
+		transform: translateY(-0.5em);
+	}
+}
+@keyframes checkOutA {
+	from, 90% {
+		opacity: 0;
+		transform: translate(0,0) rotate(-180deg);
+	}
+	90.1% {
+		opacity: 1;
+		width: 0.8em;
+		transform: translate(0,0) rotate(-180deg);
+	}
+	92.5% {
+		opacity: 1;
+		width: 1em;
+		transform: translate(0,0.5em) rotate(-120deg);
+	}
+	95%, to {
+		opacity: 1;
+		width: 1em;
+		transform: translate(0,0.375em) rotate(-135deg);
+	}
+}
+@keyframes checkOutB {
+	from, 90% {
+		opacity: 0;
+		transform: translate(0,0) rotate(0);
+	}
+	90.1% {
+		opacity: 1;
+		width: 1.2em;
+		transform: translate(0,0) rotate(0);
+	}
+	92.5% {
+		opacity: 1;
+		width: 1.6em;
+		transform: translate(0,0.5em) rotate(-60deg);
+	}
+	95%, to {
+		opacity: 1;
+		width: 1.6em;
+		transform: translate(0,0.375em) rotate(-45deg);
+	}
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+	body {
+		background: #2e3138;
+	}
+}
+
+
+</style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+</style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paypal Problems</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <h2 id="headline">Thank You for Your Purchase</h2>
+<h1>Download Your Products Below</h1>
+<h2></h2>
+            
+        </div>
+    </header>
+<div class="container">
+    <section class="features">
+       </div>
+        
+
+		
+<div class="container">
+ 
+           <center> <img src=""><br>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3></h3>
+         
+<img src="pdf.png">
+<button type="button" data-dl>
+	<span class="dl-icon"></span><span>&#x44;&#x6F;&#x77;&#x6E;&#x6C;&#x6F;&#x61;&#x64;</span>
+</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2></h2>
+            <div class="testimonial-list">
+                
+                
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="buy-now" class="cta">
+        <div class="container">
+            <h2></h2>
+            <p></p>
+            <a href="#" class="btn-primary">Buy Now</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+        </div>
+    </footer>
+    <script  src="script.js"></script>
+</body>
+</html>
