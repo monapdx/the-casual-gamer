@@ -523,14 +523,41 @@ canvas {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #1e90ff; /* Bright blue color */
-  border: 3px solid #000;
+  background: linear-gradient(145deg, #d1d1d1, #a6a6a6); /* Simulates top light and bottom shadow */
+  border: 3px solid #8c8c8c; /* Slightly darker border for depth */
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lobster", serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 1px 1px 2px #fff, -1px -1px 2px #000;
+  box-shadow: 
+    inset 0 2px 5px rgba(255, 255, 255, 0.8), /* Inner highlight */
+    0 4px 6px rgba(0, 0, 0, 0.3), /* Main shadow */
+    0 2px 3px rgba(0, 0, 0, 0.6) inset; /* Inner shadow for thickness */
+  transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
-#slammer:active {
-  transform: scale(0.9);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+#slammer::before {
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background: linear-gradient(145deg, #f0f0f0, #d1d1d1);
+  border-radius: 50%;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  z-index: -1; /* Places it behind the slammer to simulate a rim */
 }
+
+#slammer:hover {
+  background: linear-gradient(145deg, #e8e8e8, #c6c6c6);
+  box-shadow: 
+    inset 0 2px 6px rgba(255, 255, 255, 0.9),
+    0 6px 8px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.8) inset;
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
