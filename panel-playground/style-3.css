@@ -20,7 +20,7 @@ body {
 	position: relative;
 	line-height: 1.5em;
 	font-size: 15px;
-	background-image:url('https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/deco-triangles-pink-bg.png') repeat-x-y;
+	background: #949494 url('https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/umbrella.png') repeat;
 }
 #footer {background:#e603ff;
 text-align:center;}
@@ -35,7 +35,7 @@ text-align:center;}
 	border: 2px solid;
 	width: 1000px;
 	max-width: calc(100% - 40px);
-	background: #FE28A2;
+	background: #1044b5;
 	box-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px;
 }
 
