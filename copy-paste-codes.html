@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Textareas</title>
+  <style>
+    .container {
+      margin-bottom: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      resize: none;
+    }
+    button {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <textarea readonly id="text1">
+const sheetName = 'Sheet1';
+const scriptProp = PropertiesService.getScriptProperties();
+
+function initialSetup() {
+  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  scriptProp.setProperty('key', activeSpreadsheet.getId());
+}
+
+function doPost(e) {
+  const lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+
+  try {
+    // Open the Google Spreadsheet
+    const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'));
+    const sheet = doc.getSheetByName(sheetName);
+
+    // Get the headers and map the form values to them
+    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    const nextRow = sheet.getLastRow() + 1;
+
+    const newRow = headers.map(function(header) {
+      return header === 'Date' ? new Date() : e.parameter[header];
+    });
+
+    // Save the data to the spreadsheet
+    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
+
+    // Create and return a custom HTML message
+    const htmlOutput = HtmlService.createHtmlOutput(
+      '<html><body>' +
+      '<h1>Thank you for your submission!</h1>' +
+      '<p>Your response has been successfully recorded.</p>' +
+      '<p><a href="https://ashloren.github.io/monapdx/">Go back to the form</a></p>' +
+      '</body></html>'
+    );
+    
+    // Return the custom HTML response
+    return htmlOutput;
+
+  } catch (error) {
+    // In case of an error, return an error message as plain text
+    return ContentService.createTextOutput('Error: ' + error.message).setMimeType(ContentService.MimeType.TEXT);
+  } finally {
+    // Release the lock to allow subsequent operations
+    lock.releaseLock();
+  }
+}
+    </textarea>
+    <button onclick="copyToClipboard('text1')">Copy to Clipboard</button>
+  </div>
+
+  <div class="container">
+    <textarea readonly id="text2">
+&lt;form method="POST" action="PASTE YOUR URL HERE"&gt;
+  &lt;input name="Name" type="text" placeholder="Name" required&gt;
+  &lt;input name="Email" type="email" placeholder="Email" required&gt;
+  &lt;textarea name="Message" placeholder="Your message" required&gt;</textarea&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+    </textarea>
+    <button onclick="copyToClipboard('text2')">Copy to Clipboard</button>
+  </div>
+
+
+
+
+  <script>
+    function copyToClipboard(id) {
+      const textarea = document.getElementById(id);
+      textarea.select();
+      textarea.setSelectionRange(0, 99999); // For mobile devices
+      navigator.clipboard.writeText(textarea.value)
+        .then(() => alert('Text copied!'))
+        .catch(err => alert('Failed to copy text: ' + err));
+    }
+  </script>
+</body>
+</html>
