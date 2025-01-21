@@ -22,12 +22,77 @@
 	</div>
 
 	<div class="schedule-table">
-<h2>Video Games</h2>
-   <ol> <li><p><a href="https://www.datcreativity.com/">Divergent Association Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Divergent-Association-Task-Fast-creativity-test-01-16-2025_06_16_AM.png" width="400">
-    <li><p><a href="http://www.humorstyles.com/">Humor Style Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/HSQ-01-16-2025_06_17_AM.png" width="400">
-    <li><p><a href="https://politiscales.party/">Politiscales Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/PolitiScales-The-political-test-01-16-2025_05_01_AM.png" width="400">
-    <li><p><a href="https://www.politicalcompass.org/">Political Compass Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/The-Political-Compass-01-16-2025_05_03_AM.png" width="400">
-    <li><p><a href="https://chartsme.com/">Is Your Brain Democratic or Republican?</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/ChartsMe-Is-Your-Brain-Republican-or-Democrat--01-16-2025_05_04_AM.png" width="400"></ol>
+<h2>Editable Table Generator</h2>
+  <form id="tableForm">
+    <label for="columns">Number of Columns:</label>
+    <input type="number" id="columns" min="1" value="3" required><br><br>
+
+    <label for="rows">Number of Rows:</label>
+    <input type="number" id="rows" min="1" value="10" required><br><br>
+
+    <label for="headings">Column Headings (comma-separated):</label>
+    <input type="text" id="headings" value="Column 1, Column 2, Column 3"><br><br>
+
+    <button type="button" id="generateTable">Generate Table</button><br><br>
+  </form>
+
+  <div id="table-container"></div>
+
+  <script>
+    document.getElementById('generateTable').addEventListener('click', () => {
+      const columns = parseInt(document.getElementById('columns').value, 10);
+      const rows = parseInt(document.getElementById('rows').value, 10);
+      const headings = document.getElementById('headings').value.split(',');
+
+      const tableContainer = document.getElementById('table-container');
+      tableContainer.innerHTML = ''; // Clear the container before generating a new table
+
+      // Create table wrapper
+      const table = document.createElement('div');
+      table.className = 'grid-table';
+      table.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+
+      // Add headings as the first row
+      headings.forEach((heading, index) => {
+        if (index < columns) {
+          const cell = document.createElement('div');
+          cell.textContent = heading.trim(); // Heading text
+          styleCell(cell, 0); // Apply styling for header
+          cell.classList.add('header-cell');
+          table.appendChild(cell);
+        }
+      });
+
+      // Fill remaining cells with empty content
+      for (let r = 1; r < rows + 1; r++) {
+        for (let c = 0; c < columns; c++) {
+          const cell = document.createElement('div');
+          cell.textContent = ''; // Empty cell
+          styleCell(cell, r); // Apply styling for regular cells
+          makeEditable(cell);
+          table.appendChild(cell);
+        }
+      }
+
+      tableContainer.appendChild(table);
+
+      // Function to style cells
+      function styleCell(cell, row) {
+        cell.style.padding = '5px'; // Apply 5px padding
+        // Set background color for the first row (headings) and the rest (white)
+        cell.style.backgroundColor = row === 0 ? '#dcdcdc' : 'white';
+      }
+
+      // Make the cell editable
+      function makeEditable(cell) {
+        cell.classList.add('editable');
+        cell.contentEditable = true;
+        cell.addEventListener('click', () => {
+          cell.focus(); // Focus the cell when clicked
+        });
+      }
+    });
+  </script>
 
 
 
@@ -62,7 +127,7 @@
 
 	<div class="calories">
 		<h2>Mixtape Playlist</h2>
-		 <img class="svg-hover" src="https://raw.githubusercontent.com/ashloren/the-casual-gamer/fd6613ec3f31188c917d7c2e2fb967e8fda71ead/cassette-tape-svgrepo-com.svg"><br>
+		 <img class="svg-hover" src="https://raw.githubusercontent.com/ashloren/the-casual-gamer/fd6613ec3f31188c917d7c2e2fb967e8fda71ead/cassette-tape-svgrepo-com.svg"><ul class="styled-list"><li></li><li></li><li></li><li></li></ul>
 
   
 
@@ -86,23 +151,154 @@
 	</div>
 
 	<div class="challenges">
-		
+		<h2>Fun Quizzes</h2>
+<ol>
+    <li><p class="resource"><a href="https://sexvalues.github.io/index.html">Sex Values Quiz</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/SexValues-01-16-2025_04_58_AM.png" width="200">
+    <li><p><a href="https://bdsmtest.org/select-mode">BDSM Quiz</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/BDSMTest-The-Original-BDSM-Kink-Test-01-16-2025_05_00_AM.png" width="200">
+    <li><p><a href="https://thevaluesmap.com/">The Values Map Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/The-Values-Map-01-16-2025_05_05_AM.png" width="200">
+    <li><p><a href="https://personalvalu.es/personal-values-test">Personal Values Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Values-assessment-Personal-Values-01-16-2025_05_06_AM.png" width="200">
+    <li><p><a href="https://www.idrlabs.com/dark-triad/test.php">Dark Triad Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Dark-Triad-Test-01-16-2025_06_15_AM.png" width="200"></li>
+
+ <li><p><a href="https://www.datcreativity.com/">Divergent Association Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Divergent-Association-Task-Fast-creativity-test-01-16-2025_06_16_AM.png" width="200"></li>
+    <li><p><a href="http://www.humorstyles.com/">Humor Style Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/HSQ-01-16-2025_06_17_AM.png" width="200">
+    <li><p><a href="https://politiscales.party/">Politiscales Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/PolitiScales-The-political-test-01-16-2025_05_01_AM.png" width="200">
+    <li><p><a href="https://www.politicalcompass.org/">Political Compass Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/The-Political-Compass-01-16-2025_05_03_AM.png" width="200">
+    <li><p><a href="https://chartsme.com/">Is Your Brain Democratic or Republican?</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/ChartsMe-Is-Your-Brain-Republican-or-Democrat--01-16-2025_05_04_AM.png" width="200"></li>
+	 <li><p><a href="https://connectthestars.xyz/">Connect the Stars — An endless movie trivia game</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Connect-the-Stars-%E2%80%94-An-endless-movie-trivia-game-01-16-2025_06_34_AM.png" width="200">
+    <li><p><a href="https://thelogingame.com/?ref=producthunt">The Login Game</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/The-Login-Game-01-16-2025_06_34_AM.png" width="200">
+    <li><p><a href="https://www.getbadnews.com/en/intro">Fake News Game</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Bad-News-Play-the-fake-news-game--01-16-2025_06_35_AM.png" width="200">
+    <li><p><a href="https://cantunsee.space/">Can't Unsee</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Can-t-Unsee-01-16-2025_06_35_AM.png" width="200">
+    <li><p><a href="https://www.gapminder.org/">You Are Probably Wrong About..</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Gapminder-01-16-2025_06_51_AM.png" width="200">
+    <li><p><a href="https://userinyerface.com/">User Inyerface</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/User-Inyerface-A-worst-practice-UI-experiment-01-16-2025_07_00_AM.png" width="200">
+    <li><p><a href="https://www.higherorlowergame.com/google/famous-people/">Who is more famous?</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Google-Game-Celebrity-Who-is-more-famous-Higher-or-Lower-01-16-2025_07_02_AM.png" width="200">
+    <li><p><a href="https://hiddenbiases.com/">Hidden Biases - What's the correct answer?</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Hidden-Biases-What-s-the-correct-answer--01-16-2025_07_05_AM.png" width="200">
+    <li><p><a href="https://pudding.cool/2021/10/judge-my-music/">How Bad Is Your Streaming Music?</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/How-Bad-Is-Your-Streaming-Music--01-16-2025_07_09_AM.png" width="200">
+
+
+
+	
+	    <li><p><a href="">How Normal Am I?</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/How-normal-am-I--01-16-2025_07_31_AM.png" width="200">
+	    <li><p><a href="">Where Should I Live?</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Take-the-Quiz-Where-Should-I-Live--01-16-2025_07_31_AM.png" width="200">
+    <li><p><a href="">Draw Battle</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/draw-battle-a-competitive-team-drawing-game-01-16-2025_07_30_AM.png" width="200">
+
+	
+	
+	
+	
+	</ol>
+	
+
 
 
 	</div>
 
-	<div class="activity-feed"><h2>Fun Quizzes</h2>
+	<div class="activity-feed"><h2>Pixel Drawing</h2>
 
 <p class="intro"></p>
+<div id="palette"></div>
+  <div>
+    <input type="color" id="customColor" value="#000000">
+    <button id="addColor">Add Custom Color</button>
+  </div>
+  <br><br><br><br>
+  <button id="saveDrawing">Save Drawing</button>
+  
+  <button id="clearGrid">Clear Grid</button>
+  <div id="grid"></div>
+<br><br><br><br>
+  <script>
+    const grid = document.getElementById('grid');
+    const palette = document.getElementById('palette');
+    const clearButton = document.getElementById('clearGrid');
+    const saveButton = document.getElementById('saveDrawing');
+    const customColorInput = document.getElementById('customColor');
+    const addColorButton = document.getElementById('addColor');
+    const colors = ['red', 'blue', 'green', 'yellow', 'black', 'white'];
+    let currentColor = 'black';
+    const gridSize = 30;
 
-<ol>
-    <li><p class="resource"><a href="https://sexvalues.github.io/index.html">Sex Values Quiz</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/SexValues-01-16-2025_04_58_AM.png" width="400">
-    <li><p><a href="https://bdsmtest.org/select-mode">BDSM Quiz</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/BDSMTest-The-Original-BDSM-Kink-Test-01-16-2025_05_00_AM.png" width="400">
-    <li><p><a href="https://thevaluesmap.com/">The Values Map Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/The-Values-Map-01-16-2025_05_05_AM.png" width="400">
-    <li><p><a href="https://personalvalu.es/personal-values-test">Personal Values Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Values-assessment-Personal-Values-01-16-2025_05_06_AM.png" width="400">
-    <li><p><a href="https://www.idrlabs.com/dark-triad/test.php">Dark Triad Test</a> </p></li><img src="https://raw.githubusercontent.com/ashloren/AbortOurCourt/refs/heads/main/website-thumbnails/Dark-Triad-Test-01-16-2025_06_15_AM.png" width="400">
+    // Function to create the grid
+    function createGrid(gridSize) {
+      grid.innerHTML = ''; // Clear existing grid
+      grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+      grid.style.width = `${gridSize * 20}px`;
+      grid.style.height = `${gridSize * 20}px`;
 
-</ol>
+      for (let i = 0; i < gridSize * gridSize; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.addEventListener('mousedown', () => cell.style.backgroundColor = currentColor);
+        cell.addEventListener('mouseover', (e) => {
+          if (e.buttons === 1) cell.style.backgroundColor = currentColor;
+        });
+        grid.appendChild(cell);
+      }
+    }
+
+    // Create color palette
+    colors.forEach(color => {
+      const colorDiv = document.createElement('div');
+      colorDiv.className = 'color';
+      colorDiv.style.backgroundColor = color;
+      colorDiv.addEventListener('click', () => {
+        document.querySelectorAll('.color').forEach(c => c.classList.remove('selected'));
+        colorDiv.classList.add('selected');
+        currentColor = color;
+      });
+      palette.appendChild(colorDiv);
+    });
+
+    // Select the first color by default
+    palette.children[0].classList.add('selected');
+
+    // Add custom hex color functionality
+    addColorButton.addEventListener('click', () => {
+      const customColor = customColorInput.value;
+      const colorDiv = document.createElement('div');
+      colorDiv.className = 'color';
+      colorDiv.style.backgroundColor = customColor;
+
+      // Add event listener to select the new color
+      colorDiv.addEventListener('click', () => {
+        document.querySelectorAll('.color').forEach(c => c.classList.remove('selected'));
+        colorDiv.classList.add('selected');
+        currentColor = customColor;
+      });
+
+      palette.appendChild(colorDiv);
+    });
+
+    // Clear grid
+    clearButton.addEventListener('click', () => {
+      document.querySelectorAll('.cell').forEach(cell => cell.style.backgroundColor = 'white');
+    });
+
+    // Save drawing functionality
+    saveButton.addEventListener('click', () => {
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+
+      const cellSize = 500 / gridSize; // Example for a 500px-wide canvas
+      canvas.width = cellSize * gridSize;
+      canvas.height = cellSize * gridSize;
+
+      Array.from(grid.children).forEach((cell, index) => {
+        const x = (index % gridSize) * cellSize;
+        const y = Math.floor(index / gridSize) * cellSize;
+        context.fillStyle = cell.style.backgroundColor || 'white';
+        context.fillRect(x, y, cellSize, cellSize);
+      });
+
+      const link = document.createElement('a');
+      link.download = 'drawing.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+
+    // Initialize the grid
+    createGrid(gridSize);
+  </script>
+
 
 </body>
 </html>

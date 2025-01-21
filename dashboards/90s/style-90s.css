@@ -461,7 +461,7 @@ canvas {
       border: 2px solid black;
     }
 #palette {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
-#addColor {width:150px;float:right;padding:3px;height:auto;font-family: "Lobster", serif;}
+#addColor {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
 #saveDrawing {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
 #clearGrid {width:150px;float:right;padding:3px;height:auto;font-family: "Lobster", serif;}
 
@@ -560,4 +560,26 @@ canvas {
     0 2px 4px rgba(0, 0, 0, 0.8) inset;
   transform: translateY(-2px); /* Slight lift effect */
 }
+.styled-list {
+  list-style: none; /* Remove default list styling */
+  padding: 0;
+  margin: 0;
+}
 
+.styled-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing between marker and text */
+  padding: 5px 0;
+}
+
+/* Custom List Marker */
+.styled-list li::before {
+  content: ""; /* Empty content to insert the image */
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url('images/marker.png'); /* Path to your custom image */
+  background-size: cover; /* Ensure the image fills the marker space */
+  background-position: center; /* Center the image */
+}
