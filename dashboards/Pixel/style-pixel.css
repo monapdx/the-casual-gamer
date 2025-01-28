@@ -63,8 +63,36 @@ body {
   background-size: cover; /* Ensure the image fills the marker space */
   background-position: center; /* Center the image */
 }
-
-
+#palette {font-family:"Lobster", serif;width:150px;float:left;padding:3px;height:auto;}
+ .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            gap: 20px;
+            justify-items: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+        .hex-code {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 #footer {background:#e603ff;
 text-align:center;}
 
@@ -364,43 +392,7 @@ button:hover {
 }
 
 /* Result Section */
-#result {
-  margin-top: 20px;
-  padding-top:5px;
-}
 
-.word-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-}
-
-.word-header h2 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.word-header .pronunciation {
-  font-size: 14px;
-  color: #777;
-  font-style: italic;
-}
-
-.definition, .example {
-  margin-bottom: 15px;
-  font-size: 16px;
-}
-
-.definition strong, .example strong {
-  color: #007bff;
-}
-
-.example {
-  font-style: italic;
-}
 
 /* Responsive Design */
 @media (max-width: 600px) {
@@ -418,18 +410,7 @@ button:hover {
     padding: 8px;
   }
 
-  .word-header h2 {
-    font-size: 18px;
-  }
-}
-.word-type {
-  margin-bottom: 15px;
-  font-size: 16px;
-  color: #555; /* Subtle gray for secondary info */
-}
-.word-type strong {
-  color: #007bff; /* Accent color for labels */
-}
+
 
 canvas {
     font-family: "Lobster", serif;
@@ -469,65 +450,45 @@ canvas {
             margin-top: 20px;
             font-size: 1.2em;
         }
-		
-		.audio-player {
-	 width: 270px;
-	 padding: 35px 20px;
-	 margin: auto;
-	 background-color: white;
-	 border: 1px solid black;
-}
- .audio-player .player-controls {
-	 position: relative;
-	 display: flex;
-	 justify-content: space-between;
-	 align-items: center;
-}
- .audio-player #radioIcon {
-	 width: 30px;
-	 height: 30px;
-	 background: url("https://img.icons8.com/ios/50/000000/microphone.png") no-repeat center;
-	 background-size: contain;
-}
- .audio-player #playAudio {
-	 -webkit-appearance: none;
-	 outline: none;
-	 cursor: pointer;
-	 border: none;
-	 width: 30px;
-	 height: 30px;
-	 background: url("https://img.icons8.com/play") no-repeat center;
-	 background-size: contain;
-}
- .audio-player #playAudio.pause {
-	 background: url("https://img.icons8.com/pause") no-repeat center;
-	 background-size: contain;
-}
- .audio-player p {
-	 margin: 0 0 0 5px;
-	 line-height: 1;
-	 display: inline-flex;
-}
- .audio-player p small {
-	 font-size: 10px;
-}
- .audio-player #seekObjContainer {
-	 position: relative;
-	 width: 300px;
-	 margin: 0 5px;
-	 height: 5px;
-}
- .audio-player #seekObjContainer #seekObj {
-	 position: relative;
-	 width: 100%;
-	 height: 100%;
-	 background-color: #e3e3e3;
-	 border: 1px solid black;
-}
- .audio-player #seekObjContainer #seekObj #percentage {
-	 position: absolute;
-	 left: 0;
-	 top: 0;
-	 height: 100%;
-	 background-color: coral;
-}
+
+ #grid {
+      display: grid;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      grid-template-columns: repeat(16, 1fr);
+      grid-gap: 1px;
+      width: 320px;
+      height: 320px;
+    }
+    .cell {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+    }
+    .color-palette {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+        .hex-code {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }

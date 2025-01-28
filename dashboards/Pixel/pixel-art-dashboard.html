@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="schedule-table">
-		<h2></h2>
+		<h2>EXAMPLE HEADER</h2>
 		<div class="table-wrap">
 		<img src="https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/flora-2x.png" class="wrapped-flowers"><p>
     This is a paragraph of text that wraps around the image. The text will flow naturally around the floated image, making it visually appealing and easy to implement.
@@ -35,54 +35,83 @@
 
 	<div class="exercise-table">
 		<h2>Pixel Artists</h2>
-		<div class="table-wrap">
-			<h1></h1>
-    <p></p>
-    
-
-   
-		</div>
+<p><img src="https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/planter-pumpkin.png" class="wrapped-flowers">
+    This is a paragraph of text that wraps around the image. The text will flow naturally around the floated image, making it visually appealing and easy to implement. The text will flow naturally around the floated image, making it visually appealing and easy to implement.
+  </p>
 	</div>
 
 	<div class="calories">
 		<h2>Tutorials</h2>
-		
+		     <button id="palette" onclick="generateColors()">Generate Palette</button>
+    
+    <div class="grid-container" id="colorPalette"></div>
+
+    <script>
+        function generateColors() {
+            const colorPalette = document.getElementById('colorPalette');
+            colorPalette.innerHTML = ''; // Clear existing colors
+
+            for (let i = 0; i < 7; i++) {
+                const color = getRandomColor();
+                const colorItem = document.createElement('div');
+                colorItem.classList.add('color-item');
+
+                const colorBox = document.createElement('div');
+                colorBox.classList.add('color-box');
+                colorBox.style.backgroundColor = color;
+
+                const hexCode = document.createElement('div');
+                hexCode.classList.add('hex-code');
+                hexCode.textContent = color;
+
+                colorItem.appendChild(colorBox);
+                colorItem.appendChild(hexCode);
+                colorPalette.appendChild(colorItem);
+            }
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+
 	</div>
 
-	<div class="personal-bests">
-		<h2>Color Palettes</h2>
-		 <div id="search-container">
-    <h1></h1>
 
-  </div>
-
-
-
-  <!-- Include JavaScript here -->
-  
-</body>
-
-	</div>
 
 	<div class="challenges">
 		<h2>Games</h2>
+		<ol>
+    <li><p class="resource"><a href="https://www.sandromaglione.com/articles/getting-started-with-pixel-art">Getting Started with Pixel Art</a> </p></li><img src="" width="200">
+    <li><p><a href="https://medium.com/pixel-grimoire/how-to-start-making-pixel-art-2d1e31a5ceab">How to Start Making Pixel Art</a> </p></li><img src="" width="200">
+    <li><p><a href="https://itch.io/c/890328/pixel-art-tutorials">Pixel Art Tutorials</a> </p></li><img src="" width="200">
+    <li><p><a href="https://www.derekyu.com/makegames/pixelart.html">Pixel Art Tutorial: Basics</a> </p></li><img src="" width="200">
+    <li><p><a href="https://pixelart.academy/">Pixel Art Academy</a> </p></li><img src="" width="200">
+   
+</ol>
+		
 		
 
 	</div>
 
 	<div class="activity-feed">
-		
-</body>
-</html>
+		<h2>EXAMPLE HEADER</h2>
 
-  </script>
+
+
+
 	</div>
     
     	<div class="footer">
 <center><p><i>Credit: <a href="https://codepen.io/carterfromsl/pen/QWYMjBW">Carter Lovelace @ codepen.io</a></i></p></center>
 		
 	
-
+  <script  src="./script.js"></script>
 	</div>
 
 </div>
