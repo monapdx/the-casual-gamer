@@ -33,7 +33,7 @@ body {
 	position: relative;
 	line-height: 1.5em;
 	font-size: 15px;
-	background: #e603ff url('https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/angled-stushi-small.png') repeat;
+	background: rgb(255,69,0);background: linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255,0,127,1) 29%, rgba(138,43,226,1) 54%, rgba(0,255,0,1) 84%, rgba(0,255,255,1) 100%);
 }
 
 .dashboard {
@@ -45,7 +45,7 @@ body {
 	border: 2px solid;
 	width: 1000px;
 	max-width: calc(100% - 40px);
-	background: #74ff03;
+	background: #000;
 	box-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px;
 }
 
@@ -582,4 +582,103 @@ canvas {
   background-image: url('images/marker.png'); /* Path to your custom image */
   background-size: cover; /* Ensure the image fills the marker space */
   background-position: center; /* Center the image */
+}
+.lamp{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  height: 70vh;
+  min-height: 100px;
+  width: 30vh;
+  min-width: calc(300px * 3 / 7);
+  background: #000;
+  
+  clip-path: polygon(33% 0, 0 70%, 22% 88%, 0 100%, 100% 100%, 78% 88%, 100% 70%, 67% 0);
+}
+.glass{
+  background:#FFFF00;
+  width: 100%;
+  height: 60%;
+  position: absolute;
+  bottom: 30%;
+  overflow: hidden;
+}
+.lava{
+  filter: url("#goo");
+  position:absolute;
+  height:100%;
+  width:100%;
+  top:0;
+  left:0;
+}
+
+.blob{
+  border-radius: 50%;
+  background: red;
+  position:absolute;
+}
+.blob.top{
+  width: 100%;
+  height: 4%;
+  top: -3.7%;
+  left:0;
+}
+.blob.bottom{
+  width: 100%;
+  height:4%;
+  bottom: -3%;
+  left:0;
+}
+.blob:nth-child(1){
+  width: calc(15% * 1.4);
+  height: 15%;
+  left: 45%;
+  bottom:-15%;
+  
+  animation: blob-one ease-in-out 7s infinite;
+}
+.blob:nth-child(2){
+  width: calc(22% * 1.4);
+  height: 22%;
+  right: 14%;
+  bottom:-15%;
+  
+  animation: blob-two ease-in-out 11s infinite;
+}
+.blob:nth-child(3){
+  width: calc(32% * 1.4);
+  height: 32%;
+  bottom:-15%;
+  left: 14%;
+  
+  animation: blob-three ease-in-out 16s infinite;
+}
+
+@keyframes blob-one{
+  0%, 100%{
+    transform: translatey(0);
+  }
+  50%{
+    transform: translatey(-700%);
+  }
+}
+
+@keyframes blob-two{
+  0%, 100%{
+    transform: translatey(0);
+  }
+  50%{
+    transform: translatey(-420%);
+  }
+}
+
+@keyframes blob-three{
+  0%, 100%{
+    transform: translatey(0);
+  }
+  50%{
+    transform: translatey(-305%);
+  }
 }
