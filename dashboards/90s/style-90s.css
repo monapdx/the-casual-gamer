@@ -33,7 +33,7 @@ body {
 	position: relative;
 	line-height: 1.5em;
 	font-size: 15px;
-	background: rgb(255,69,0);background: linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255,0,127,1) 29%, rgba(138,43,226,1) 54%, rgba(0,255,0,1) 84%, rgba(0,255,255,1) 100%);
+	background: #000 url('https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/angled-stushi-small.png'); ;
 }
 
 .dashboard {
@@ -45,7 +45,7 @@ body {
 	border: 2px solid;
 	width: 1000px;
 	max-width: calc(100% - 40px);
-	background: #000;
+	background: rgb(255,69,0);background: linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255,0,127,1) 29%, rgba(138,43,226,1) 54%, rgba(0,255,0,1) 84%, rgba(0,255,255,1) 100%); 
 	box-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px;
 }
 
@@ -681,4 +681,10 @@ canvas {
   50%{
     transform: translatey(-305%);
   }
+}
+#wrapped-flowers {
+  float: left; /* Make the image float within the content block */
+  margin-right: 10px; /* Add space between image and text */
+  width: 159px; /* Set the image width */
+  height: auto; /* Maintain aspect ratio */
 }
