@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML Table Generator</title>
+  <title>Editable Table Generator</title>
   <style>
     body {
  font-family: "Lobster", serif;
@@ -12,24 +12,23 @@
     #table-container {
       margin-top: 20px;
     }
-    .flex-table {
-      display: flex;
-      flex-direction: column;
-    }
-    .flex-table .row {
-      display: flex;
-    }
     .grid-table {
       display: grid;
+      border: 1px solid #dcdcdc; /* 1px solid border for the table */
     }
-    .grid-table div, .flex-table div {
+    .grid-table div {
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
+      border: 1px solid #dcdcdc; /* 1px solid border for each cell */
     }
     .editable {
       cursor: pointer;
+    }
+    .grid-table .header-cell {
+      font-weight: bold;
+      background-color: #dcdcdc; /* First row background color */
     }
 	
 	
@@ -81,60 +80,20 @@ button:hover {
 	#download-btn {width:150px;float:right;padding:3px;height:auto;font-family: "Lobster", serif;}
   </style>
   
-    <style>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 </style>
-</head>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML Table Generator</title>
-  
-</head>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML Table Generator</title>
-  <style>
-
-    #table-container {
-      margin-top: 20px;
-    }
-    .grid-table {
-      display: grid;
-      border: 1px solid #dcdcdc; /* 1px solid border for the table */
-    }
-    .grid-table div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border: 1px solid #dcdcdc; /* 1px solid border for each cell */
-    }
-    .editable {
-      cursor: pointer;
-    }
-    .grid-table .header-cell {
-      font-weight: bold;
-      background-color: #dcdcdc; /* First row background color */
-    }
-  </style>
 </head>
 <body>
-  <h1>HTML Table Generator</h1>
+  <h2>Editable Table Generator</h2>
   <form id="tableForm">
     <label for="columns">Number of Columns:</label>
-    <input type="number" id="columns" min="1" value="3" required><br><br>
+    <input type="number" id="columns" min="1" value="4" required><br><br>
 
     <label for="rows">Number of Rows:</label>
-    <input type="number" id="rows" min="1" value="3" required><br><br>
+    <input type="number" id="rows" min="1" value="10" required><br><br>
 
     <label for="headings">Column Headings (comma-separated):</label>
     <input type="text" id="headings" value="Column 1, Column 2, Column 3"><br><br>
