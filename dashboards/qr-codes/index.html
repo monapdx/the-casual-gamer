@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+</style>
+<style type="text/css">
+body {
+font-family: "Lobster", serif;
+  text-align: center;
+  margin: 20px;
+}
 
+input {
+  padding: 10px;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+button {
+font-family: "Lobster", serif;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+canvas {
+font-family: "Lobster", serif;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+}
+
+
+</style>
+ <div>
+  <label for="qr-type">Select QR Code Type:</label><br>
+  <select id="qr-type">
+    <option value="text">Text/URL</option>
+    <option value="phone">Phone Number</option>
+    <option value="location">Location</option>
+  </select>
+</div><br>
+
+<div>
+  <label for="qr-text">Enter Data:</label><br>
+  <input type="text" id="qr-text" placeholder="Enter text or URL">
+</div>
+
+<button id="generate-btn">Generate QR Code</button><br>
+<canvas id="qr-code"></canvas><br>
+<button id="download-btn" disabled>Download QR Code</button>
+
+<script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
