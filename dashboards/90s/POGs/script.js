@@ -8,6 +8,9 @@ const pogDesigns = [
   'pog-design-4.png',
   'pog-design-5.png',
   'pog-design-6.png',
+  'pog-design-9.png',
+  'pog-design-10.png',
+  'pog-design-11.png',
   
 ];
 
