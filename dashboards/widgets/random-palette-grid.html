@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Color Palette Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            gap: 20px;
+            justify-items: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+        .hex-code {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Random Color Palette Generator</h1>
+    <button onclick="generateColors()">Generate Palette</button>
+    
+    <div class="grid-container" id="colorPalette"></div>
+
+    <script>
+        function generateColors() {
+            const colorPalette = document.getElementById('colorPalette');
+            colorPalette.innerHTML = ''; // Clear existing colors
+
+            for (let i = 0; i < 7; i++) {
+                const color = getRandomColor();
+                const colorItem = document.createElement('div');
+                colorItem.classList.add('color-item');
+
+                const colorBox = document.createElement('div');
+                colorBox.classList.add('color-box');
+                colorBox.style.backgroundColor = color;
+
+                const hexCode = document.createElement('div');
+                hexCode.classList.add('hex-code');
+                hexCode.textContent = color;
+
+                colorItem.appendChild(colorBox);
+                colorItem.appendChild(hexCode);
+                colorPalette.appendChild(colorItem);
+            }
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>

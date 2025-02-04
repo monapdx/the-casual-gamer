@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Memo Recorder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    audio {
+      margin-top: 20px;
+      display: block;
+    }
+    #downloadButton {
+      display: none;
+      background-color: #008CBA;
+    }
+  </style>
+</head>
+<body>
+  <h1>Voice Memo Recorder</h1>
+  <button id="startButton">Start Recording</button>
+  <button id="stopButton" disabled>Stop Recording</button>
+  <br>
+  <audio id="audioPlayback" controls></audio>
+  <br>
+  <a id="downloadButton" download="voice-memo.webm">Download Recording</a>
+
+
+  <script type="text/javascript">const startButton = document.getElementById("startButton");
+const stopButton = document.getElementById("stopButton");
+const audioPlayback = document.getElementById("audioPlayback");
+const downloadButton = document.getElementById("downloadButton");
+
+let mediaRecorder;
+let audioChunks = [];
+
+// Request microphone access and start recording
+startButton.addEventListener("click", async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    audioChunks = []; // Reset audio chunks
+
+    mediaRecorder.addEventListener("dataavailable", (event) => {
+      audioChunks.push(event.data);
+    });
+
+    mediaRecorder.addEventListener("stop", () => {
+      const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+      const audioURL = URL.createObjectURL(audioBlob);
+      
+      // Set the audio playback source
+      audioPlayback.src = audioURL;
+      
+      // Enable the download button
+      downloadButton.href = audioURL;
+      downloadButton.style.display = "inline-block";
+    });
+
+    mediaRecorder.start();
+    startButton.disabled = true;
+    stopButton.disabled = false;
+    downloadButton.style.display = "none"; // Hide download button while recording
+  } catch (error) {
+    alert("Could not access your microphone. Please check your permissions.");
+    console.error("Microphone access error:", error);
+  }
+});
+
+// Stop recording
+stopButton.addEventListener("click", () => {
+  mediaRecorder.stop();
+  startButton.disabled = false;
+  stopButton.disabled = true;
+});
+
+</script>
+</body>
+</html>
