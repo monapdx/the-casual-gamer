@@ -1,0 +1,250 @@
+<style type="text/css">
+    @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Tiny5&display=swap');
+    
+
+/* General Reset */
+body, h1, p, input, button {
+  margin: 0;
+  padding: 10;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+font-family: "Lobster", serif;
+  background-color: #f8f9fa; /* Light gray for the background */
+  color: #333; /* Dark gray for text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* App Container */
+#app-container {
+  background: #fff; /* White for a clean container */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Input Section */
+#input-container {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 10px;
+  width: 100%;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+/* Result Section */
+#result {
+  margin-top: 20px;
+}
+
+.word-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.word-header h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.word-header .pronunciation {
+  font-size: 14px;
+  color: #777;
+  font-style: italic;
+}
+
+.definition, .example {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.definition strong, .example strong {
+  color: #007bff;
+}
+
+.example {
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  #app-container {
+    padding: 15px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .word-header h2 {
+    font-size: 18px;
+  }
+}
+.word-type {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #555; /* Subtle gray for secondary info */
+}
+.word-type strong {
+  color: #007bff; /* Accent color for labels */
+}
+
+
+
+</style>
+
+<script type="module" src="C:\Users\Ash\Downloads\Code\wired-elements\lib"></script>
+
+
+<body>
+  <div id="search-container">
+    <h1>Enter a Word</h1>
+    <input type="text" id="word-input" placeholder="Enter a word" />
+    <button onclick="fetchDefinition()">Search</button>
+  </div>
+  <div id="result"></div><div id="word-list-container">
+  
+  <ul id="word-list"></ul>
+  <button id="export-list" style="display: none;">Export List</button>
+</div>
+
+
+  <!-- Include JavaScript here -->
+  <script>
+async function fetchDefinition() {
+  console.log("Search button clicked!");
+
+  const word = document.getElementById("word-input").value;
+  if (!word) {
+    alert("Please enter a word!");
+    return;
+  }
+
+  const apiKey = "25849b8c-49a9-4426-9d5e-0e03b17251ba"; // Replace with your actual Merriam-Webster API key
+  const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${apiKey}`;
+  const resultContainer = document.getElementById("result");
+  resultContainer.innerHTML = "<p>Loading...</p>";
+
+  try {
+    const response = await fetch(url);
+
+    // Attempt to parse the response as JSON
+    let data;
+    try {
+      data = await response.json();
+    } catch (error) {
+      console.error("Error parsing JSON:", error.message);
+      resultContainer.innerHTML = `<p>Error: Invalid response received from API.</p>`;
+      return;
+    }
+
+    console.log("API Response:", data);
+
+    if (data.length && typeof data[0] === "object") {
+      const wordData = data[0];
+      const definition = wordData.shortdef?.[0] || "No definition found.";
+      const pronunciation = wordData.hwi?.prs?.[0]?.mw || "No pronunciation available.";
+      const wordType = wordData.fl || "Unknown type";
+
+      // Extract example usage
+      let example = null;
+      if (wordData.def?.[0]?.sseq) {
+        const sseq = wordData.def[0].sseq;
+
+        for (const seq of sseq) {
+          const dt = seq[0]?.[1]?.dt;
+          if (dt) {
+            for (const entry of dt) {
+              if (entry[0] === "vis") {
+                example = entry[1][0]?.t || null;
+                break;
+              }
+            }
+          }
+          if (example) break;
+        }
+      }
+
+      if (example) {
+        example = example.replace(/{wi}/g, "<i>").replace(/{\/wi}/g, "</i>");
+      }
+
+      // Build the result HTML
+      let resultHTML = `
+        <div class="word-header">
+          <h2>${word}</h2>
+          <span class="pronunciation">${pronunciation}</span>
+        </div>
+        <p class="word-type"><strong>Type:</strong> ${wordType}</p>
+        <p class="definition"><strong>Definition:</strong> ${definition}</p>
+      `;
+
+      if (example) {
+        resultHTML += `<p class="example"><strong>Example:</strong> ${example}</p>`;
+      }
+
+
+      resultContainer.innerHTML = resultHTML;
+    } else {
+      resultContainer.innerHTML = "<p>Word not found!</p>";
+    }
+  } catch (error) {
+    console.error("Error fetching definition:", error.message);
+    resultContainer.innerHTML = `<p>Error fetching data: ${error.message}</p>`;
+  }
+}
+
+
+
+
+
+  </script>
+</body>
