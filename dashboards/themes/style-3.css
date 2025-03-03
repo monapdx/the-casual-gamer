@@ -14,15 +14,15 @@
 }
 
 body {
-	font-family: "IBM Plex Mono", monospace;
+	font-family: "Oswald", serif;
 	color: #333;
 	margin: 0;
 	position: relative;
 	line-height: 1.5em;
 	font-size: 15px;
-	background: #949494 url('https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/umbrella.png') repeat;
+	background: url('leaves.png') repeat;
 }
-#footer {background:#e603ff;
+#footer {
 text-align:center;}
 
 .static {text-align:center;}
@@ -35,7 +35,7 @@ text-align:center;}
 	border: 2px solid;
 	width: 1000px;
 	max-width: calc(100% - 40px);
-	background: #1044b5;
+	background: #ad4503;
 	box-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px;
 }
 
@@ -49,7 +49,7 @@ text-align:center;}
 }
 
 .dashboard > div:hover {
-	background: #fff;
+	background: #fcad7c;
 	color: black;
 }
 
@@ -261,12 +261,12 @@ li {
 
         }
         #delete-btn {
-           width:150px;height:auto;float:left;padding:3px;font-family: "Lobster", serif;
+           width:150px;height:auto;float:left;padding:3px;font-family: "Oswald", serif;
         }
 
 		
-		#save-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
-		#search {width:auto;height:auto;float:left;padding:3px;font-family: "Lobster", serif;}
+		#save-btn {width:150px;height:auto;float:left;padding:3px;font-family: "Oswald", serif;}
+		#search {width:150px;height:auto;float:left;padding:3px;font-family: "Oswald", serif;}
 		
 		#app-container {
   background: #fff; /* White for a clean container */

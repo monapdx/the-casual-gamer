@@ -12,7 +12,33 @@
 	background: #333;
 	color: #eee;
 }
-
+   #startButton {
+	   width:100%;
+      font-size: 16px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+	  height:100%;
+	  padding:5px;
+    }
+	#stopButton {font-size: 16px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+	  width:100%;
+	  height:100%;
+	  padding:5px;}
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    audio {
+      
+    }
 body {
 	font-family: "IBM Plex Mono", monospace;
 	color: #333;
@@ -22,7 +48,7 @@ body {
 	font-size: 15px;
 	background-image:url('https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/deco-triangles-pink-bg.png') repeat-x-y;
 }
-#footer {background:#e603ff;
+#footer {
 text-align:center;}
 
 .static {text-align:center;}
@@ -49,7 +75,7 @@ text-align:center;}
 }
 
 .dashboard > div:hover {
-	background: #fff;
+	background: #fc62d3;
 	color: black;
 }
 
@@ -397,7 +423,7 @@ canvas {
     }
 	
 	#generate {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
-	#save {width:150px;float:right;padding:3px;height:auto;font-family: "Lobster", serif;}
+	#save {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
 	
 	#generate-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
 	#download-btn {width:150px;float:right;padding:3px;height:auto;font-family: "Lobster", serif;}
@@ -484,4 +510,48 @@ canvas {
 	 top: 0;
 	 height: 100%;
 	 background-color: coral;
+}
+
+.chat-container {
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Add this line to enable absolute positioning inside the container */
+    height: 80vh; /* Adjust this to control the height of the chat container */
+    overflow-y: auto; /* Allows scrolling if the content exceeds container height */
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 75%;
+    word-wrap: break-word;
+    position: relative;
+}
+
+.ashly {
+    background-color: #d1e7fd;
+    align-self: flex-start;
+}
+
+.rick {
+    background-color: #f1f1f1;
+    align-self: flex-end;
+}
+
+.sender {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.text {
+    display: block;
+    word-wrap: break-word;
 }

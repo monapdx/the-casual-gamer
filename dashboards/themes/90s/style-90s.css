@@ -685,6 +685,6 @@ canvas {
 #wrapped-flowers {
   float: left; /* Make the image float within the content block */
   margin-right: 10px; /* Add space between image and text */
-  width: 159px; /* Set the image width */
+  width: 240px; /* Set the image width */
   height: auto; /* Maintain aspect ratio */
 }

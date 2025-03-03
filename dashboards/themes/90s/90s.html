@@ -22,77 +22,10 @@
 	</div>
 
 	<div class="schedule-table">
-<h2>Editable Table Generator</h2>
-  <form id="tableForm">
-    <label for="columns">Number of Columns:</label>
-    <input type="number" id="columns" min="1" value="3" required><br><br>
+<h2>Synthwave Artwork</h2>
 
-    <label for="rows">Number of Rows:</label>
-    <input type="number" id="rows" min="1" value="10" required><br><br>
 
-    <label for="headings">Column Headings (comma-separated):</label>
-    <input type="text" id="headings" value="Column 1, Column 2, Column 3"><br><br>
-
-    <button type="button" id="generateTable">Generate Table</button><br><br>
-  </form>
-
-  <div id="table-container"></div>
-
-  <script>
-    document.getElementById('generateTable').addEventListener('click', () => {
-      const columns = parseInt(document.getElementById('columns').value, 10);
-      const rows = parseInt(document.getElementById('rows').value, 10);
-      const headings = document.getElementById('headings').value.split(',');
-
-      const tableContainer = document.getElementById('table-container');
-      tableContainer.innerHTML = ''; // Clear the container before generating a new table
-
-      // Create table wrapper
-      const table = document.createElement('div');
-      table.className = 'grid-table';
-      table.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-
-      // Add headings as the first row
-      headings.forEach((heading, index) => {
-        if (index < columns) {
-          const cell = document.createElement('div');
-          cell.textContent = heading.trim(); // Heading text
-          styleCell(cell, 0); // Apply styling for header
-          cell.classList.add('header-cell');
-          table.appendChild(cell);
-        }
-      });
-
-      // Fill remaining cells with empty content
-      for (let r = 1; r < rows + 1; r++) {
-        for (let c = 0; c < columns; c++) {
-          const cell = document.createElement('div');
-          cell.textContent = ''; // Empty cell
-          styleCell(cell, r); // Apply styling for regular cells
-          makeEditable(cell);
-          table.appendChild(cell);
-        }
-      }
-
-      tableContainer.appendChild(table);
-
-      // Function to style cells
-      function styleCell(cell, row) {
-        cell.style.padding = '5px'; // Apply 5px padding
-        // Set background color for the first row (headings) and the rest (white)
-        cell.style.backgroundColor = row === 0 ? '#dcdcdc' : 'white';
-      }
-
-      // Make the cell editable
-      function makeEditable(cell) {
-        cell.classList.add('editable');
-        cell.contentEditable = true;
-        cell.addEventListener('click', () => {
-          cell.focus(); // Focus the cell when clicked
-        });
-      }
-    });
-  </script>
+<p><img class="wrapped-flowers" src="nagel-rainbow.gif" width="240">90s trends and styles evoke a vibrant tapestry of grunge fashion, neon-colored windbreakers, and iconic sitcoms like "Friends" and "Fresh Prince." From slap bracelets to Tamagotchis, the decade thrived on its rebellious spirit, embracing hip-hop beats, flannel shirts, and the rise of the internet age, fueling a lasting wave of nostalgia.</p>
 
 
 
@@ -127,7 +60,7 @@
 
 	<div class="calories">
 		<h2>Mixtape Playlist</h2>
-		 <img id="wrapped-flowers" class="svg-hover" src="https://raw.githubusercontent.com/ashloren/the-casual-gamer/fd6613ec3f31188c917d7c2e2fb967e8fda71ead/cassette-tape-svgrepo-com.svg"><ul class="styled-list"><li></li><li></li><li></li><li></li></ul>
+		 <img id="wrapped-flowers" class="svg-hover" src="cassette-tape.svg"><ul class="styled-list"><li><a href="https://drive.google.com/file/d/1oBJlJr-iAgYPkmoIbaz-dzXSnYhsQ0hR/view?usp=sharing">Chipmunk Effect</a></li><li></li><li></li><li></li></ul>
 
   
 
@@ -151,7 +84,7 @@
 	</div>
 
 	<div class="challenges">
-		<h2>Fun Quizzes</h2>
+		<h2></h2>
 <style type="text/css">
 
 
@@ -283,6 +216,8 @@
     </filter>
   </defs>
 </svg>
+
+
    
 
 	

@@ -454,83 +454,160 @@
 	</div>
 
 	<div class="challenges">
-		<h2>Multimedia</h2>
+		<h2>Voice Recorder</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+  
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    audio {
+      margin-top: 20px;
+      display: block;
+      width:250px;
+    }
+    #downloadButton {
+      display: none;
+      background-color: #008CBA;
+    }
+    
+    #startButton {width:200px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
+    #stopButton {width:200px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
+    #generateTable {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
+    
+  </style>
+</head>
+<body>
+
+  <button id="startButton">Start Recording</button>
+  <button id="stopButton" disabled>Stop Recording</button>
+  <br>
+ <center> <audio id="audioPlayback" controls></audio>
+  <br>
+  <a id="downloadButton" download="voice-memo.webm">Download Recording</a>
+
+
+  <script type="text/javascript">const startButton = document.getElementById("startButton");
+const stopButton = document.getElementById("stopButton");
+const audioPlayback = document.getElementById("audioPlayback");
+const downloadButton = document.getElementById("downloadButton");
+
+let mediaRecorder;
+let audioChunks = [];
+
+// Request microphone access and start recording
+startButton.addEventListener("click", async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    audioChunks = []; // Reset audio chunks
+
+    mediaRecorder.addEventListener("dataavailable", (event) => {
+      audioChunks.push(event.data);
+    });
+
+    mediaRecorder.addEventListener("stop", () => {
+      const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+      const audioURL = URL.createObjectURL(audioBlob);
+      
+      // Set the audio playback source
+      audioPlayback.src = audioURL;
+      
+      // Enable the download button
+      downloadButton.href = audioURL;
+      downloadButton.style.display = "inline-block";
+    });
+
+    mediaRecorder.start();
+    startButton.disabled = true;
+    stopButton.disabled = false;
+    downloadButton.style.display = "none"; // Hide download button while recording
+  } catch (error) {
+    alert("Could not access your microphone. Please check your permissions.");
+    console.error("Microphone access error:", error);
+  }
+});
+
+// Stop recording
+stopButton.addEventListener("click", () => {
+  mediaRecorder.stop();
+  startButton.disabled = false;
+  stopButton.disabled = true;
+});
+
+</script>
+</body>
+</html>
 
 
 	</div>
 
 	<div class="activity-feed">
-<h2>Editable Table Generator</h2>
-  <form id="tableForm">
-    <label for="columns">Number of Columns:</label>
-    <input type="number" id="columns" min="1" value="3" required><br><br>
+<h2>SYNONYM SEARCH</h2>
 
-    <label for="rows">Number of Rows:</label>
-    <input type="number" id="rows" min="1" value="10" required><br><br>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <label for="headings">Column Headings (comma-separated):</label>
-    <input type="text" id="headings" value="Column 1, Column 2, Column 3"><br><br>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#searchForm').submit(function(event) {
+        console.log('Form submitted'); // Check if this message appears in the console
+        event.preventDefault();
 
-    <button type="button" id="generateTable">Generate Table</button><br><br>
-  </form>
+        var word = $('#searchWord').val();
+        var uid = '12902'; // Your user ID
+        var tokenid = 'wftVAapX8A2VkZ8E'; // Your API token
+        var apiUrl = 'https://www.stands4.com/services/v2/syno.php';
 
-  <div id="table-container"></div>
-
-  <script>
-    document.getElementById('generateTable').addEventListener('click', () => {
-      const columns = parseInt(document.getElementById('columns').value, 10);
-      const rows = parseInt(document.getElementById('rows').value, 10);
-      const headings = document.getElementById('headings').value.split(',');
-
-      const tableContainer = document.getElementById('table-container');
-      tableContainer.innerHTML = ''; // Clear the container before generating a new table
-
-      // Create table wrapper
-      const table = document.createElement('div');
-      table.className = 'grid-table';
-      table.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-
-      // Add headings as the first row
-      headings.forEach((heading, index) => {
-        if (index < columns) {
-          const cell = document.createElement('div');
-          cell.textContent = heading.trim(); // Heading text
-          styleCell(cell, 0); // Apply styling for header
-          cell.classList.add('header-cell');
-          table.appendChild(cell);
-        }
-      });
-
-      // Fill remaining cells with empty content
-      for (let r = 1; r < rows + 1; r++) {
-        for (let c = 0; c < columns; c++) {
-          const cell = document.createElement('div');
-          cell.textContent = ''; // Empty cell
-          styleCell(cell, r); // Apply styling for regular cells
-          makeEditable(cell);
-          table.appendChild(cell);
-        }
-      }
-
-      tableContainer.appendChild(table);
-
-      // Function to style cells
-      function styleCell(cell, row) {
-        cell.style.padding = '5px'; // Apply 5px padding
-        // Set background color for the first row (headings) and the rest (white)
-        cell.style.backgroundColor = row === 0 ? '#dcdcdc' : 'white';
-      }
-
-      // Make the cell editable
-      function makeEditable(cell) {
-        cell.classList.add('editable');
-        cell.contentEditable = true;
-        cell.addEventListener('click', () => {
-          cell.focus(); // Focus the cell when clicked
+        $.ajax({
+            url: apiUrl,
+            type: 'GET',
+            data: {
+                uid: uid,
+                tokenid: tokenid,
+                word: word,
+                format: 'xml'
+            },
+            success: function(data) {
+                console.log('API response:', data); // Check API response in console
+                var synonyms = $(data).find('synonyms').text();
+                $('#synonymsResult').html('<strong>Synonyms:</strong> ' + synonyms);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching synonyms:', error);
+                $('#synonymsResult').html('<div class="error">Error fetching synonyms. Please try again.</div>');
+            }
         });
-      }
     });
-  </script>
+});
+
+
+
+
+</script>
+
+<form id="searchForm">
+    <label for="searchWord">Enter a word:</label>
+    <input type="text" id="searchWord" name="word">
+    <button id="synonym" type="submit">Search</button>
+</form>
+<div id="synonymsResult"></div>
+
 
 	</div>
     

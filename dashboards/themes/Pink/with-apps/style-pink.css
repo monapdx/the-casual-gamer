@@ -14,7 +14,42 @@
 	background: #333;
 	color: #eee;
 }
+  .movie-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+            max-width: 500px;
+            margin: auto;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        h2 {
+		font-family: "Lobster", serif;
+            margin: 10px 0;
+        }
+		#search {	font-family: "Lobster", serif;
+  margin-top: 10px;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;}
+		input {
 
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 body {
 	font-family: "Oswald", serif;
 	color: #333;
@@ -22,7 +57,7 @@ body {
 	position: relative;
 	line-height: 1.5em;
 	font-size: 15px;
-	background: url('https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/bg-tile-deco-5.png') repeat;
+	background: #fc03b6 url('') repeat;
 }
 #footer {background:#f7f7f7;
 text-align:center;}
@@ -269,7 +304,7 @@ li {
 		
 		#save-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
 		#search {width:auto;height:auto;float:left;padding:3px;font-family: "Lobster", serif;}
-		
+		#synonym {width:auto;height:auto;float:left;padding:3px;font-family: "Lobster", serif;}
 		#app-container {
   background: #fff; /* White for a clean container */
   border-radius: 8px;
@@ -313,6 +348,7 @@ button {
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s ease;
+  float:left;
 }
 
 button:hover {

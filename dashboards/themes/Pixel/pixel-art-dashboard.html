@@ -10,6 +10,9 @@
 
 </head>
 <body>
+
+
+
 <!-- partial:index.partial.html -->
 <div class="dashboard">
 
@@ -22,8 +25,8 @@
 	<div class="schedule-table">
 		<h2>EXAMPLE HEADER</h2>
 		<div class="table-wrap">
-		<img src="https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/flora-2x.png" class="wrapped-flowers"><p>
-    This is a paragraph of text that wraps around the image. The text will flow naturally around the floated image, making it visually appealing and easy to implement.
+		<p class="bordered"><img src="flowers.png" class="wrapped-flowers">
+    <i>This is a paragraph of text that wraps around the image. The text will flow naturally around the floated image, making it visually appealing and easy to implement.</i>
   </p>
   
 
@@ -35,63 +38,27 @@
 
 	<div class="exercise-table">
 		<h2>Pixel Artists</h2>
-<p><img src="https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/planter-pumpkin.png" class="wrapped-flowers">
+<p><img src="redhead-blinks.gif" class="wrapped-image">
     This is a paragraph of text that wraps around the image. The text will flow naturally around the floated image, making it visually appealing and easy to implement. The text will flow naturally around the floated image, making it visually appealing and easy to implement.
   </p>
 	</div>
 
 	<div class="calories">
-		<h2>Tutorials</h2>
-		     <button id="palette" onclick="generateColors()">Generate Palette</button>
-    
-    <div class="grid-container" id="colorPalette"></div>
-
-    <script>
-        function generateColors() {
-            const colorPalette = document.getElementById('colorPalette');
-            colorPalette.innerHTML = ''; // Clear existing colors
-
-            for (let i = 0; i < 7; i++) {
-                const color = getRandomColor();
-                const colorItem = document.createElement('div');
-                colorItem.classList.add('color-item');
-
-                const colorBox = document.createElement('div');
-                colorBox.classList.add('color-box');
-                colorBox.style.backgroundColor = color;
-
-                const hexCode = document.createElement('div');
-                hexCode.classList.add('hex-code');
-                hexCode.textContent = color;
-
-                colorItem.appendChild(colorBox);
-                colorItem.appendChild(hexCode);
-                colorPalette.appendChild(colorItem);
-            }
-        }
-
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-    </script>
-
+	<h2>Widget Title Goes Here</h2>	
+<div class="box"><p style="padding-left:15px;"><img src="blonde-blink.gif" class="wrapped-girl">    This is a paragraph of text that wraps around the image. The text will flow naturally around the floated image, making it visually appealing and easy to implement. The text will flow naturally around the floated image, making it visually appealing and easy to implement.
+  </p></div>
 	</div>
 
 
 
 	<div class="challenges">
 		<h2>Games</h2>
-		<ol>
-    <li><p class="resource"><a href="https://www.sandromaglione.com/articles/getting-started-with-pixel-art">Getting Started with Pixel Art</a> </p></li><img src="" width="200">
-    <li><p><a href="https://medium.com/pixel-grimoire/how-to-start-making-pixel-art-2d1e31a5ceab">How to Start Making Pixel Art</a> </p></li><img src="" width="200">
-    <li><p><a href="https://itch.io/c/890328/pixel-art-tutorials">Pixel Art Tutorials</a> </p></li><img src="" width="200">
-    <li><p><a href="https://www.derekyu.com/makegames/pixelart.html">Pixel Art Tutorial: Basics</a> </p></li><img src="" width="200">
-    <li><p><a href="https://pixelart.academy/">Pixel Art Academy</a> </p></li><img src="" width="200">
+		<ol class="styled-list">
+    <li><p class="resource"><a href="https://www.humanbraincloud.com/">Human Brain Cloud</a> </p></li>
+    <li><p><a href="https://justforfun.io/">Just for Fun</a> </p></li>
+    <li><p><a href="https://itch.io/c/890328/pixel-art-tutorials">Pixel Art Tutorials</a> </p></li>
+    <li><p><a href="https://www.derekyu.com/makegames/pixelart.html">Pixel Art Tutorial: Basics</a> </p></li>
+    <li><p><a href="https://pixelart.academy/">Pixel Art Academy</a> </p></li>
    
 </ol>
 		
@@ -100,14 +67,92 @@
 	</div>
 
 	<div class="activity-feed">
-		<h2>EXAMPLE HEADER</h2>
+<h2>Notes</h2>
+<label for="title">Title</label><br>
+    <input type="text" id="title" placeholder="Enter title"><br>
+    <label for="snippet">Snippet</label><br>
+    <textarea id="snippet" placeholder="Enter your snippet"></textarea><br><br>
+    <button id="save-btn" class="save">Save</button>
 
+    <div class="snippet-container" id="snippet-container"></div>
+<script>
+        const titleInput = document.getElementById('title');
+        const snippetInput = document.getElementById('snippet');
+        const saveButton = document.getElementById('save-btn');
+        const snippetContainer = document.getElementById('snippet-container');
 
+        // Load saved snippets from localStorage on page load
+        const loadSnippets = () => {
+            const snippets = JSON.parse(localStorage.getItem('snippets')) || [];
+            snippets.forEach(({ title, snippet }, index) => addSnippetToDOM(title, snippet, index));
+        };
+
+        // Save snippet to localStorage
+        const saveSnippet = () => {
+            const title = titleInput.value.trim();
+            const snippet = snippetInput.value.trim();
+
+            if (!title || !snippet) {
+                alert('Both Title and Snippet are required.');
+                return;
+            }
+
+            const snippets = JSON.parse(localStorage.getItem('snippets')) || [];
+            snippets.push({ title, snippet });
+            localStorage.setItem('snippets', JSON.stringify(snippets));
+
+            addSnippetToDOM(title, snippet, snippets.length - 1);
+            titleInput.value = '';
+            snippetInput.value = '';
+        };
+
+        // Add snippet to the DOM
+        const addSnippetToDOM = (title, snippet, index) => {
+            const snippetDiv = document.createElement('div');
+            snippetDiv.className = 'snippet';
+            snippetDiv.setAttribute('data-index', index); // Track index for deletion
+
+            const titleField = document.createElement('input');
+            titleField.type = 'text';
+            titleField.value = title;
+            titleField.readOnly = true;
+
+            const snippetField = document.createElement('textarea');
+            snippetField.value = snippet;
+            snippetField.readOnly = true;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-btn';
+            deleteButton.onclick = () => deleteSnippet(index);
+
+            snippetDiv.appendChild(titleField);
+            snippetDiv.appendChild(snippetField);
+            snippetDiv.appendChild(deleteButton);
+            snippetContainer.appendChild(snippetDiv);
+        };
+
+        // Delete snippet from localStorage and DOM
+        const deleteSnippet = (index) => {
+            let snippets = JSON.parse(localStorage.getItem('snippets')) || [];
+            snippets.splice(index, 1); // Remove snippet at index
+            localStorage.setItem('snippets', JSON.stringify(snippets)); // Update storage
+
+            // Refresh the DOM to reflect changes
+            snippetContainer.innerHTML = '';
+            loadSnippets(); // Reload all snippets
+        };
+
+        saveButton.addEventListener('click', saveSnippet);
+
+        // Load snippets on page load
+        loadSnippets();
+    </script>
 
 
 	</div>
     
-    	<div class="footer">
+    	<div id="footer">
 <center><p><i>Credit: <a href="https://codepen.io/carterfromsl/pen/QWYMjBW">Carter Lovelace @ codepen.io</a></i></p></center>
 		
 	
