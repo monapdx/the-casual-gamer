@@ -141,7 +141,7 @@ button:hover {
 
 </style>
 
-<script type="module" src="C:\Users\Ash\Downloads\Code\wired-elements\lib"></script>
+
 
 
 <body>
@@ -247,4 +247,61 @@ async function fetchDefinition() {
 
 
   </script>
+  <br><br>
+ <script type="text/javascript">
+$(document).ready(function() {
+    $('#searchForm').submit(function(event) {
+        console.log('Form submitted'); // Check if this message appears in the console
+        event.preventDefault();
+
+        var word = $('#searchWord').val();
+        var uid = '12902'; // Your user ID
+        var tokenid = 'wftVAapX8A2VkZ8E'; // Your API token
+        var apiUrl = 'https://www.stands4.com/services/v2/syno.php';
+
+        $.ajax({
+            url: apiUrl,
+            type: 'GET',
+            data: {
+                uid: uid,
+                tokenid: tokenid,
+                word: word,
+                format: 'xml'
+            },
+            success: function(data) {
+                console.log('API response:', data); // Check API response in console
+                var synonyms = $(data).find('synonyms').text();
+                $('#synonymsResult').html('<strong>Synonyms:</strong> ' + synonyms);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching synonyms:', error);
+                $('#synonymsResult').html('<div class="error">Error fetching synonyms. Please try again.</div>');
+            }
+        });
+    });
+});
+
+
+
+
+</script>
+<style type="text/css">
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+
+
+#synonymsResult {font-family: "Oswald", serif;}
+
+</style>
+<form id="searchForm">
+    <label for="searchWord">Enter a word:</label><br>
+    <input type="text" id="searchWord" name="word"><br><br>
+    <button type="submit">Search Synonyms</button><br>
+</form>
+<div id="synonymsResult"></div>
+ 
+  
+  
 </body>
