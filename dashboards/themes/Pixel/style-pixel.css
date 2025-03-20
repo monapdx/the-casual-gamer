@@ -64,7 +64,7 @@ border-bottom:8px solid #755146;
 .wrapped-girl {
   float: right; /* Make the image float within the content block */
   margin-right: 10px; /* Add space between image and text */
-  width: 206px; /* Set the image width */
+  width: 164px; /* Set the image width */
   height: auto; /* Maintain aspect ratio */
 padding-right:15px;
 }
