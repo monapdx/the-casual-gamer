@@ -1,0 +1,81 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  font-family: "Tenor Sans", sans-serif;
+  color: #eaeaea;
+}
+
+/* Optional smooth scroll animation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sticky header background */
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 911px;
+  background-image: url('unedited-red.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4) contrast(1.1);
+  z-index: -1; /* ensures it stays in background */
+}
+
+/* Main content */
+.story-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  margin-top: 520px; /* just below the fixed header */
+  color: #eaeaea;
+  position: relative;
+  z-index: 1;
+}
+
+/* Add spacing between paragraphs */
+.story-section p {
+  margin-bottom: 1.5rem; /* gives each paragraph a full line gap */
+  line-height: 1.7;
+}
+
+/* Sections */
+.story-section {
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.story-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Heading */
+h2 {
+  font-size: 3rem;
+  color: #ff4040;
+  margin-bottom: 1.5rem;
+  font-family: 'Garamond', serif;
+  text-shadow: 0 0 10px #000;
+}
+
+.dialogue {
+  font-style: italic;
+  color: #ccc; /* optional: slightly softer tone */
+}
+.with-sound::before {
+  content: "🔊";
+  margin-right: 0.5rem;
+  color: crimson;
+}
+

@@ -1,36 +1,18 @@
 <style type="text/css">
-    @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Tiny5&display=swap');
-    
-
-/* General Reset */
-body, h1, p, input, button {
-  margin: 0;
-  padding: 10;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+h2 {
+font-family: "Oswald", serif;
+	font-size: 1.5em;
+	line-height: 1.1em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-top: 0;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	position: relative;
 }
 
-/* Body Styling */
-body {
-font-family: "Lobster", serif;
-  background-color: #f8f9fa; /* Light gray for the background */
-  color: #333; /* Dark gray for text */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-}
 
-/* App Container */
-#app-container {
-  background: #fff; /* White for a clean container */
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  padding: 20px;
-  max-width: 400px;
-  width: 100%;
-}
 
 /* Input Section */
 #input-container {
@@ -50,10 +32,15 @@ input {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+
 }
 
+input:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
+
 button {
+font-family: "Oswald", serif;
   margin-top: 10px;
   width: 100%;
   background: #007bff; /* Blue button */
@@ -65,6 +52,7 @@ button {
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s ease;
+  float:left;
 }
 
 button:hover {
@@ -73,10 +61,13 @@ button:hover {
 
 /* Result Section */
 #result {
+font-family: "Oswald", serif;
   margin-top: 20px;
+  padding-top:5px;
 }
 
 .word-header {
+font-family: "Oswald", serif;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -86,17 +77,20 @@ button:hover {
 }
 
 .word-header h2 {
+font-family: "Oswald", serif;
   font-size: 20px;
   font-weight: bold;
 }
 
 .word-header .pronunciation {
+font-family: "Oswald", serif;
   font-size: 14px;
-  color: #777;
-  font-style: italic;
+  color: #000;
+
 }
 
 .definition, .example {
+font-family: "Oswald", serif;
   margin-bottom: 15px;
   font-size: 16px;
 }
@@ -106,7 +100,7 @@ button:hover {
 }
 
 .example {
-  font-style: italic;
+
 }
 
 /* Responsive Design */
@@ -120,11 +114,12 @@ button:hover {
   }
 
   button {
+	  font-family: "Lobster", serif;
     font-size: 14px;
     padding: 8px;
   }
-
-  .word-header h2 {
+  
+   .word-header h2 {
     font-size: 18px;
   }
 }
@@ -137,29 +132,21 @@ button:hover {
   color: #007bff; /* Accent color for labels */
 }
 
-
-
+#word-input {border-radius: 5px; /* Round the corners */
+  background-color: #f2f2f2;
+  
+  
 </style>
 
-
-
-
-<body>
-  <div id="search-container">
-    <h1>Enter a Word</h1>
+<h2>Dictionary</h2>
+		 <div id="search-container">
+    
     <input type="text" id="word-input" placeholder="Enter a word" />
-    <button onclick="fetchDefinition()">Search</button>
+    <button id="search" onclick="fetchDefinition()">Search</button>
   </div>
   <div id="result"></div><div id="word-list-container">
-  
-  <ul id="word-list"></ul>
-  <button id="export-list" style="display: none;">Export List</button>
-</div>
-
-
-  <!-- Include JavaScript here -->
-  <script>
-async function fetchDefinition() {
+  <script type="text/javascript">
+  async function fetchDefinition() {
   console.log("Search button clicked!");
 
   const word = document.getElementById("word-input").value;
@@ -242,66 +229,6 @@ async function fetchDefinition() {
   }
 }
 
-
-
-
-
+  
+  
   </script>
-  <br><br>
- <script type="text/javascript">
-$(document).ready(function() {
-    $('#searchForm').submit(function(event) {
-        console.log('Form submitted'); // Check if this message appears in the console
-        event.preventDefault();
-
-        var word = $('#searchWord').val();
-        var uid = '12902'; // Your user ID
-        var tokenid = 'wftVAapX8A2VkZ8E'; // Your API token
-        var apiUrl = 'https://www.stands4.com/services/v2/syno.php';
-
-        $.ajax({
-            url: apiUrl,
-            type: 'GET',
-            data: {
-                uid: uid,
-                tokenid: tokenid,
-                word: word,
-                format: 'xml'
-            },
-            success: function(data) {
-                console.log('API response:', data); // Check API response in console
-                var synonyms = $(data).find('synonyms').text();
-                $('#synonymsResult').html('<strong>Synonyms:</strong> ' + synonyms);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error fetching synonyms:', error);
-                $('#synonymsResult').html('<div class="error">Error fetching synonyms. Please try again.</div>');
-            }
-        });
-    });
-});
-
-
-
-
-</script>
-<style type="text/css">
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
-
-
-
-#synonymsResult {font-family: "Oswald", serif;}
-
-</style>
-<form id="searchForm">
-    <label for="searchWord">Enter a word:</label><br>
-    <input type="text" id="searchWord" name="word"><br><br>
-    <button type="submit">Search Synonyms</button><br>
-</form>
-<div id="synonymsResult"></div>
- 
-  
-  
-</body>

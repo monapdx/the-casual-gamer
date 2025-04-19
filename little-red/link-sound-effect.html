@@ -1,0 +1,24 @@
+<!-- Anchor elements -->
+<a href="#" onclick="playSound('snowSound')">Snow Crunch</a><br>
+<a href="#" onclick="playSound('laughSound')">Girl Laughing</a><br>
+<a href="#" onclick="playSound('ravenSound')">Raven</a><br>
+<a href="#" onclick="playSound('wolfSound')">Wolf</a><br>
+<a href="#" onclick="playSound('winterSound')">Winter Storm</a><br>
+
+<!-- Audio elements -->
+<audio id="snowSound" src="snow-crunch.mp3" preload="auto"></audio>
+<audio id="laughSound" src="lady-laugh.mp3" preload="auto"></audio>
+<audio id="ravenSound" src="raven.mp3" preload="auto"></audio>
+<audio id="wolfSound" src="wolf.mp3" preload="auto"></audio>
+<audio id="winterSound" src="winter-storm.mp3" preload="auto"></audio>
+
+<!-- Script -->
+<script>
+  function playSound(id) {
+    const sound = document.getElementById(id);
+    if (sound) {
+      sound.currentTime = 0;
+      sound.play();
+    }
+  }
+</script>
