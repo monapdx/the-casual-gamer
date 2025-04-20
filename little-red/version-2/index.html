@@ -8,21 +8,19 @@
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap');
 </style>
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const story = document.querySelector('.story-section');
-    if (!story) return;
 
-    // Regex to match quoted text
-    story.innerHTML = story.innerHTML.replace(/"([^"]+)"/g, '<span class="dialogue">"$1"</span>');
-  });
-</script>
+<audio id="snowSound" src="snow-crunch.mp3" preload="auto"></audio>
+<audio id="laughSound" src="lady-laugh.mp3" preload="auto"></audio>
+<audio id="ravenSound" src="raven.mp3" preload="auto"></audio>
+<audio id="wolfSound" src="wolf.mp3" preload="auto"></audio>
+<audio id="winterSound" src="winter-storm.mp3" preload="auto"></audio>
+
 </head>
 <body>
 <div class="fixed-header"></div>
 
   <main class="story-container">
-    <section class="story-section fade-in">
+    <p>
       <h2>Off to Grandmother's House</h2>
       <p>Little Red stood outside of the small log cabin that she shared with her mother and stepfather. It was the coldest part of Winter and everything around her was covered in untouched snow. 
 
@@ -53,13 +51,13 @@ asked her with a serious look of concern.
 
  <p>As she begins the walk through the woods, she travels the clearly defined path through the snow that leads to her grandmother's. She thinks of all the boys she goes to school with in her village. She's just reached the age when they start asking the girls out on dates and a couple of the boys that lived nearby had asked her, but she had laughed at them. 
 
- <p>Thinking back on their clumsy advances made her giggle aloud even now. They were so silly to her, she couldn't take them seriously if she tried. She wonders when she will find a boy who deserves her.
+ <p>Thinking back on their clumsy advances made her <a href="#" onclick="playSound('laughSound')">giggle aloud</a> even now. They were so silly to her, she couldn't take them seriously if she tried. She wonders when she will find a boy who deserves her.
 
  <p>Not too far off into the distance, a wolf is lurking somewhere off the path that Little Red travels, deeper in the woods than she is supposed to go. He hears the faint sound of a young girl laughing not too far from where he stands, one paw in mid-air as his ear twitches at the sound it hears. 
 
  <p>He pauses in mid-step and listens. After a moment, he begins to move towards the girl's voice.
-</section>
-    <section class="story-section fade-in"><h2>A Stranger in the Woods</h2><p>  By this time, Little Red has made quite some progress and is about half way to grandmother's. The basket is growing heavy on her arm so she shifts it from one to the other to give the first one a break. 
+
+    <p><h2>A Stranger in the Woods</h2><p>  By this time, Little Red has made quite some progress and is about half way to grandmother's. The basket is growing heavy on her arm so she shifts it from one to the other to give the first one a break. 
 
 <p>Out of nowhere, she hears a young man yell out to her, "That looks heavy, my dear!"
 
@@ -104,7 +102,7 @@ One of his hands is reaching out for the basket and the other remains in the poc
 
 <p>He shrugs and looks down before saying, "I don't know...I am only playing with you, let's move faster. The sun is down now and it's getting darker and colder by the minute. You'll freeze if we don't hurry."</section>
 
-<section class="story-section fade-in"><h2>A Fork in the Path</h2>
+<h2>A Fork in the Path</h2>
 
 <p>Soon the two of them come to a fork in the path. To the right, grandmother's house lies not far ahead. 
 
@@ -132,7 +130,7 @@ One of his hands is reaching out for the basket and the other remains in the poc
 
 <p>"We'll meet again Little Red, don't you worry about that."</section>
 
- <section class="story-section fade-in"><h2>Just in Time for Tea</h2>
+<h2>Just in Time for Tea</h2>
 
 <p> The next moment, she is standing alone there in the woods. Was any of it real? Where did he disappear to so fast? She looks around her once and then with a heavy heart, continues on towards her grandmother's. She is nearly there.
 
@@ -172,7 +170,7 @@ One of his hands is reaching out for the basket and the other remains in the poc
 
 <p>Overcome with disbelief, she drops the tea cup in perfect timing with a sudden sob of shock that she lets out before she has a chance to keep it to herself, sending it to the ground where it crashes into four or five jagged fragments that each go flying in their own direction.</section>
 
- <section class="story-section fade-in"><h2>Secrets With Strangers</h2>
+<h2>Secrets With Strangers</h2>
 <p>It was him. The man who carried her basket for most of the journey through the woods. She can't believe it. 
 
 <p>He's wearing different clothes now. Instead of the sweater from earlier, he is wearing a heavy coat that's lined in fur. His pants are black now and appear to be made of a rougher material than the gray ones he was wearing when they had crossed paths. 
@@ -209,7 +207,7 @@ One of his hands is reaching out for the basket and the other remains in the poc
 
 <p>The first thing she would ask him was his name. </section>
 
- <section class="story-section fade-in"><h2>Putting Grandmother to Sleep</h2>
+<h2>Putting Grandmother to Sleep</h2>
 <p>Right before he is about to exit the cabin, he looks at Little Red with a question in his eyes and she immediately knows he is asking for her permission to rid them of her grandmother's presence. 
 
 <p>She closes her mouth and purses her lips slightly, her eyes narrowing just the tiniest bit before she gives him a single nod of her head to affirm her feelings. 
@@ -245,7 +243,7 @@ One of his hands is reaching out for the basket and the other remains in the poc
 <p>The chemistry between them infused her and they kissed again, longer this time. Soon his hand wandered to her bosom, where it cleverly unfastened her slip and he reached into it to feel her bare skin. 
 
 <p>She was his now. She wanted him the way he had wanted her since he first laid eyes on her in the forest earlier that day.</section>
- <section class="story-section fade-in"><h2>Leaving the Cabin</h2>
+<h2>Leaving the Cabin</h2>
 <p>
 Breathing heavily as if she had just ran through the woods the entire way from her cabin, Little Red asks him, "What shall we do now?"
 
@@ -293,8 +291,7 @@ Breathing heavily as if she had just ran through the woods the entire way from h
     <!-- Add more story paragraphs here as needed -->
   </main>
 
-  <script src="scroll-animations.js"></script>
-<script>
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !entry.target.classList.contains('played')) {
@@ -308,8 +305,17 @@ Breathing heavily as if she had just ran through the woods the entire way from h
   document.querySelectorAll('.with-sound').forEach(el => {
     observer.observe(el);
   });
-</script>
+</script>				
 
+<script>
+  function playSound(id) {
+    const sound = document.getElementById(id);
+    if (sound) {
+      sound.currentTime = 0;
+      sound.play();
+    }
+  }
+</script>
 
 </body>
 </html>

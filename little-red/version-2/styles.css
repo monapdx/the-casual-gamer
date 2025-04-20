@@ -5,6 +5,8 @@
   box-sizing: border-box;
 }
 
+a {  font-family: "Tenor Sans", sans-serif;color:red;}
+a:hover {text-decoration:none;}													  
 body {
   background-color: #121212;
   font-family: "Tenor Sans", sans-serif;
@@ -15,6 +17,8 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+a {color:red;font-weight:bold;letter-spacing:2px;}
 
 /* Sticky header background */
 .fixed-header {
@@ -42,7 +46,7 @@ html {
 }
 
 /* Add spacing between paragraphs */
-.story-section p {
+p {
   margin-bottom: 1.5rem; /* gives each paragraph a full line gap */
   line-height: 1.7;
 }
@@ -71,7 +75,7 @@ h2 {
 
 .dialogue {
   font-style: italic;
-  color: #ccc; /* optional: slightly softer tone */
+  color: red; /* optional: slightly softer tone */
 }
 .with-sound::before {
   content: "🔊";

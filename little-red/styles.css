@@ -64,21 +64,40 @@ p {
 }
 
 /* Heading */
-h1 {
+h2 {
   font-size: 3rem;
-  color: #ff4040;
+  color: red;
   margin-bottom: 1.5rem;
-  font-family: 'Garamond', serif;
+  font-family: "Oleo Script", system-ui;
   text-shadow: 0 0 10px #000;
+
 }
+
+h1 {  font-size: 4rem;
+  color: red;
+  
+  font-family: "Oleo Script", system-ui;
+  text-shadow: 0 0 10px #000;}
+  
+ p.byline {  font-size: 1rem;
+  color: white;
+  margin-bottom: 1rem;
+  font-family: "Tenor Sans", sans-serif;
+  text-shadow: 0 0 10px #000;  font-style:italic;}
 
 .dialogue {
   font-style: italic;
-  color: #ccc; /* optional: slightly softer tone */
+  color: #aef5fc; /* optional: slightly softer tone */
 }
 .with-sound::before {
   content: "🔊";
   margin-right: 0.5rem;
   color: crimson;
 }
+
+blockquote {font-style:italic;color:#aef5fc;}
+
+
+
+
 
