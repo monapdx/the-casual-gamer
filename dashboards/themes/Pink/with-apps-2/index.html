@@ -169,87 +169,160 @@
 	</div>
 
 	<div class="calories">
-		<h2>Notes</h2>
-		<label for="title">Title</label>
-    <input type="text" id="title" placeholder="Enter title">
-    <label for="snippet">Snippet</label>
-    <textarea id="snippet" placeholder="Enter your snippet"></textarea><br><br>
-    <button id="save-btn" class="save">Save</button>
+<style>
+    body {
+ font-family: "Lobster", serif;
+      margin: 20px;
+    }
+    #table-container {
+      margin-top: 20px;
+    }
+    .grid-table {
+      display: grid;
+      border: 1px solid #dcdcdc; /* 1px solid border for the table */
+    }
+    .grid-table div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid #dcdcdc; /* 1px solid border for each cell */
+    }
+    .editable {
+      cursor: pointer;
+    }
+    .grid-table .header-cell {
+      font-weight: bold;
+      background-color: #dcdcdc; /* First row background color */
+    }
+	
+	
+	label {
+	font-family:"Lobster", serif;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
 
-    <div class="snippet-container" id="snippet-container"></div>
-<script>
-        const titleInput = document.getElementById('title');
-        const snippetInput = document.getElementById('snippet');
-        const saveButton = document.getElementById('save-btn');
-        const snippetContainer = document.getElementById('snippet-container');
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
 
-        // Load saved snippets from localStorage on page load
-        const loadSnippets = () => {
-            const snippets = JSON.parse(localStorage.getItem('snippets')) || [];
-            snippets.forEach(({ title, snippet }, index) => addSnippetToDOM(title, snippet, index));
-        };
+button {
+	font-family: "Lobster", serif;
+  margin-top: 10px;
+  width: 100%;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
 
-        // Save snippet to localStorage
-        const saveSnippet = () => {
-            const title = titleInput.value.trim();
-            const snippet = snippetInput.value.trim();
+button:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
 
-            if (!title || !snippet) {
-                alert('Both Title and Snippet are required.');
-                return;
-            }
 
-            const snippets = JSON.parse(localStorage.getItem('snippets')) || [];
-            snippets.push({ title, snippet });
-            localStorage.setItem('snippets', JSON.stringify(snippets));
+#delete-btn {width:150px;height:auto;float:left;padding:3px;font-family: "Lobster", serif;}
+#save-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
+#search {width:auto;height:auto;float:left;padding:3px;font-family: "Lobster", serif;}
 
-            addSnippetToDOM(title, snippet, snippets.length - 1);
-            titleInput.value = '';
-            snippetInput.value = '';
-        };
+	#generate {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
+	#save {width:150px;float:right;padding:3px;height:auto;font-family: "Lobster", serif;}
+	
+	#generate-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
+	#download-btn {width:150px;float:right;padding:3px;height:auto;font-family: "Lobster", serif;}
+  </style>
+  
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+</style>
 
-        // Add snippet to the DOM
-        const addSnippetToDOM = (title, snippet, index) => {
-            const snippetDiv = document.createElement('div');
-            snippetDiv.className = 'snippet';
-            snippetDiv.setAttribute('data-index', index); // Track index for deletion
+</head>
+<body>
+  <h2>Editable Table Generator</h2>
+  <form id="tableForm">
+    <label for="columns">Number of Columns:</label>
+    <input type="number" id="columns" min="1" value="3" required><br><br>
 
-            const titleField = document.createElement('input');
-            titleField.type = 'text';
-            titleField.value = title;
-            titleField.readOnly = true;
+    <label for="rows">Number of Rows:</label>
+    <input type="number" id="rows" min="1" value="10" required><br><br>
 
-            const snippetField = document.createElement('textarea');
-            snippetField.value = snippet;
-            snippetField.readOnly = true;
+    <label for="headings">Column Headings (comma-separated):</label>
+    <input type="text" id="headings" value="Column 1, Column 2, Column 3"><br><br>
 
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.className = 'delete-btn';
-            deleteButton.onclick = () => deleteSnippet(index);
+    <button type="button" id="generateTable">Generate Table</button>
+  </form>
 
-            snippetDiv.appendChild(titleField);
-            snippetDiv.appendChild(snippetField);
-            snippetDiv.appendChild(deleteButton);
-            snippetContainer.appendChild(snippetDiv);
-        };
+  <div id="table-container"></div>
 
-        // Delete snippet from localStorage and DOM
-        const deleteSnippet = (index) => {
-            let snippets = JSON.parse(localStorage.getItem('snippets')) || [];
-            snippets.splice(index, 1); // Remove snippet at index
-            localStorage.setItem('snippets', JSON.stringify(snippets)); // Update storage
+  <script>
+    document.getElementById('generateTable').addEventListener('click', () => {
+      const columns = parseInt(document.getElementById('columns').value, 10);
+      const rows = parseInt(document.getElementById('rows').value, 10);
+      const headings = document.getElementById('headings').value.split(',');
 
-            // Refresh the DOM to reflect changes
-            snippetContainer.innerHTML = '';
-            loadSnippets(); // Reload all snippets
-        };
+      const tableContainer = document.getElementById('table-container');
+      tableContainer.innerHTML = ''; // Clear the container before generating a new table
 
-        saveButton.addEventListener('click', saveSnippet);
+      // Create table wrapper
+      const table = document.createElement('div');
+      table.className = 'grid-table';
+      table.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
 
-        // Load snippets on page load
-        loadSnippets();
-    </script>
+      // Add headings as the first row
+      headings.forEach((heading, index) => {
+        if (index < columns) {
+          const cell = document.createElement('div');
+          cell.textContent = heading.trim(); // Heading text
+          styleCell(cell, 0); // Apply styling for header
+          cell.classList.add('header-cell');
+          table.appendChild(cell);
+        }
+      });
+
+      // Fill remaining cells with empty content
+      for (let r = 1; r < rows + 1; r++) {
+        for (let c = 0; c < columns; c++) {
+          const cell = document.createElement('div');
+          cell.textContent = ''; // Empty cell
+          styleCell(cell, r); // Apply styling for regular cells
+          makeEditable(cell);
+          table.appendChild(cell);
+        }
+      }
+
+      tableContainer.appendChild(table);
+
+      // Function to style cells
+      function styleCell(cell, row) {
+        cell.style.padding = '5px'; // Apply 5px padding
+        // Set background color for the first row (headings) and the rest (white)
+        cell.style.backgroundColor = row === 0 ? '#dcdcdc' : 'white';
+      }
+
+      // Make the cell editable
+      function makeEditable(cell) {
+        cell.classList.add('editable');
+        cell.contentEditable = true;
+        cell.addEventListener('click', () => {
+          cell.focus(); // Focus the cell when clicked
+        });
+      }
+    });
+  </script>
 
 	</div>
 
@@ -358,160 +431,197 @@
 
 	</div>
 
-	<div class="challenges">
-		<h2>Voice Recorder</h2>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-  <style>
-  
-    button {
-      font-size: 16px;
-      padding: 10px 20px;
-      margin: 10px;
-      border: none;
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-      border-radius: 5px;
+
+	<div class="activity-feed">
+ <style>
+    body {
+      font-family: "Oswald", serif;
+      margin: 20px;
     }
-    button:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-    audio {
+    #list-container {
       margin-top: 20px;
-      display: block;
-      width:250px;
     }
-    #downloadButton {
-      display: none;
-      background-color: #008CBA;
+    .list-item {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
     }
-    
-    #startButton {width:200px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
-    #stopButton {width:200px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
-    #generateTable {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
-    
+    .list-item input {
+      margin-right: 10px;
+      font-family: "Lobster", serif;
+      font-size:18px;
+    }
+    .crossed {
+      text-decoration: line-through;
+      color: grey;
+    }
+    .export-btn {
+      margin-top: 20px;
+    }
+.list-item {
+font-size:18px;
+  display: flex;
+  align-items: left;
+  justify-content: space-between; /* Ensures spacing between text and delete button */
+  margin: 10px 0;
+  padding: 5px;
+  border-bottom: 1px solid #ddd; /* Optional: Adds a subtle separation between items */
+}
+
+.list-item span {
+  flex-grow: 1; /* Allows the text to take up remaining space */
+  margin-left: 5px; /* Ensures some space between the checkbox and text */
+}
+
+.list-item button {
+  margin-left: 10px; /* Increases space between text and delete button */
+  padding: 3px 8px;
+  border: none;
+  background-color: #ff4d4d;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.list-item button:hover {
+  background-color: #d93636;
+}
+	
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');	
+	
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+#export-btn	{font-family: "Lobster", serif;font-size:20px;float:left;width:100px;height:30px;}
+#new-item {font-family: "Lobster", serif;font-size:18px; border-radius: 5px; /* Round the corners */
+  background-color: #f2f2f2; /* Set a light background color */}
+  #new-item:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5); /* Add a subtle shadow */}
+#list-title {font-family: "Lobster", serif;font-size:18px;border-radius: 5px; /* Round the corners */
+  background-color: #f2f2f2;}
+  #list-title:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
+label {font-family: "Oswald", serif;font-size:18px;font-weight:bold;}
   </style>
 </head>
 <body>
 
-  <button id="startButton">Start Recording</button>
-  <button id="stopButton" disabled>Stop Recording</button>
-  <br>
- <center> <audio id="audioPlayback" controls></audio>
-  <br>
-  <a id="downloadButton" download="voice-memo.webm">Download Recording</a>
+  <h1>LIST GENERATOR</h1>
+  <label for="list-title">List Title: </label>
+  <input type="text" id="list-title" placeholder="Enter List Title" />
+  
+  <div id="list-container"></div>
 
+  <div class="list-item">
+    <input type="text" id="new-item" placeholder="Add new item" />
+  </div>
 
-  <script type="text/javascript">const startButton = document.getElementById("startButton");
-const stopButton = document.getElementById("stopButton");
-const audioPlayback = document.getElementById("audioPlayback");
-const downloadButton = document.getElementById("downloadButton");
+  <button class="export-btn" id="export-btn">Export List</button>
 
-let mediaRecorder;
-let audioChunks = [];
+  <script>
+    let listTitle = '';
+    let listItems = [];
 
-// Request microphone access and start recording
-startButton.addEventListener("click", async () => {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    mediaRecorder = new MediaRecorder(stream);
-    audioChunks = []; // Reset audio chunks
+    const listTitleInput = document.getElementById('list-title');
+    const newItemInput = document.getElementById('new-item');
+    const listContainer = document.getElementById('list-container');
+    const exportBtn = document.getElementById('export-btn');
 
-    mediaRecorder.addEventListener("dataavailable", (event) => {
-      audioChunks.push(event.data);
+    listTitleInput.addEventListener('input', function() {
+      listTitle = listTitleInput.value;
     });
 
-    mediaRecorder.addEventListener("stop", () => {
-      const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
-      const audioURL = URL.createObjectURL(audioBlob);
-      
-      // Set the audio playback source
-      audioPlayback.src = audioURL;
-      
-      // Enable the download button
-      downloadButton.href = audioURL;
-      downloadButton.style.display = "inline-block";
+    function addNewItem() {
+      if (newItemInput.value.trim() !== '') {
+        listItems.push({ text: newItemInput.value.trim(), crossed: false });
+        newItemInput.value = '';
+        renderList();
+        newItemInput.focus();
+      }
+    }
+
+    newItemInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        addNewItem();
+      }
     });
 
-    mediaRecorder.start();
-    startButton.disabled = true;
-    stopButton.disabled = false;
-    downloadButton.style.display = "none"; // Hide download button while recording
-  } catch (error) {
-    alert("Could not access your microphone. Please check your permissions.");
-    console.error("Microphone access error:", error);
-  }
-});
-
-// Stop recording
-stopButton.addEventListener("click", () => {
-  mediaRecorder.stop();
-  startButton.disabled = false;
-  stopButton.disabled = true;
-});
-
-</script>
-</body>
-</html>
-
-
-	</div>
-
-	<div class="activity-feed">
-<h2>SYNONYM SEARCH</h2>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#searchForm').submit(function(event) {
-        console.log('Form submitted'); // Check if this message appears in the console
-        event.preventDefault();
-
-        var word = $('#searchWord').val();
-        var uid = '12902'; // Your user ID
-        var tokenid = 'wftVAapX8A2VkZ8E'; // Your API token
-        var apiUrl = 'https://www.stands4.com/services/v2/syno.php';
-
-        $.ajax({
-            url: apiUrl,
-            type: 'GET',
-            data: {
-                uid: uid,
-                tokenid: tokenid,
-                word: word,
-                format: 'xml'
-            },
-            success: function(data) {
-                console.log('API response:', data); // Check API response in console
-                var synonyms = $(data).find('synonyms').text();
-                $('#synonymsResult').html('<strong>Synonyms:</strong> ' + synonyms);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error fetching synonyms:', error);
-                $('#synonymsResult').html('<div class="error">Error fetching synonyms. Please try again.</div>');
-            }
+    function renderList() {
+      listContainer.innerHTML = '';
+      listItems.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.classList.add('list-item');
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = item.crossed;
+        checkbox.addEventListener('change', function() {
+          item.crossed = !item.crossed;
+          renderList();
         });
-    });
+
+        const text = document.createElement('span');
+        text.textContent = item.text;
+        if (item.crossed) {
+          text.classList.add('crossed');
+        }
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.addEventListener('click', function() {
+          listItems.splice(index, 1);
+          renderList();
+        });
+
+        div.append(checkbox, text, deleteBtn);
+        listContainer.append(div);
+      });
+    }
+
+exportBtn.addEventListener('click', function() {
+  let html = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${listTitle || "Shopping List"}</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; max-width: 600px; }
+      .list-container { margin-top: 20px; }
+      .list-item { display: block; margin: 10px 0; padding: 5px; border-bottom: 1px solid #ddd; }
+      .crossed { text-decoration: line-through; color: grey; }
+    </style>
+  </head>
+  <body>
+    <h1>${listTitle || "Shopping List"}</h1>
+    <div class="list-container">`;
+
+  listItems.forEach(item => {
+    const statusClass = item.crossed ? 'crossed' : '';
+    html += `<div class="list-item ${statusClass}">${item.text}</div>`;
+  });
+
+  html += `</div>
+  </body>
+  </html>`;
+
+  const blob = new Blob([html], { type: "text/html" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${listTitle || "shopping-list"}.html`;
+  link.click();
 });
 
 
 
 
-</script>
-
-<form id="searchForm">
-    <label for="searchWord">Enter a word:</label>
-    <input type="text" id="searchWord" name="word">
-    <button id="synonym" type="submit">Search</button>
-</form>
-<div id="synonymsResult"></div>
+    renderList();
+  </script>
 
 
 	</div>

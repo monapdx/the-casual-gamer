@@ -3,35 +3,70 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
 
-.snippet-container {
-            margin-top: 20px;
-        }
-        .snippet {
-			font-family: "Oswald", serif;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            background-color: #f9f9f9;
-        }
+h2 {
+font-family: "Oswald", serif;
+	font-size: 1.5em;
+	line-height: 1.1em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-top: 0;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	position: relative;
+}
 
-	label {font-family: "Oswald", serif;font-weight:bold;font-size:18px;}
 
-        }
-        #delete-btn {
-           width:150px;float:left;padding:3px;height:auto;font-family: "Oswald", serif;font-size:16px;font-weight:bold;
-        }
-		
-		input {font-family: "Oswald", serif;font-size:18px;padding:10px; border: 1px solid #ddd;font-weight:bold;}
 
-		
-		#save-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Oswald", serif;font-size:16px;font-weight:bold;}
-		
-		
-#generate-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Oswald", serif;font-weight:bold;font-size:18px;}
-	#download-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Oswald", serif;font-weight:bold;font-size:18px;}
-#qr-text {width:400px;}
+/* Input Section */
+#input-container {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+#qr-text {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px; /* Round the corners */
+  background-color: #f2f2f2;
+
+}
+
+input:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
+
+button {
+font-family: "Oswald", serif;
+  margin-top: 10px;
+  width: 100%;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  float:left;
+}
+
+button:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
 </style>
 
 
@@ -43,7 +78,7 @@
   <input type="text" id="qr-text" placeholder="Enter text or URL" /><br><br>
   <button id="generate-btn">Generate</button><br><br><br>
   <button id="download-btn" disabled>Download</button>
-<br>
+<br><br>
   <canvas id="qr-code"></canvas>
   
   <script type="text/javascript">

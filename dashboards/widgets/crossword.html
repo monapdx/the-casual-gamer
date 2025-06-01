@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Crossword</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+  
+    body {
+      font-family: "Oswald", serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f0f0f0;
+    }
+
+    #puzzle {
+      display: grid;
+      grid-template-columns: repeat(10, 40px);
+      grid-template-rows: repeat(10, 40px);
+      gap: 2px;
+      margin-bottom: 20px;
+    }
+
+    .cell-wrapper {
+      position: relative;
+    }
+
+    .cell {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border: 1px solid #000;
+      text-align: center;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .cell:focus {
+      outline: 2px solid blue;
+    }
+
+    .black {
+      background: black;
+    }
+
+    .correct {
+      background-color: #b4f7b4 !important;
+    }
+
+    .incorrect {
+      background-color: #f7b4b4 !important;
+    }
+
+    .cell-number {
+      position: absolute;
+      top: 1px;
+      left: 2px;
+      font-size: 10px;
+      color: black;
+      pointer-events: none;
+    }
+
+    #clues {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      width: 80%;
+	  list-style-type:none;
+    }
+
+    #across-clues, #down-clues {
+      max-width: auto;
+      text-align: left;
+	  list-style-type:none;
+    }
+  </style>
+</head>
+<body>
+  <h1></h1>
+  <div id="puzzle"></div>
+
+  <div id="clues">
+    <div id="across-clues">
+      <h2>ACROSS</h2>
+      <ul>
+        <li>1 Baby seedling</li>
+        <li>3 Style from a past era</li>
+        <li>7 What you sit at in both an office and classroom</li>
+        <li>9 Upper appendage</li>
+      </ul>
+    </div>
+    <div id="down-clues">
+      <h2>DOWN</h2>
+      <ul>
+        <li>2 Swivel motion</li>
+        <li>4 Verb to describe gradual change in a species over time</li>
+        <li>5 Traded for real money at arcades and some car washes</li>
+        <li>6 The Five Great _____</li>
+        <li>8 First Aid ___</li>
+        <li>10 What must be proven in a murder trial</li>
+      </ul>
+    </div>
+  </div>
+
+  <button onclick="checkAnswers()">Check Answers</button>
+
+<script>
+  const grid = [
+    ['', 'S', 'P', 'R', 'O', 'U', 'T', '', '', ''],
+    ['', '', 'I', '', '', '', '', 'L', '', ''],
+    ['', '', 'V', '', '', '', '', 'A', 'R', 'M'],
+    ['', '', 'O', '', 'T', 'U', 'C', 'K', '', 'O'],
+    ['R', 'E', 'T', 'R', 'O', '', '', 'E', '', 'T'],
+    ['', 'V', '', '', 'K', '', '', 'S', '', 'I'],
+    ['', 'O', '', 'D', 'E', 'S', 'K', '', '', 'V'],
+    ['', 'L', '', '', 'N', '', 'I', '', '', 'E'],
+    ['', 'V', '', '', '', '', 'T', '', '', ''],
+    ['', 'E', '', '', '', '', '', '', '', '']
+  ];
+
+  const clueNumbers = {
+    '0,1': 1,
+    '0,2': 2,
+    '4,0': 3,
+    '4,1': 4,
+    '3,4': 5,
+    '1,7': 6,
+    '6,3': 7,
+    '6,6': 8,
+    '2,7': 9,
+    '2,9': 10
+  };
+
+  function createPuzzle() {
+    const puzzle = document.getElementById("puzzle");
+
+    for (let row = 0; row < 10; row++) {
+      for (let col = 0; col < 10; col++) {
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("cell-wrapper");
+
+        const cell = document.createElement("input");
+        cell.classList.add("cell");
+        cell.dataset.row = row;
+        cell.dataset.col = col;
+
+        if (grid[row][col] === '') {
+          cell.classList.add("black");
+          cell.disabled = true;
+        } else {
+          // Set direction based on some basic logic
+          const isAcross = col < 9 && grid[row][col + 1] !== '';
+          const isDown = row < 9 && grid[row + 1][col] !== '';
+
+          if (isAcross) {
+            cell.dataset.direction = "across";
+          } else if (isDown) {
+            cell.dataset.direction = "down";
+          }
+
+          cell.addEventListener("input", function () {
+            const val = this.value.toUpperCase();
+            this.value = val;
+            const r = parseInt(this.dataset.row);
+            const c = parseInt(this.dataset.col);
+            const direction = this.dataset.direction;
+
+            if (val.length === 1 && direction) {
+              let nextCell;
+              if (direction === "across") {
+                nextCell = document.querySelector(`.cell[data-row="${r}"][data-col="${c + 1}"]:not(.black)`);
+              } else if (direction === "down") {
+                nextCell = document.querySelector(`.cell[data-row="${r + 1}"][data-col="${c}"]:not(.black)`);
+              }
+
+              if (nextCell) nextCell.focus();
+            }
+          });
+
+          cell.addEventListener("keydown", function (e) {
+            if (e.key === "Backspace") {
+              const r = parseInt(this.dataset.row);
+              const c = parseInt(this.dataset.col);
+              const direction = this.dataset.direction;
+
+              if (this.value === '') {
+                let prevCell;
+                if (direction === "across") {
+                  prevCell = document.querySelector(`.cell[data-row="${r}"][data-col="${c - 1}"]:not(.black)`);
+                } else if (direction === "down") {
+                  prevCell = document.querySelector(`.cell[data-row="${r - 1}"][data-col="${c}"]:not(.black)`);
+                }
+
+                if (prevCell) {
+                  e.preventDefault();
+                  prevCell.value = '';
+                  prevCell.focus();
+                }
+              }
+            }
+          });
+        }
+
+        const key = `${row},${col}`;
+        if (clueNumbers[key]) {
+          const number = document.createElement("span");
+          number.classList.add("cell-number");
+          number.innerText = clueNumbers[key];
+          wrapper.appendChild(number);
+        }
+
+        wrapper.appendChild(cell);
+        puzzle.appendChild(wrapper);
+      }
+    }
+  }
+
+  function checkAnswers() {
+    const inputs = document.querySelectorAll(".cell:not(.black)");
+    inputs.forEach(input => {
+      const row = input.dataset.row;
+      const col = input.dataset.col;
+      const correctLetter = grid[row][col];
+
+      if (input.value.toUpperCase() === correctLetter) {
+        input.classList.add("correct");
+        input.classList.remove("incorrect");
+      } else {
+        input.classList.add("incorrect");
+        input.classList.remove("correct");
+      }
+    });
+  }
+
+  window.onload = createPuzzle;
+</script>
+
+
+
+</body>
+</html>

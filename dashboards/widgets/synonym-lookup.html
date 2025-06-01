@@ -45,15 +45,75 @@ $(document).ready(function() {
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
 
+
+h2 {
+font-family: "Oswald", serif;
+	font-size: 1.5em;
+	line-height: 1.1em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-top: 0;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	position: relative;
+}
+
+
+label {
+ font-family: "Oswald", serif;
+	font-size: 1.5em;
+	line-height: 1.1em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-top: 0;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	position: relative;
+    font-weight:bold;
+}
+
+#searchWord {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+   background-color: #f2f2f2;
+
+}
+
+input:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
+
+button {
+font-family: "Oswald", serif;
+  margin-top: 10px;
+  width: 100%;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  float:left;
+}
+
+button:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
 
 #synonymsResult {font-family: "Oswald", serif;}
 
 </style>
 <form id="searchForm">
-    <label for="searchWord">Enter a word:</label><br>
+    <label for="searchWord"></label><h2>THESAURUS</h2>
     <input type="text" id="searchWord" name="word"><br><br>
-    <button type="submit">Search Synonyms</button><br>
+    <button type="submit">SEARCH</button><br>
 </form>
 <div id="synonymsResult"></div>
