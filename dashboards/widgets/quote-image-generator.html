@@ -6,6 +6,10 @@
   <title>Quote Graphic Generator</title>
 	<style>
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
 </style>
 
 
@@ -23,7 +27,7 @@
       background: #f4f4f4;
     }
     canvas {
-    font-family: "Lobster", serif;
+
       border: 1px solid #ccc;
       margin: 20px 0;
     }
@@ -36,16 +40,16 @@
 </head>
 <body>
   <div class="controls">
-    <label>Gradient Start Color: <input type="color" id="startColor" value="#ff7e5f" /></label>
-    <label>Gradient End Color: <input type="color" id="endColor" value="#feb47b" /></label>
+    <label>Gradient Start Color: <input type="color" id="startColor" value="#ff78d0" /></label>
+    <label>Gradient End Color: <input type="color" id="endColor" value="#fa02a3" /></label>
     <label>Font Color: <input type="color" id="fontColor" value="#ffffff" /></label>
     <label>Font: 
       <select id="font">
         <option value="Lobster">Lobster</option>
-        <option value="Lora">Lora</option>
-        <option value="Open Sans">Open Sans</option>
-        <option value="Pacifico">Pacifico</option>
-        <option value="Montserrat">Montserrat</option>
+        <option value="Oswald">Oswald</option>
+        <option value="Fjalla One">Fjalla One</option>
+        <option value="Bebas Neue">Bebas Neue</option>
+        <option value="Sofia">Sofia</option>
       </select>
     </label>
     <label>Quote Text: <input type="text" id="quoteText" placeholder="Enter your quote" /></label>
@@ -55,67 +59,77 @@
 
   <canvas id="canvas" width="600" height="400"></canvas>
 
-  <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+ <script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
 
-    const startColor = document.getElementById('startColor');
-    const endColor = document.getElementById('endColor');
-    const fontColor = document.getElementById('fontColor');
-    const font = document.getElementById('font');
-    const quoteText = document.getElementById('quoteText');
-    const generate = document.getElementById('generate');
-    const save = document.getElementById('save');
+const startColor = document.getElementById('startColor');
+const endColor = document.getElementById('endColor');
+const fontColor = document.getElementById('fontColor');
+const font = document.getElementById('font');
+const quoteText = document.getElementById('quoteText');
+const generate = document.getElementById('generate');
+const save = document.getElementById('save');
 
-    function wrapText(context, text, x, y, maxWidth, lineHeight) {
-      const words = text.split(' ');
-      let line = '';
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
 
-      for (let i = 0; i < words.length; i++) {
-        const testLine = line + words[i] + ' ';
-        const metrics = context.measureText(testLine);
-        const testWidth = metrics.width;
-        if (testWidth > maxWidth && i > 0) {
-          context.fillText(line, x, y);
-          line = words[i] + ' ';
-          y += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
+  for (let i = 0; i < words.length; i++) {
+    const testLine = line + words[i] + ' ';
+    const metrics = context.measureText(testLine);
+    const testWidth = metrics.width;
+    if (testWidth > maxWidth && i > 0) {
       context.fillText(line, x, y);
+      line = words[i] + ' ';
+      y += lineHeight;
+    } else {
+      line = testLine;
     }
+  }
+  context.fillText(line, x, y);
+}
 
-    function drawCanvas() {
-      // Draw gradient background
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, startColor.value);
-      gradient.addColorStop(1, endColor.value);
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+function drawCanvas() {
+  const text = quoteText.value || "Your Quote Here";
 
-      // Draw text
-      const text = quoteText.value || "Your Quote Here";
-      ctx.fillStyle = fontColor.value;
-      ctx.font = `40px ${font.value}`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      const maxWidth = canvas.width - 40;
-      const lineHeight = 50;
-      wrapText(ctx, text, canvas.width / 2, canvas.height / 2 - 20, maxWidth, lineHeight);
-    }
+  // Wrap font in quotes to handle multi-word names
+  const selectedFont = `"${font.value}"`;
 
-    generate.addEventListener('click', drawCanvas);
+  // Wait for the font to load before drawing
+  document.fonts.load(`40px ${selectedFont}`).then(() => {
+    // Draw gradient background
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, startColor.value);
+    gradient.addColorStop(1, endColor.value);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    save.addEventListener('click', () => {
-      const link = document.createElement('a');
-      link.download = 'quote-graphic.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    });
+    // Draw text
+    ctx.fillStyle = fontColor.value;
+    ctx.font = `40px ${selectedFont}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const maxWidth = canvas.width - 40;
+    const lineHeight = 50;
+    wrapText(ctx, text, canvas.width / 2, canvas.height / 2 - 20, maxWidth, lineHeight);
+  });
+}
 
-    // Initial draw
-    drawCanvas();
-  </script>
+generate.addEventListener('click', drawCanvas);
+
+save.addEventListener('click', () => {
+  const link = document.createElement('a');
+  link.download = 'quote-graphic.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+});
+
+// Initial draw after all fonts are ready
+document.fonts.ready.then(() => {
+  drawCanvas();
+});
+</script>
+
 </body>
 </html>
