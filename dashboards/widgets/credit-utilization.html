@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credit Utilization Calculator</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  label { display: block; margin-top: 10px; }
+  input { padding: 5px; width: 200px; }
+  button { margin-top: 15px; padding: 8px 12px; }
+  #result { margin-top: 20px; font-size: 1.2em; font-weight: bold; }
+  .bar-container {
+    margin-top: 10px; width: 300px; height: 30px;
+    background: #eee; border-radius: 5px; overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; background: #4caf50; width: 0%;
+    text-align: right; padding-right: 5px; color: white; font-weight: bold;
+    transition: width 0.5s;
+  }
+</style>
+</head>
+<body>
+
+<h2>Credit Utilization Calculator</h2>
+
+<label>Total Available Credit ($):</label>
+<input type="number" id="creditLimit" min="0" step="0.01">
+
+<label>Total Current Debt ($):</label>
+<input type="number" id="currentDebt" min="0" step="0.01">
+
+<button onclick="calculateUtilization()">Calculate</button>
+
+<div id="result"></div>
+<div class="bar-container">
+  <div class="bar-fill" id="barFill">0%</div>
+</div>
+
+<script>
+function calculateUtilization() {
+  const limit = parseFloat(document.getElementById('creditLimit').value) || 0;
+  const debt = parseFloat(document.getElementById('currentDebt').value) || 0;
+
+  if (limit <= 0) {
+    document.getElementById('result').textContent = "Please enter a valid credit limit.";
+    document.getElementById('barFill').style.width = "0%";
+    return;
+  }
+
+  const utilization = (debt / limit) * 100;
+  const percent = Math.min(utilization, 100).toFixed(1);
+
+  document.getElementById('result').textContent = `Your credit utilization is ${utilization.toFixed(1)}%`;
+  document.getElementById('barFill').style.width = `${percent}%`;
+
+  // Color bar: green <30%, yellow 30-50%, red >50%
+  const bar = document.getElementById('barFill');
+  if (utilization < 30) {
+    bar.style.background = "#4caf50";
+  } else if (utilization <= 50) {
+    bar.style.background = "#ff9800";
+  } else {
+    bar.style.background = "#f44336";
+  }
+
+  bar.textContent = `${utilization.toFixed(1)}%`;
+}
+</script>
+
+</body>
+</html>

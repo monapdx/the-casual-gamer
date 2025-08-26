@@ -6,14 +6,14 @@
 <head>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Html5 Tags Quiz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Oswald", serif;
             margin: 20px;
             text-align: center;
         }
@@ -36,18 +36,52 @@
             margin-top: 20px;
             font-size: 1.2em;
         }
-        h1 {font-family: "Lobster", serif;
-  font-weight: 400;
+        h1 {font-family: "Oswald", serif;
+  font-weight: 800;
   font-style: normal;}
+  
+  input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+
+}
+
+input:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
+
+button {
+font-family: "Oswald", serif;
+  margin-top: 10px;
+  width: 100%;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  float:left;
+}
+
+button:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+  
+  
     </style>
 </head>
 <body>
-   <h1>Html5 Tags Quiz</h1>
-    <p>How many can you remember?</p><br>
+   <h1>HTML5 ELEMENT QUIZ</h1>
+    <p>HOW MANY CAN YOU REMEMBER?</p><br>
     <br><a title="W3C, CC BY 3.0 &lt;https://creativecommons.org/licenses/by/3.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:HTML5_Badge.svg"><img width="256" alt="HTML5 logo without wordmark." src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/256px-HTML5_Badge.svg.png?20110131171049"></a><br><br>
     <input type="text" id="word-input" placeholder="Type your guess..." autofocus>
     <button onclick="checkWord()">Submit</button>
-    <div id="counter">Correct: 0 / </div>
+    <div id="counter">CORRECT ANSWERS: 0 / </div>
     <div id="progress-container">
         <canvas id="progress-canvas" width="150" height="150"></canvas>
     </div>
