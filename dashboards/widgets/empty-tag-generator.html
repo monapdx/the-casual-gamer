@@ -1,209 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empty Tag Generator</title>
-    <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Empty Tag Generator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
-form {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
+    body {
+      font-family: "Oswald", sans-serif;
+      font-weight:bold;
+      margin: 20px;
+    }
 
-label, select, input, button, textarea {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-}
+    .controls {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
 
-textarea {
-    resize: vertical;
-}
+    label, select, input, button, textarea {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      font-weight:bold;
+    }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: blue;
+      box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+    }
 
-button:hover {
-    background-color: #45a049;
-}
+    textarea {
+      resize: vertical;
+    }
 
-#nestedOptions {
-    padding-left: 15px;
-    margin-top: 10px;
-    border-left: 2px solid #ddd;
-}
+    button {
+      font-family: "Oswald", sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
+    button:hover {
+      background: #0056b3;
+    }
 
-    </style>
+    #nestedOptions {
+      padding-left: 15px;
+      margin-top: 10px;
+      border-left: 2px solid #ddd;
+    }
+  </style>
 </head>
-<div>
-    <label for="tagType">Tag Type:</label>
-    <select id="tagType" onchange="toggleInputType()">
-        <option value="a">A</option>
-        <option value="p">P</option>
-        <option value="h1">H1</option>
-        <option value="h2">H2</option>
-        <option value="img">IMG</option>
-        <option value="div">DIV</option>
-        <option value="span">SPAN</option>
-        <option value="input">INPUT</option>
-        <option value="section">SECTION</option>
-        <option value="option">OPTION</option>
-        <option value="ul">UL</option>
-        <option value="ol">OL</option>
-        <!-- Add other tags as needed -->
-    </select>
-</div>
+<body>
 
-<div id="inputTypeContainer" style="display: none;">
+<div class="controls">
+  <label for="tagType">Tag Type:</label>
+  <select id="tagType">
+    <option value="a">A</option>
+    <option value="p">P</option>
+    <option value="h1">H1</option>
+    <option value="h2">H2</option>
+    <option value="img">IMG</option>
+    <option value="div">DIV</option>
+    <option value="span">SPAN</option>
+    <option value="input">INPUT</option>
+    <option value="section">SECTION</option>
+    <option value="option">OPTION</option>
+    <option value="ul">UL</option>
+    <option value="ol">OL</option>
+  </select>
+
+  <div id="inputTypeContainer" style="display:none;">
     <label for="inputType">Input Type:</label>
     <select id="inputType">
-        <option value="text">Text</option>
-        <option value="checkbox">Checkbox</option>
-        <option value="radio">Radio</option>
-        <!-- Add other input types as needed -->
+      <option value="text">Text</option>
+      <option value="checkbox">Checkbox</option>
+      <option value="radio">Radio</option>
     </select>
-</div>
+  </div>
 
-<div>
-    <label for="tagCount">How Many?</label>
-    <select id="tagCount">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-        <option value="10">25</option>
-        <option value="15">30</option>
-        <!-- Add more options as needed -->
-    </select>
-</div>
+  <label for="tagCount">How Many?</label>
+  <select id="tagCount">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+    <option value="25">25</option>
+    <option value="30">30</option>
+  </select>
 
-<div>
-    <label for="tagClass">Class (optional):</label>
-    <input type="text" id="tagClass">
-</div>
+  <label for="tagClass">Class (optional):</label>
+  <input type="text" id="tagClass" />
 
-<div>
-    <label for="tagId">ID (optional):</label>
-    <input type="text" id="tagId">
-</div>
+  <label for="tagId">ID (optional):</label>
+  <input type="text" id="tagId" />
 
-<div>
-    <label for="enableNested">Nested Tags:</label>
-    <input type="checkbox" id="enableNested" onchange="toggleNestedOptions()">
-</div>
+  <label for="enableNested">Nested Tags:</label>
+  <input type="checkbox" id="enableNested" />
 
-<div id="nestedOptions" style="display: none;">
+  <div id="nestedOptions" style="display:none;">
     <label for="parentTagType">Parent Tag:</label>
     <select id="parentTagType">
-        <option value="div">DIV</option>
-        <option value="article">ARTICLE</option>
-        <option value="h1">H1</option>
-        <option value="h2">H2</option>
-        <option value="ul">UL</option>
-        <option value="ol">OL</option>
-        <!-- Add more parent tags as needed -->
+      <option value="div">DIV</option>
+      <option value="article">ARTICLE</option>
+      <option value="section">SECTION</option>
+      <option value="ul">UL</option>
+      <option value="ol">OL</option>
     </select>
-    
+
+    <label for="tagTypeNested">Child Tag:</label>
+    <select id="tagTypeNested">
+      <option value="p">P</option>
+      <option value="h1">H1</option>
+      <option value="h2">H2</option>
+      <option value="li">LI</option>
+      <option value="section">SECTION</option>
+      <option value="span">SPAN</option>
+      <option value="div">DIV</option>
+    </select>
+
     <label for="childCount">Child Count:</label>
     <select id="childCount">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <!-- Add more options as needed -->
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
     </select>
+
+    <label for="childClass">Child Class (optional):</label>
+    <input type="text" id="childClass" />
+
+    <label for="childId">Child ID (optional):</label>
+    <input type="text" id="childId" />
+  </div>
+
+  <button type="button" id="generateBtn">Generate Tags</button>
+
+  <textarea id="output" rows="15" cols="50" placeholder="Generated HTML will appear here..."></textarea>
 </div>
 
-<button onclick="generateTags()">Generate Tags</button>
+<script>
+  // Show/hide input type if 'input' is selected
+  const tagType = document.getElementById('tagType');
+  const inputTypeContainer = document.getElementById('inputTypeContainer');
+  tagType.addEventListener('change', () => {
+    inputTypeContainer.style.display = tagType.value === 'input' ? 'block' : 'none';
+  });
 
-<textarea id="output" rows="15" cols="50"></textarea>
+  // Show/hide nested options when checkbox is checked
+  const enableNested = document.getElementById('enableNested');
+  const nestedDiv = document.getElementById('nestedOptions');
+  enableNested.addEventListener('change', () => {
+    nestedDiv.style.display = enableNested.checked ? 'block' : 'none';
+  });
 
-
-
-
-
-    <script>
-     function toggleInputType() {
-    const tagType = document.getElementById('tagType').value;
-    const inputTypeContainer = document.getElementById('inputTypeContainer');
-    inputTypeContainer.style.display = tagType === 'input' ? 'block' : 'none';
-}
-
-function toggleNestedOptions() {
-    const nestedOptions = document.getElementById('nestedOptions');
-    nestedOptions.style.display = document.getElementById('enableNested').checked ? 'block' : 'none';
-}
-
-function generateTags() {
-    const tagType = document.getElementById('tagType').value;
-    const tagCount = parseInt(document.getElementById('tagCount').value);
+  // Generate tags
+  document.getElementById('generateBtn').addEventListener('click', () => {
+    const tagTypeVal = tagType.value;
+    const tagCount = parseInt(document.getElementById('tagCount').value, 10);
     const tagClass = document.getElementById('tagClass').value.trim();
     const tagId = document.getElementById('tagId').value.trim();
-    const isNested = document.getElementById('enableNested').checked;
+    const isNested = enableNested.checked;
+
     let generatedHTML = '';
 
-    function buildAttributes() {
-        let attributes = '';
-        if (tagClass) attributes += ` class="${tagClass}"`;
-        if (tagId) attributes += ` id="${tagId}"`;
-        return attributes;
+    function buildAttributes(cls, id) {
+      let attributes = '';
+      if (cls) attributes += ` class="${cls}"`;
+      if (id) attributes += ` id="${id}"`;
+      return attributes;
     }
 
     if (isNested) {
-        const parentTagType = document.getElementById('parentTagType').value;
-        const childTagType = document.getElementById('tagTypeNested').value;
-        const childCount = parseInt(document.getElementById('childCount').value);
+      const parentTagType = document.getElementById('parentTagType').value;
+      const childTagType = document.getElementById('tagTypeNested').value;
+      const childCount = parseInt(document.getElementById('childCount').value, 10);
+      const childClass = document.getElementById('childClass').value.trim();
+      const childId = document.getElementById('childId').value.trim();
 
-        for (let i = 0; i < tagCount; i++) {
-            generatedHTML += `<${parentTagType}${buildAttributes()}>\n`;
+      for (let i = 0; i < tagCount; i++) {
+        generatedHTML += `<${parentTagType}${buildAttributes(tagClass, tagId)}>\n`;
 
-            for (let j = 0; j < childCount; j++) {
-                generatedHTML += `  <${childTagType}${buildAttributes()}></${childTagType}>\n`;
-            }
-
-            generatedHTML += `</${parentTagType}>\n\n`;
+        for (let j = 0; j < childCount; j++) {
+          generatedHTML += `  <${childTagType}${buildAttributes(childClass, childId)}></${childTagType}>\n`;
         }
+
+        generatedHTML += `</${parentTagType}>\n\n`;
+      }
     } else {
-        for (let i = 0; i < tagCount; i++) {
-            if (tagType === 'input') {
-                const inputType = document.getElementById('inputType').value;
-                generatedHTML += `<${tagType} type="${inputType}"${buildAttributes()}/>\n`;
-            } else if (tagType === 'img') {
-                generatedHTML += `<${tagType} src="" alt=""${buildAttributes()}/>\n`;
-            } else if (tagType === 'a') {
-                generatedHTML += `<${tagType} href=""${buildAttributes()}></${tagType}>\n`;
-            } else {
-                generatedHTML += `<${tagType}${buildAttributes()}></${tagType}>\n`;
-            }
+      for (let i = 0; i < tagCount; i++) {
+        if (tagTypeVal === 'input') {
+          const inputType = document.getElementById('inputType').value;
+          generatedHTML += `<${tagTypeVal} type="${inputType}"${buildAttributes(tagClass, tagId)} />\n`;
+        } else if (tagTypeVal === 'img') {
+          generatedHTML += `<${tagTypeVal} src="" alt=""${buildAttributes(tagClass, tagId)} />\n`;
+        } else if (tagTypeVal === 'a') {
+          generatedHTML += `<${tagTypeVal} href=""${buildAttributes(tagClass, tagId)}></${tagTypeVal}>\n`;
+        } else {
+          generatedHTML += `<${tagTypeVal}${buildAttributes(tagClass, tagId)}></${tagTypeVal}>\n`;
         }
+      }
     }
 
     document.getElementById('output').value = generatedHTML;
-}
+  });
+</script>
 
-
-
-
-
-
-
-
-
-    </script>
 </body>
 </html>

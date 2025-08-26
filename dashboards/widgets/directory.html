@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Link Directory (Light)</title>
+  <style>
+    :root{
+      --bg: #f7f8fb;
+      --surface: #ffffff;
+      --border: #e6e9f0;
+      --text: #1d2433;
+      --muted: #5a6477;
+      --accent: #3d6cff;
+      --accent-2:#7b5cff;
+      --chip: #eef2ff;
+      --ring: rgba(61,108,255,.25);
+      --radius: 14px;
+      --shadow: 0 6px 20px rgba(20, 27, 45, .08);
+    }
+    html,body{height:100%}
+    body{
+      margin:0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      color:var(--text); background: radial-gradient(1200px 700px at 20% -10%, #eef2ff 0%, #f7f8fb 60%);
+    }
+
+    .wrap{max-width:1100px; margin:0 auto; padding: 24px;}
+
+    header{position:sticky; top:0; z-index:10; background:rgba(255,255,255,.8); backdrop-filter:saturate(1.1) blur(10px); border-bottom:1px solid var(--border);}
+    .header-inner{display:flex; gap:16px; align-items:center; padding:14px 24px; max-width:1100px; margin:0 auto;}
+    .brand{font-weight:800; letter-spacing:.2px;}
+    .brand span{background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+
+    .toolbar{display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
+    .search{flex:1 1 260px; display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--border); border-radius:999px; padding:8px 12px; box-shadow:var(--shadow);} 
+    .search input{flex:1; border:none; outline:none; background:transparent; color:var(--text); font-size:15px;}
+
+    .select, .chip{border-radius:999px; border:1px solid var(--border); background:var(--surface); color:var(--text); padding:8px 12px; font-size:14px; box-shadow:var(--shadow);} 
+    .chip{display:inline-flex; gap:8px; align-items:center; cursor:pointer; background:#f3f6ff;}
+    .chip input{accent-color: var(--accent);} 
+
+    main{display:grid; grid-template-columns: 250px 1fr; gap:24px;}
+    @media (max-width: 900px){ main{grid-template-columns: 1fr;} }
+
+    /* Sidebar */
+    .sidebar{position:sticky; top:84px; align-self:start; display:flex; flex-direction:column; gap:12px;}
+    @media (max-width: 900px){ .sidebar{position:static;} }
+
+    .side-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:14px; box-shadow:var(--shadow);} 
+    .side-card h3{margin:0 0 10px; font-size:13px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);} 
+    .cats{display:flex; flex-direction:column; gap:6px; max-height:50vh; overflow:auto;}
+    .cats button{ text-align:left; border:none; background:transparent; color:var(--text); padding:8px 10px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:space-between;}
+    .cats button.active{background:#eef2ff;}
+
+    /* Sections */
+    .section{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);} 
+    .section header{position:sticky; top:84px; background:rgba(255,255,255,.9); border-bottom:1px solid var(--border); padding:12px 16px; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);} 
+    .section h2{margin:0; font-size:20px;}
+    .section small{color:var(--muted);} 
+    .section .inner{padding:6px 12px 14px 12px;}
+
+    /* Link list */
+    .link-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr; gap:0;}
+    .link-item{display:flex; align-items:flex-start; gap:10px; padding:10px 8px; border-bottom:1px dashed var(--border);} 
+    .link-item:last-child{border-bottom:none;}
+
+    .dot{width:8px; height:8px; margin-top:8px; border-radius:50%; background:linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow:0 0 0 3px var(--ring);} 
+
+    .title-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+    .title-row a{font-weight:700; text-decoration:none; color:var(--text);} 
+    .title-row a:hover{ text-decoration:underline; }
+    .desc{color:var(--muted); margin:2px 0 0 0;}
+
+    .meta{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-left:auto;}
+    .tag{font-size:12px; background:var(--chip); border:1px solid #dfe6ff; border-radius:999px; padding:3px 8px; color:#364a9b;} 
+
+    .fav{ margin-left:4px; cursor:pointer; border:none; background:transparent; font-size:16px; color:#c7c9d5;}
+    .fav[aria-pressed="true"]{ color:#ffb400; }
+
+    .empty{ padding:16px; color:var(--muted); }
+    .sr-only{position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">📁 <span>Link Directory</span></div>
+      <div class="toolbar" role="search">
+        <label class="search"><span aria-hidden>🔎</span>
+          <input id="q" type="search" placeholder="Search links, descriptions, tags… ( / to focus )" autocomplete="off" />
+        </label>
+        <select id="sort" class="select" title="Sort">
+          <option value="alpha">Sort: A → Z</option>
+          <option value="recent">Sort: Recently Added</option>
+          <option value="fav">Sort: Favorites First</option>
+        </select>
+        <label class="chip" title="Show favorites only">
+          <input id="onlyFavs" type="checkbox" /> ⭐ Favorites only
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <main>
+      <aside class="sidebar" aria-label="Categories">
+        <div class="side-card">
+          <h3>Categories</h3>
+          <div id="catList" class="cats"></div>
+        </div>
+        <div class="side-card">
+          <h3>Tips</h3>
+          <ul style="margin:0; padding-left:18px; color:var(--muted); font-size:14px;">
+            <li>Press <b>/</b> to focus search</li>
+            <li>Click ⭐ to favorite a link</li>
+            <li>Use the sidebar to jump between categories</li>
+          </ul>
+        </div>
+      </aside>
+
+      <section id="content"></section>
+    </main>
+  </div>
+
+  <template id="sectionTpl">
+    <section class="section" data-category>
+      <header>
+        <h2></h2>
+        <small class="count"></small>
+      </header>
+      <div class="inner">
+        <ul class="link-list" role="list"></ul>
+      </div>
+    </section>
+  </template>
+
+  <template id="itemTpl">
+    <li class="link-item" role="listitem">
+      <div class="dot" aria-hidden="true"></div>
+      <div style="flex:1 1 auto; min-width:0;">
+        <div class="title-row">
+          <a class="title" target="_blank" rel="noopener"></a>
+          <button class="fav" aria-pressed="false" title="Toggle favorite">⭐</button>
+        </div>
+        <p class="desc"></p>
+      </div>
+      <div class="meta"></div>
+    </li>
+  </template>
+
+  <script>
+    // ------- Editable Data ------- //
+    const DATA = [
+      {
+        category: "Abortion Pills",
+        links: [
+          { title: "Aid Access", url: "", desc: "", tags:["pills"], added: "" },
+          { title: "Just The Pill", url: "", desc: "", tags:["pills"], added: "" },
+          { title: "Plan C Pills", url: "", desc: "", tags:["pills"], added: "" },
+        ]
+      },
+      {
+        category: "Emotional Support",
+        links: [
+          { title: "All Options", url: "", desc: "", tags:["support"], added: "" },
+          { title: "M + A Hotline", url: "", desc: "", tags:["support"], added: "" },
+          { title: "Exhale Pro Voice", url: "", desc: "", tags:["support"], added: "" },
+        ]
+      },
+      {
+        category: "Search Clinics",
+        links: [
+          { title: "I Need an A", url: "https://www.ineedana.com/", desc: "", tags:["clinics"], added: "" },
+          { title: "Abortion Finder", url: "https://www.abortionfinder.org/", desc: "", tags:["clinics"], added: "" },
+        ]
+      },
+      { category: "Favorites", links: [] }
+    ];
+
+    // ------- State & Utilities ------- //
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+    const store = {
+      get favs(){ return JSON.parse(localStorage.getItem('link-favs')||'[]'); },
+      set favs(v){ localStorage.setItem('link-favs', JSON.stringify(v)); }
+    };
+
+    function normalize(str){ return (str||'').toLowerCase(); }
+    function matchesQuery(link, q){ if(!q) return true; const s=normalize(q); return [link.title, link.desc, ...(link.tags||[])].some(x=> normalize(x).includes(s)); }
+    function sortLinks(links, mode){
+      const favs = new Set(store.favs);
+      const byAlpha = (a,b)=> a.title.localeCompare(b.title);
+      const byRecent = (a,b)=> new Date(b.added||0) - new Date(a.added||0);
+      if(mode==='alpha') return [...links].sort(byAlpha);
+      if(mode==='recent') return [...links].sort(byRecent);
+      if(mode==='fav') return [...links].sort((a,b)=> (favs.has(b.url)-favs.has(a.url)) || a.title.localeCompare(b.title));
+      return links;
+    }
+
+    function tagEl(text){ const span=document.createElement('span'); span.className='tag'; span.textContent=text; return span; }
+
+    function renderCategories(catFilter, q, sortMode, onlyFavs){
+      const content = $('#content'); content.innerHTML='';
+
+      // Sidebar buttons
+      const catList=$('#catList'); catList.innerHTML='';
+      const cats = DATA.filter(c=> c.category!=='Favorites').map(c=>c.category);
+      const catAll = Object.assign(document.createElement('button'), {textContent:'All'});
+      if(!catFilter) catAll.classList.add('active');
+      catAll.onclick=()=> renderCategories('', $('#q').value, $('#sort').value, $('#onlyFavs').checked);
+      catList.appendChild(catAll);
+      const favBtn = Object.assign(document.createElement('button'), {textContent:'⭐ Favorites'});
+      if(catFilter==='Favorites') favBtn.classList.add('active');
+      favBtn.onclick=()=>{ renderCategories('Favorites', $('#q').value, $('#sort').value, true); $('#onlyFavs').checked=true; };
+      catList.appendChild(favBtn);
+      cats.forEach(cat=>{
+        const btn=document.createElement('button'); btn.textContent=cat; if(catFilter===cat) btn.classList.add('active');
+        btn.onclick=()=> renderCategories(cat, $('#q').value, $('#sort').value, $('#onlyFavs').checked);
+        catList.appendChild(btn);
+      });
+
+      // Build sections
+      const sections=[]; const favsSet=new Set(store.favs); const qParam=q?.trim();
+      function addSection(category, links){
+        const tpl=$('#sectionTpl').content.cloneNode(true);
+        const sec=tpl.querySelector('[data-category]'); sec.dataset.name=category;
+        const h2=tpl.querySelector('h2'); h2.textContent=category;
+        const count=tpl.querySelector('.count');
+        const list=tpl.querySelector('.link-list');
+
+        const filtered = links.filter(l=> matchesQuery(l,qParam)).filter(l=> !onlyFavs || favsSet.has(l.url));
+        const sorted = sortLinks(filtered, sortMode);
+        count.textContent = `${sorted.length} link${sorted.length!==1?'s':''}`;
+
+        if(sorted.length===0){
+          const empty=document.createElement('div'); empty.className='empty'; empty.textContent='No matches.'; list.replaceWith(empty);
+        } else {
+          sorted.forEach(link=>{
+            const item=$('#itemTpl').content.cloneNode(true);
+            const root=item.querySelector('.link-item');
+            const a=item.querySelector('a.title'); a.textContent=link.title; a.href=link.url;
+            item.querySelector('.desc').textContent = link.desc || '';
+            const meta=item.querySelector('.meta');
+            (link.tags||[]).slice(0,4).forEach(t=> meta.appendChild(tagEl(t)));
+            if(link.added){ meta.appendChild(tagEl(new Date(link.added).toLocaleDateString())); }
+
+            const favBtn=item.querySelector('.fav');
+            const on=favsSet.has(link.url); favBtn.setAttribute('aria-pressed', on);
+            favBtn.onclick=()=>{
+              const set=new Set(store.favs);
+              if(set.has(link.url)) set.delete(link.url); else set.add(link.url);
+              store.favs=[...set];
+              renderCategories(catFilter, $('#q').value, $('#sort').value, $('#onlyFavs').checked);
+            };
+
+            list.appendChild(item);
+          });
+        }
+        sections.push(sec);
+      }
+
+      const allLinks = DATA.flatMap(c=> c.category!=='Favorites' ? c.links.map(l=>({...l, category:c.category})) : []);
+      const favLinks = allLinks.filter(l=> favsSet.has(l.url));
+      const favoritesCategory = { category:'Favorites', links: favLinks };
+
+      const sourceCats = DATA.filter(c=> c.category!=='Favorites');
+      if(catFilter){
+        if(catFilter==='Favorites') addSection('Favorites', favoritesCategory.links);
+        else { const found=sourceCats.find(c=> c.category===catFilter); if(found) addSection(found.category, found.links); }
+      } else {
+        if(favLinks.length) addSection('Favorites', favoritesCategory.links);
+        sourceCats.forEach(c=> addSection(c.category, c.links));
+      }
+
+      const frag=document.createDocumentFragment(); sections.forEach(s=> frag.appendChild(s)); content.appendChild(frag);
+    }
+
+    function init(){
+      const params=new URLSearchParams(location.search); const q=params.get('q')||''; const cat=params.get('cat')||''; $('#q').value=q;
+      renderCategories(cat, q, $('#sort').value, $('#onlyFavs').checked);
+      $('#q').addEventListener('input', ()=> renderCategories(cat, $('#q').value, $('#sort').value, $('#onlyFavs').checked));
+      $('#sort').addEventListener('change', ()=> renderCategories(cat, $('#q').value, $('#sort').value, $('#onlyFavs').checked));
+      $('#onlyFavs').addEventListener('change', ()=> renderCategories(cat, $('#q').value, $('#sort').value, $('#onlyFavs').checked));
+      window.addEventListener('keydown', (e)=>{ if(e.key==='/' && document.activeElement!==$('#q')){ e.preventDefault(); $('#q').focus(); } });
+    }
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
