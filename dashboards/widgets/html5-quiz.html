@@ -52,7 +52,7 @@ input:focus {outline: none; /* Remove the default focus outline */
   border-color: blue; /* Change the border color on focus */
   box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
 
-button {
+button.answer {
 font-family: "Oswald", serif;
   margin-top: 10px;
   width: 100%;
@@ -68,7 +68,7 @@ font-family: "Oswald", serif;
   float:left;
 }
 
-button:hover {
+button.answer:hover {
   background: #0056b3; /* Darker blue on hover */
 }
   
@@ -80,7 +80,7 @@ button:hover {
     <p>HOW MANY CAN YOU REMEMBER?</p><br>
     <br><a title="W3C, CC BY 3.0 &lt;https://creativecommons.org/licenses/by/3.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:HTML5_Badge.svg"><img width="256" alt="HTML5 logo without wordmark." src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/256px-HTML5_Badge.svg.png?20110131171049"></a><br><br>
     <input type="text" id="word-input" placeholder="Type your guess..." autofocus>
-    <button onclick="checkWord()">Submit</button>
+    <button onclick="checkWord()" class="answer">Submit</button>
     <div id="counter">CORRECT ANSWERS: 0 / </div>
     <div id="progress-container">
         <canvas id="progress-canvas" width="150" height="150"></canvas>

@@ -76,7 +76,7 @@ input:focus {outline: none; /* Remove the default focus outline */
   border-color: blue; /* Change the border color on focus */
   box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
 
-button {
+button.add {
 font-family: "Oswald", serif;
   margin-top: 10px;
   width: 100%;
@@ -89,10 +89,10 @@ font-family: "Oswald", serif;
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s ease;
-  float:left;
+  height:auto;
 }
 
-button:hover {
+button.add:hover {
   background: #0056b3; /* Darker blue on hover */
 }
 
@@ -104,7 +104,7 @@ button:hover {
     <input type="text" id="title" placeholder="Enter title">
     <label for="snippet"></label><h2>SNIPPET</h2>
     <textarea id="snippet" placeholder="Enter your snippet"></textarea><br><br>
-    <button id="save-btn" class="save">Save</button>
+    <button id="save-btn" class="add">Save</button>
 
     <div class="snippet-container" id="snippet-container"></div>
 <script>

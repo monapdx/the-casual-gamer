@@ -16,7 +16,7 @@
 	   width:100%;
       font-size: 16px;
       border: none;
-      background-color: #4CAF50;
+      background-color: #007bff;
       color: white;
       cursor: pointer;
       border-radius: 5px;
@@ -25,7 +25,7 @@
     }
 	#stopButton {font-size: 16px;
       border: none;
-      background-color: #4CAF50;
+      background-color: #007bff;
       color: white;
       cursor: pointer;
       border-radius: 5px;
@@ -46,7 +46,7 @@ body {
 	position: relative;
 	line-height: 1.5em;
 	font-size: 15px;
-	background-image:url('https://raw.githubusercontent.com/ashloren/the-casual-gamer/refs/heads/main/deco-triangles-pink-bg.png') repeat-x-y;
+	
 }
 #footer {
 text-align:center;}
@@ -75,7 +75,6 @@ text-align:center;}
 }
 
 .dashboard > div:hover {
-	background: #fc62d3;
 	color: black;
 }
 
@@ -201,7 +200,7 @@ li {
 		width: 100%;
 		float: left;
 		display: grid;
-		border-left: 2px solid;
+		border-left: ;
 		padding-left: 10px;
 		margin-left: -2px;
 		border-bottom: none;
@@ -215,7 +214,7 @@ li {
 }
 
 .dashboard button {
-	font-family: "Lobster", serif;
+	font-family: "IBM Plex Mono", monospace;
 	appearance: none;
 	border: inherit;
 	color: inherit;
@@ -292,7 +291,7 @@ li {
 
 		
 		#save-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
-		#search {width:auto;height:auto;float:left;padding:3px;font-family: "Lobster", serif;}
+	
 		
 		#app-container {
   background: #fff; /* White for a clean container */
@@ -324,10 +323,11 @@ input {
   border-radius: 4px;
 }
 
-button {
-	font-family: "Lobster", serif;
+button.search {
+font-family: "Oswald", serif;
   margin-top: 10px;
   width: 100%;
+  height:auto;
   background: #007bff; /* Blue button */
   color: #fff;
   font-size: 16px;
@@ -339,7 +339,7 @@ button {
   transition: background 0.3s ease;
 }
 
-button:hover {
+button.search:hover {
   background: #0056b3; /* Darker blue on hover */
 }
 
@@ -392,11 +392,7 @@ button:hover {
     font-size: 14px;
   }
 
-  button {
-	  font-family: "Lobster", serif;
-    font-size: 14px;
-    padding: 8px;
-  }
+
 
   .word-header h2 {
     font-size: 18px;
@@ -426,7 +422,7 @@ canvas {
 	#save {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
 	
 	#generate-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
-	#download-btn {width:150px;float:right;padding:3px;height:auto;font-family: "Lobster", serif;}
+
 	#qr-code {}
 	#checkword {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
 	
@@ -555,3 +551,395 @@ canvas {
     display: block;
     word-wrap: break-word;
 }
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+h2 {
+font-family: "Oswald", serif;
+	font-size: 1.5em;
+	line-height: 1.1em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-top: 0;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	position: relative;
+}
+
+
+
+/* Input Section */
+#input-container {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+
+}
+
+input:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
+
+
+
+/* Result Section */
+#result {
+font-family: "Oswald", serif;
+  margin-top: 20px;
+  padding-top:5px;
+}
+
+.word-header {
+font-family: "Oswald", serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.word-header h2 {
+font-family: "Oswald", serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.word-header .pronunciation {
+font-family: "Oswald", serif;
+  font-size: 14px;
+  color: #000;
+
+}
+
+.definition, .example {
+font-family: "Oswald", serif;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.definition strong, .example strong {
+  color: #007bff;
+}
+
+.example {
+
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  #app-container {
+    padding: 15px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+
+  
+   .word-header h2 {
+    font-size: 18px;
+  }
+}
+.word-type {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #555; /* Subtle gray for secondary info */
+}
+.word-type strong {
+  color: #007bff; /* Accent color for labels */
+}
+
+#word-input {border-radius: 5px; /* Round the corners */
+  background-color: #f2f2f2;}
+  
+  @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+
+
+h2 {
+font-family: "Oswald", serif;
+	font-size: 1.5em;
+	line-height: 1.1em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-top: 0;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	position: relative;
+}
+
+
+label {
+ font-family: "Oswald", serif;
+	font-size: 1.5em;
+	line-height: 1.1em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-top: 0;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	position: relative;
+    font-weight:bold;
+}
+
+#searchWord {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+   background-color: #f2f2f2;
+
+}
+
+input:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
+
+button.lookup {
+font-family: "Oswald", serif;
+  margin-top: 10px;
+  width: 100%;
+  height:auto;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+
+}
+
+button.lookup:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+#synonymsResult {font-family: "Oswald", serif;}
+
+#correct-words {
+            margin-top: 20px;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #correct-words li {
+            list-style-type: none;
+            margin: 5px;
+            padding: 10px;
+            background-color: #a8e6ce;
+            border-radius: 5px;
+        }
+		#correct-words li:hover {border:1px outset #a8e6ce;background-color:#f0fff0;}
+		        #counter {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        h1 {font-family: "Oswald", serif;
+  font-weight: 800;
+  font-style: normal;}
+  
+  input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+
+
+}
+
+input:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
+
+button.answer {
+font-family: "Oswald", serif;
+  margin-top: 10px;
+  width: 100%;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  height:auto;
+}
+
+button.answer:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+#progress-container {border:none;}
+#progress-canvas {border:none;}
+
+.snippet-container {
+            margin-top: 20px;
+        }
+        .snippet {
+			font-family: "Oswald", serif;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        input[readonly], textarea[readonly] {
+            background-color: #f9f9f9;
+			font-family: "Oswald", serif;
+            border: 1px solid #ddd;
+            padding: 8px;
+            width: 100%;
+        }
+        textarea {
+              width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-family: "Oswald", serif;
+    border: 1px solid #ddd;
+  border-radius: 5px; /* Round the corners */
+  background-color: #f2f2f2;
+        }
+        
+        textarea:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
+h2 {
+font-family: "Oswald", serif;
+	font-size: 1.5em;
+	line-height: 1em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-top: 0;
+	padding: 5px 10px;
+	margin-bottom: 5px;
+	position: relative;
+}
+
+
+
+/* Input Section */
+#input-container {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px; /* Round the corners */
+  background-color: #f2f2f2;
+
+}
+
+input:focus {outline: none; /* Remove the default focus outline */
+  border-color: blue; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);}
+
+button.add {
+font-family: "Oswald", serif;
+  margin-top: 10px;
+  width: 100%;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  height:auto;
+}
+
+button.add:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+
+        .movie-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+            max-width: 500px;
+            margin: auto;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        h2 {
+		font-family: "Oswald", serif;
+            margin: 10px 0;
+        }
+		#search {	
+		font-family: "Oswald", serif;
+  margin-top: 10px;
+  width:100%;
+  height:auto;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;}
+		input {
+
+  padding: 10px;
+  width:100%;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+    .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    button.record {
+      font-family: "Oswald", serif;
+      margin-top: 10px; width: 100%;
+      background: #007bff; color: #fff; font-size: 16px; padding: 10px;
+      border: none; border-radius: 4px; cursor: pointer; font-weight: bold;
+      transition: background .3s ease;
+    }
+    button.record:hover { background: #0056b3; }
+    button.record:disabled {
+      background: #7aaef0; cursor: not-allowed;
+    }
+    audio { margin-top: 16px; width: 100%; display: block; }
+    #downloadButton {
+      font-family: "Oswald", serif;
+      display: none; margin-top: 10px; padding: 10px 12px; border-radius: 4px;
+      background-color: #0056b3; color: #fff; text-decoration: none; font-weight: 700;
+      text-align: center; display: inline-block;
+    }
+    #status { margin-top: 8px; font-size: 14px; opacity: .8; }
