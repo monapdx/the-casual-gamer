@@ -14,24 +14,139 @@
 <div class="dashboard">
 
 	<div class="profile">
-		<h2>Dashboard Fun!</h2>
-		<p></p>
+		
+		
 
 	</div>
 
 	<div class="schedule-table">
-		<h2>HTML5 QUIZ</h2>
+		<h2>4 Letter Words Starting With E</h2>
 		<div class="table-wrap"><br>
+    
+    <p>Try to guess as many four-letter words starting with 'E' as you can!</p>
     <input type="text" id="word-input" placeholder="Type your guess..." autofocus>
-    <button onclick="checkWord()" class="answer">SUBMIT</button>
-    <div id="counter">CORRECT ANSWERS: 0 / </div>
-    <div id="progress-container">
+    <button class="search" onclick="checkWord()">SUBMIT</button>    
+    <div id="counter">Correct Words: 0 / 0</div> 
+     <div id="progress-container">
         <canvas id="progress-canvas" width="150" height="150"></canvas>
     </div>
     <ul id="correct-words"></ul>
 
     <script>
-        const wordList = ["a", "abbr", "address", "area", "article", "aside", "audio", "b", "bdi", "bdo", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code", "col", "colgroup", "command", "datalist", "dd", "del", "details", "dfn", "div", "dl", "dt", "em", "embed", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd", "keygen", "label", "legend", "li", "main", "map", "mark", "menu", "meter", "nav", "object", "ol", "optgroup", "option", "output", "p", "param", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "section", "select", "small", "source", "span", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time", "tr", "track", "u", "ul", "var", "video", "wbr", "head", "basefont", "bgsound", "spacer", "tt", "template", "noscript", "svg", "script"];
+        // Ensure all words in the wordList are lowercase
+        const wordList = ["EACH",
+"EARL",
+"EARN",
+"EARS",
+"EASE",
+"EAST",
+"EASY",
+"EATH",
+"EATS",
+"EAUX",
+"EAVE",
+"EBBS",
+"EBON",
+"ECHE",
+"ECHO",
+"ECHT",
+"ECOS",
+"ECRU",
+"ECUS",
+"EDDO",
+"EDDY",
+"EDGE",
+"EDGY",
+"EDHS",
+"EDIT",
+"EEEW",
+"EELS",
+"EELY",
+"EERY",
+"EFFS",
+"EFTS",
+"EGAD",
+"EGAL",
+"EGER",
+"EGGS",
+"EGGY",
+"EGIS",
+"EGOS",
+"EIDE",
+"EKED",
+"EKES",
+"EKKA",
+"ELAN",
+"ELDS",
+"ELHI",
+"ELKS",
+"ELLS",
+"ELMS",
+"ELMY",
+"ELSE",
+"EMES",
+"EMEU",
+"EMIC",
+"EMIR",
+"EMIT",
+"EMMY",
+"EMOS",
+"EMUS",
+"EMYD",
+"ENDS",
+"ENGS",
+"ENOL",
+"ENOW",
+"ENUF",
+"ENVY",
+"EONS",
+"EPEE",
+"EPHA",
+"EPIC",
+"EPOS",
+"ERAS",
+"ERGO",
+"ERGS",
+"ERNE",
+"ERNS",
+"EROS",
+"ERRS",
+"ERST",
+"ERUV",
+"ESES",
+"ESNE",
+"ESPY",
+"ESSE",
+"ESTS",
+"ETAS",
+"ETCH",
+"ETHS",
+"ETIC",
+"ETNA",
+"ETUI",
+"EURO",
+"EVEN",
+"EVER",
+"EVES",
+"EVIL",
+"EWER",
+"EWES",
+"EXAM",
+"EXEC",
+"EXED",
+"EXES",
+"EXIT",
+"EXON",
+"EXPO",
+"EYAS",
+"EYED",
+"EYEN",
+"EYER",
+"EYES",
+"EYNE",
+"EYRA",
+"EYRE",
+"EYRY"].map(word => word.toLowerCase()); // Add all 113 words here
         const correctGuesses = [];
         const totalWords = wordList.length;
 
@@ -108,111 +223,47 @@
 	</div>
 
 	<div class="exercise-table">
-		<h2>Dictionary</h2>
-		<div class="table-wrap"><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-
-
-
-
-
-
-		 <div id="search-container">
-    
-    <input type="text" id="word-input" placeholder="Enter a word" />
-    <button id="search" class="search" onclick="fetchDefinition()">SEARCH</button><br>
-  </div>
-  <div id="result"></div><div id="word-list-container">
+		<h2>QR Code Generator</h2>
+		<div class="table-wrap"> <input type="text" id="qr-text" placeholder="Enter text or URL" /><br><br>
+  <button id="generate-btn" class="search">GENERATE</button><br><br><br>
+  <button id="download-btn" disabled>DOWNLOAD</button>
+<br><br>
+  <canvas id="qr-code"></canvas>
+  
   <script type="text/javascript">
-  async function fetchDefinition() {
-  console.log("Search button clicked!");
+  document.getElementById('generate-btn').addEventListener('click', () => {
+  const qrText = document.getElementById('qr-text').value;
 
-  const word = document.getElementById("word-input").value;
-  if (!word) {
-    alert("Please enter a word!");
+  if (qrText.trim() === '') {
+    alert('Please enter text or a URL!');
     return;
   }
 
-  const apiKey = "25849b8c-49a9-4426-9d5e-0e03b17251ba"; // Replace with your actual Merriam-Webster API key
-  const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${apiKey}`;
-  const resultContainer = document.getElementById("result");
-  resultContainer.innerHTML = "<p>Loading...</p>";
+  const qr = new QRious({
+    element: document.getElementById('qr-code'),
+    value: qrText,
+    size: 200, // QR code size in pixels
+  });
 
-  try {
-    const response = await fetch(url);
+  // Enable the download button
+  const downloadBtn = document.getElementById('download-btn');
+  downloadBtn.disabled = false;
 
-    // Attempt to parse the response as JSON
-    let data;
-    try {
-      data = await response.json();
-    } catch (error) {
-      console.error("Error parsing JSON:", error.message);
-      resultContainer.innerHTML = `<p>Error: Invalid response received from API.</p>`;
-      return;
-    }
-
-    console.log("API Response:", data);
-
-    if (data.length && typeof data[0] === "object") {
-      const wordData = data[0];
-      const definition = wordData.shortdef?.[0] || "No definition found.";
-      const pronunciation = wordData.hwi?.prs?.[0]?.mw || "No pronunciation available.";
-      const wordType = wordData.fl || "Unknown type";
-
-      // Extract example usage
-      let example = null;
-      if (wordData.def?.[0]?.sseq) {
-        const sseq = wordData.def[0].sseq;
-
-        for (const seq of sseq) {
-          const dt = seq[0]?.[1]?.dt;
-          if (dt) {
-            for (const entry of dt) {
-              if (entry[0] === "vis") {
-                example = entry[1][0]?.t || null;
-                break;
-              }
-            }
-          }
-          if (example) break;
-        }
-      }
-
-      if (example) {
-        example = example.replace(/{wi}/g, "<i>").replace(/{\/wi}/g, "</i>");
-      }
-
-      // Build the result HTML
-      let resultHTML = `
-        <div class="word-header">
-          <h2>${word}</h2>
-          <span class="pronunciation">${pronunciation}</span>
-        </div>
-        <p class="word-type"><strong>Type:</strong> ${wordType}</p>
-        <p class="definition"><strong>Definition:</strong> ${definition}</p>
-      `;
-
-      if (example) {
-        resultHTML += `<p class="example"><strong>Example:</strong> ${example}</p>`;
-      }
-
-
-      resultContainer.innerHTML = resultHTML;
-    } else {
-      resultContainer.innerHTML = "<p>Word not found!</p>";
-    }
-  } catch (error) {
-    console.error("Error fetching definition:", error.message);
-    resultContainer.innerHTML = `<p>Error fetching data: ${error.message}</p>`;
-  }
-}
-
+  // Add click event for downloading the QR code
+  downloadBtn.addEventListener('click', () => {
+    const canvas = document.getElementById('qr-code');
+    const dataURL = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'qr-code.png';
+    link.click();
+  });
+});
   
-  
-  </script></div>
-			<h1></h1>
+  </script>
+			
+            
+            <h1></h1>
     <p></p>
     
 
@@ -277,8 +328,8 @@ $(document).ready(function() {
 
   <div id="status" aria-live="polite"></div>
 
-  <audio id="audioPlayback" controls></audio>
-  <a id="downloadButton" download="voice-memo.webm">DOWNLOAD</a>
+  <audio id="audioPlayback" controls></audio><br>
+  <a id="downloadButton" class="search" download="voice-memo.webm">DOWNLOAD</a><br>
 
   <script>
     const startButton = document.getElementById("startButton");
@@ -454,88 +505,99 @@ $(document).ready(function() {
 	</div>
 
 	<div class="activity-feed">
-		<h2>NOTE SAVER</h2><div class="table-wrap">
+		<h2>Quote Image Generator</h2><div class="table-wrap">
 		
-		<label for="title">TITLE</label>
-    <input type="text" id="title" placeholder="Enter title">
-    <label for="snippet">SNIPPET</label>
-    <textarea id="snippet" placeholder="Enter your snippet"></textarea><br><br>
-    <button class="add">SAVE</button>
+		<div class="controls">
+    <label>Gradient Start Color: <input type="color" id="startColor" value="#00e0f2" /></label>
+    <label>Gradient End Color: <input type="color" id="endColor" value="#1E90FF" /></label>
+    <label>Font Color: <input type="color" id="fontColor" value="#ffffff" /></label>
+    <label>Font: 
+      <select id="font">
+        <option value="Lobster">Lobster</option>
+        <option value="Oswald">Oswald</option>
+        <option value="Fjalla One">Fjalla One</option>
+        <option value="Bebas Neue">Bebas Neue</option>
+        <option value="Sofia">Sofia</option>
+      </select>
+    </label>
+    <label>Quote Text: <input type="text" id="quoteText" placeholder="Enter your quote" /></label>
+    <button id="generate" class="search">GENERATE</button>
+    <button id="save" class="search">DOWNLOAD</button>
+  </div>
 
-    <div class="snippet-container" id="snippet-container"></div>
-<script>
-        const titleInput = document.getElementById('title');
-        const snippetInput = document.getElementById('snippet');
-        const saveButton = document.getElementById('save-btn');
-        const snippetContainer = document.getElementById('snippet-container');
+  <canvas id="canvas" width="600" height="400"></canvas>
 
-        // Load saved snippets from localStorage on page load
-        const loadSnippets = () => {
-            const snippets = JSON.parse(localStorage.getItem('snippets')) || [];
-            snippets.forEach(({ title, snippet }, index) => addSnippetToDOM(title, snippet, index));
-        };
+ <script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
 
-        // Save snippet to localStorage
-        const saveSnippet = () => {
-            const title = titleInput.value.trim();
-            const snippet = snippetInput.value.trim();
+const startColor = document.getElementById('startColor');
+const endColor = document.getElementById('endColor');
+const fontColor = document.getElementById('fontColor');
+const font = document.getElementById('font');
+const quoteText = document.getElementById('quoteText');
+const generate = document.getElementById('generate');
+const save = document.getElementById('save');
 
-            if (!title || !snippet) {
-                alert('Both Title and Snippet are required.');
-                return;
-            }
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
 
-            const snippets = JSON.parse(localStorage.getItem('snippets')) || [];
-            snippets.push({ title, snippet });
-            localStorage.setItem('snippets', JSON.stringify(snippets));
+  for (let i = 0; i < words.length; i++) {
+    const testLine = line + words[i] + ' ';
+    const metrics = context.measureText(testLine);
+    const testWidth = metrics.width;
+    if (testWidth > maxWidth && i > 0) {
+      context.fillText(line, x, y);
+      line = words[i] + ' ';
+      y += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  context.fillText(line, x, y);
+}
 
-            addSnippetToDOM(title, snippet, snippets.length - 1);
-            titleInput.value = '';
-            snippetInput.value = '';
-        };
+function drawCanvas() {
+  const text = quoteText.value || "Your Quote Here";
 
-        // Add snippet to the DOM
-        const addSnippetToDOM = (title, snippet, index) => {
-            const snippetDiv = document.createElement('div');
-            snippetDiv.className = 'snippet';
-            snippetDiv.setAttribute('data-index', index); // Track index for deletion
+  // Wrap font in quotes to handle multi-word names
+  const selectedFont = `"${font.value}"`;
 
-            const titleField = document.createElement('input');
-            titleField.type = 'text';
-            titleField.value = title;
-            titleField.readOnly = true;
+  // Wait for the font to load before drawing
+  document.fonts.load(`40px ${selectedFont}`).then(() => {
+    // Draw gradient background
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, startColor.value);
+    gradient.addColorStop(1, endColor.value);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            const snippetField = document.createElement('textarea');
-            snippetField.value = snippet;
-            snippetField.readOnly = true;
+    // Draw text
+    ctx.fillStyle = fontColor.value;
+    ctx.font = `40px ${selectedFont}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const maxWidth = canvas.width - 40;
+    const lineHeight = 50;
+    wrapText(ctx, text, canvas.width / 2, canvas.height / 2 - 20, maxWidth, lineHeight);
+  });
+}
 
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.className = 'delete-btn';
-            deleteButton.onclick = () => deleteSnippet(index);
+generate.addEventListener('click', drawCanvas);
 
-            snippetDiv.appendChild(titleField);
-            snippetDiv.appendChild(snippetField);
-            snippetDiv.appendChild(deleteButton);
-            snippetContainer.appendChild(snippetDiv);
-        };
+save.addEventListener('click', () => {
+  const link = document.createElement('a');
+  link.download = 'quote-graphic.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+});
 
-        // Delete snippet from localStorage and DOM
-        const deleteSnippet = (index) => {
-            let snippets = JSON.parse(localStorage.getItem('snippets')) || [];
-            snippets.splice(index, 1); // Remove snippet at index
-            localStorage.setItem('snippets', JSON.stringify(snippets)); // Update storage
-
-            // Refresh the DOM to reflect changes
-            snippetContainer.innerHTML = '';
-            loadSnippets(); // Reload all snippets
-        };
-
-        saveButton.addEventListener('click', saveSnippet);
-
-        // Load snippets on page load
-        loadSnippets();
-    </script>
+// Initial draw after all fonts are ready
+document.fonts.ready.then(() => {
+  drawCanvas();
+});
+</script>
 	  
 	</div>
 
