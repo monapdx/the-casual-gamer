@@ -2,15 +2,15 @@
 
 // Array of custom POG designs (add your image paths here)
 const pogDesigns = [
-  'pog-design.png',
+  'pog-design-1.png',
   'pog-design-2.png',
   'pog-design-3.png',
   'pog-design-4.png',
   'pog-design-5.png',
   'pog-design-6.png',
-  'pog-design-9.png',
-  'pog-design-10.png',
-  'pog-design-11.png',
+  'pog-design-7.png',
+  'pog-design-8.png',
+  
   
 ];
 
