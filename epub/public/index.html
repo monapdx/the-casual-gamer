@@ -1,1 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>EPUB Maker</title>
+  <style>
+    :root{ --bg:#0b1222; --panel:#101826; --ink:#e5e7eb; --muted:#9aa3b2; --accent:#a7f3d0 }
+    *{box-sizing:border-box}
+    body{margin:0; background:radial-gradient(1200px 900px at 12% 8%, #18253f, #070c16); color:var(--ink); font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+    header{padding:16px 20px; border-bottom:1px solid rgba(255,255,255,.06)}
+    .wrap{max-width:1100px; margin:24px auto; padding:0 16px; display:grid; gap:16px; grid-template-columns: 1.1fr .9fr}
+    @media (max-width: 900px){ .wrap{ grid-template-columns:1fr } }
+    .panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0)); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:16px}
+    h1{margin:0; font-size:20px}
+    label{display:block; font-size:12px; color:var(--muted); margin-top:10px}
+    input, textarea{width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background:#0b1222; color:var(--ink); outline:none}
+    textarea{min-height:120px}
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    .btn{cursor:pointer; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#111827; color:var(--ink); font-weight:600; letter-spacing:.2px}
+    .btn:hover{background:#0f172a}
+    .chap{border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:12px; margin-top:12px; background:rgba(255,255,255,.02)}
+    .chap h3{margin:0 0 8px; font-size:14px}
+    .muted{color:var(--muted); font-size:12px}
+    .flex{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+    .spacer{flex:1}
+    ol#preview{padding-left: 1.1rem}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>EPUB Maker</h1>
+    <p class="muted">Enter metadata, add chapters, then export a valid .epub (EPUB 3)</p>
+  </header>
 
+  <div class="wrap">
+    <section class="panel">
+      <h2 style="margin:.2rem 0 8px">Metadata</h2>
+      <div class="row">
+        <div>
+          <label>Title</label>
+          <input id="title" placeholder="My Book Title"/>
+        </div>
+        <div>
+          <label>Author</label>
+          <input id="author" placeholder="Your Name"/>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Language</label>
+          <input id="language" value="en"/>
+        </div>
+        <div>
+          <label>Identifier (ISBN or urn:uuid:...)</label>
+          <input id="identifier" placeholder="urn:uuid:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"/>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Publisher (optional)</label>
+          <input id="publisher" placeholder=""/>
+        </div>
+        <div>
+          <label>Modified Date</label>
+          <input id="date" type="date"/>
+        </div>
+      </div>
+
+      <div class="flex" style="margin-top:14px">
+        <button class="btn" id="add">+ Add chapter</button>
+        <button class="btn" id="sample">Insert sample chapters</button>
+        <div class="spacer"></div>
+        <button class="btn" id="export">Export EPUB</button>
+      </div>
+
+      <div id="chapters"></div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin:.2rem 0 8px">Preview (TOC)</h2>
+      <ol id="preview"></ol>
+      <p class="muted">Note: EPUB readers render the XHTML; this preview only lists chapter titles.</p>
+    </section>
+  </div>
+
+  <script>
+    const chaptersEl = document.getElementById("chapters");
+    const previewEl = document.getElementById("preview");
+
+    const addBtn = document.getElementById("add");
+    const sampleBtn = document.getElementById("sample");
+    const exportBtn = document.getElementById("export");
+
+    const meta = {
+      title: document.getElementById("title"),
+      author: document.getElementById("author"),
+      language: document.getElementById("language"),
+      identifier: document.getElementById("identifier"),
+      publisher: document.getElementById("publisher"),
+      date: document.getElementById("date")
+    };
+
+    // default date today
+    meta.date.valueAsNumber = Date.now() - (new Date()).getTimezoneOffset() * 60000;
+
+    let count = 0;
+    function addChapter(title = "", text = "") {
+      count++;
+      const id = `chap${count}`;
+      const wrap = document.createElement("div");
+      wrap.className = "chap";
+      wrap.innerHTML = `
+        <h3>Chapter ${count}</h3>
+        <label>Title</label>
+        <input class="c-title" value="${escapeHtml(title)}" placeholder="Chapter title"/>
+        <label>Content (HTML or plain text)</label>
+        <textarea class="c-body" placeholder="<p>Write your chapter here</p>">${escapeHtml(text)}</textarea>
+        <div class="flex" style="margin-top:8px">
+          <button class="btn move-up">▲ Up</button>
+          <button class="btn move-down">▼ Down</button>
+          <div class="spacer"></div>
+          <button class="btn remove">Remove</button>
+        </div>
+      `;
+      chaptersEl.appendChild(wrap);
+
+      wrap.querySelector(".remove").onclick = () => { wrap.remove(); refreshPreview(); };
+      wrap.querySelector(".move-up").onclick = () => { if (wrap.previousElementSibling) chaptersEl.insertBefore(wrap, wrap.previousElementSibling); refreshPreview(); };
+      wrap.querySelector(".move-down").onclick = () => { if (wrap.nextElementSibling) chaptersEl.insertBefore(wrap.nextElementSibling, wrap); refreshPreview(); };
+      wrap.addEventListener("input", refreshPreview);
+      refreshPreview();
+    }
+
+    function refreshPreview() {
+      previewEl.innerHTML = "";
+      const nodes = [...chaptersEl.querySelectorAll(".chap")];
+      nodes.forEach((node, i) => {
+        const t = node.querySelector(".c-title").value.trim() || `Chapter ${i+1}`;
+        const li = document.createElement("li");
+        li.textContent = t;
+        previewEl.appendChild(li);
+      });
+    }
+
+    addBtn.onclick = () => addChapter();
+
+    sampleBtn.onclick = () => {
+      chaptersEl.innerHTML = ""; count = 0;
+      addChapter("A beginning", "<p>This is the first chapter. You can paste <strong>HTML</strong> or plain text.</p>");
+      addChapter("Middle things", "<p>Chapters become <em>XHTML</em> files inside the EPUB.</p>");
+      addChapter("An ending", "<p>Export and open in your favorite reader.</p>");
+    };
+
+    exportBtn.onclick = async () => {
+      const chapters = [...chaptersEl.querySelectorAll(".chap")].map((node, i) => {
+        const title = node.querySelector(".c-title").value.trim() || `Chapter ${i+1}`;
+        const contentHtml = node.querySelector(".c-body").value;
+        return { id: `chap${i+1}`, title, contentHtml };
+      });
+
+      if (chapters.length === 0) {
+        alert("Add at least one chapter.");
+        return;
+      }
+
+      const payload = {
+        metadata: {
+          title: meta.title.value,
+          author: meta.author.value,
+          language: meta.language.value || "en",
+          identifier: meta.identifier.value,
+          publisher: meta.publisher.value,
+          date: meta.date.value
+        },
+        chapters
+      };
+
+      try {
+        const res = await fetch("/export", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error("Export failed");
+
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        const safe = (payload.metadata.title || "book").replace(/[^\w\-]+/g, "_");
+        a.href = url;
+        a.download = `${safe}.epub`;
+        a.click();
+        URL.revokeObjectURL(url);
+      } catch (e) {
+        console.error(e);
+        alert("Could not export EPUB. See console for details.");
+      }
+    };
+
+    function escapeHtml(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  </script>
+</body>
+</html>
