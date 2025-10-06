@@ -22,7 +22,7 @@
 	<div class="schedule-table">
 		<h2>HTML5 QUIZ</h2>
 		<div class="table-wrap"><br>
-    <input type="text" id="word-input" placeholder="Type your guess..." autofocus>
+    <input type="text" id="quiz-input" placeholder="Type your guess..." autofocus>
     <button onclick="checkWord()" class="answer">SUBMIT</button>
     <div id="counter">CORRECT ANSWERS: 0 / </div>
     <div id="progress-container">
@@ -42,17 +42,17 @@
         }
 
         function checkWord() {
-            const input = document.getElementById("word-input").value.trim().toLowerCase();
+            const input = document.getElementById("quiz-input").value.trim().toLowerCase();
 
             if (wordList.includes(input) && !correctGuesses.includes(input)) {
                 correctGuesses.push(input);
                 document.getElementById("correct-words").innerHTML += `<li>${input}</li>`;
                 updateCounter();
             }
-            document.getElementById("word-input").value = '';
+            document.getElementById("quiz-input").value = '';
         }
 
-        document.getElementById("word-input").addEventListener("keyup", function(event) {
+        document.getElementById("quiz-input").addEventListener("keyup", function(event) {
             if (event.key === "Enter") {
                 checkWord();
             }
@@ -121,7 +121,7 @@
 
 		 <div id="search-container">
     
-    <input type="text" id="word-input" placeholder="Enter a word" />
+    <input type="text" id="dict-input" placeholder="Enter a word" />
     <button id="search" class="search" onclick="fetchDefinition()">SEARCH</button><br>
   </div>
   <div id="result"></div><div id="word-list-container">
@@ -129,7 +129,7 @@
   async function fetchDefinition() {
   console.log("Search button clicked!");
 
-  const word = document.getElementById("word-input").value;
+  const word = document.getElementById("dict-input").value;
   if (!word) {
     alert("Please enter a word!");
     return;
@@ -460,7 +460,7 @@ $(document).ready(function() {
     <input type="text" id="title" placeholder="Enter title">
     <label for="snippet">SNIPPET</label>
     <textarea id="snippet" placeholder="Enter your snippet"></textarea><br><br>
-    <button class="add">SAVE</button>
+    <button id="save-btn" class="add">SAVE</button>
 
     <div class="snippet-container" id="snippet-container"></div>
 <script>

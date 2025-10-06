@@ -452,11 +452,7 @@ canvas {
       gap: 10px;
     }
 	
-	#generate {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
-	#save {width:150px;float:right;padding:3px;height:auto;font-family: "Lobster", serif;}
-	
-	#generate-btn {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
-	#download-btn {width:150px;float:right;padding:3px;height:auto;font-family: "Lobster", serif;}
+
 	#qr-code {}
 	#checkword {width:150px;float:left;padding:3px;height:auto;font-family: "Lobster", serif;}
 	
@@ -480,64 +476,34 @@ canvas {
             font-size: 1.2em;
         }
 		
-		.audio-player {
-	 width: 270px;
-	 padding: 35px 20px;
-	 margin: auto;
-	 background-color: white;
-	 border: 1px solid black;
+
+
+button,
+#save-btn,
+button.add,
+button.answer,
+button.search,
+button.lookup {
+  font-family: "Oswald", serif;
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
- .audio-player .player-controls {
-	 position: relative;
-	 display: flex;
-	 justify-content: space-between;
-	 align-items: center;
-}
- .audio-player #radioIcon {
-	 width: 30px;
-	 height: 30px;
-	 background: url("https://img.icons8.com/ios/50/000000/microphone.png") no-repeat center;
-	 background-size: contain;
-}
- .audio-player #playAudio {
-	 -webkit-appearance: none;
-	 outline: none;
-	 cursor: pointer;
-	 border: none;
-	 width: 30px;
-	 height: 30px;
-	 background: url("https://img.icons8.com/play") no-repeat center;
-	 background-size: contain;
-}
- .audio-player #playAudio.pause {
-	 background: url("https://img.icons8.com/pause") no-repeat center;
-	 background-size: contain;
-}
- .audio-player p {
-	 margin: 0 0 0 5px;
-	 line-height: 1;
-	 display: inline-flex;
-}
- .audio-player p small {
-	 font-size: 10px;
-}
- .audio-player #seekObjContainer {
-	 position: relative;
-	 width: 300px;
-	 margin: 0 5px;
-	 height: 5px;
-}
- .audio-player #seekObjContainer #seekObj {
-	 position: relative;
-	 width: 100%;
-	 height: 100%;
-	 background-color: #e3e3e3;
-	 border: 1px solid black;
-}
- .audio-player #seekObjContainer #seekObj #percentage {
-	 position: absolute;
-	 left: 0;
-	 top: 0;
-	 height: 100%;
-	 background-color: coral;
+
+button:hover,
+#save-btn:hover,
+button.add:hover,
+button.answer:hover,
+button.search:hover,
+button.lookup:hover {
+  background: #0056b3; /* Darker blue on hover */
 }
