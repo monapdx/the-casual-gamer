@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Header Test</title>
+  <style>
+    html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    /* HERO as an image element */
+    .hero {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;         /* clips any stray pixels */
+    }
+    .hero picture, .hero img {
+      display: block;           /* remove inline gap */
+      width: 100%;
+      height: auto;             /* keep aspect ratio */
+      max-width: 100%;
+    }
+
+    .hero-text {
+      position: absolute;
+      inset: 0;                 /* stretch overlay (optional) */
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+
+    h1, p { margin: 1rem 0 0; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <picture>
+      <source media="(max-width: 600px)" srcset="header-600.webp" type="image/webp">
+      <source media="(max-width: 1024px)" srcset="header-1024.webp" type="image/webp">
+      <source srcset="header-1920.webp" type="image/webp">
+      <img src="header-1920.webp" alt="Abort the Supreme Court logo banner">
+    </picture>
+    <!-- optional overlay text block -->
+    <div class="hero-text" aria-hidden="true"></div>
+  </header>
+
+  <main style="padding: 1.5rem;">
+    <h1>Welcome to My Website</h1>
+    <p>Creative. Minimal. Responsive.</p>
+  </main>
+</body>
+</html>
