@@ -1,12 +1,12 @@
 [
   {
-    "title": "Textarea Word Limit (Multi-field)",
+    "title": "Random Palette Generator",
     "date": "2025-10-15",
-    "description": "A JavaScript utility that enforces individual max word counts across multiple textareas with live counters.",
-    "tags": ["JavaScript", "Forms", "UX"],
+    "description": "App that uses HTML, CSS Grid, and JavaScript to create a new palette of seven random colors at the click of a button.",
+    "tags": ["Javascript", "HTML", "Color"],
     "demo": "https://monapdx.github.io/demos/textarea-limit/",
     "repo": "https://github.com/monapdx/textarea-limit",
-    "image": "img/textarea-limit.png",
+    "image": "img/color-generator.png",
     "imageAlt": "Screenshot showing live word counters under textareas"
   },
   {
