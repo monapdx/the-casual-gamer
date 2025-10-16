@@ -60,13 +60,13 @@
     "imageAlt": "Screenshot of poetry layout grid"
   },
   {
-    "title": "Tag Cloud Studio",
+    "title": "Philosophical Alignment Quiz",
     "date": "2025-08-03",
-    "description": "Creates beautiful visual word clouds from any text or list of tags, with adjustable colors, fonts, and layout density.",
-    "tags": ["Visualization", "JavaScript", "Text Analysis"],
+    "description": "React web app designed to reveal which philosophical movements align most closely with a user’s worldview.",
+    "tags": ["React", "Tailwind", "Quiz"],
     "demo": "https://monapdx.github.io/tag-cloud-studio/",
     "repo": "https://github.com/monapdx/tag-cloud-studio",
-    "image": "img/tag-cloud.png",
+    "image": "img/philosophical-alignment-quiz.png",
     "imageAlt": "Colorful circular tag cloud visualization"
   },
   {
