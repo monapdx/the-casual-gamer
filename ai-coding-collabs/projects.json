@@ -54,7 +54,7 @@
     "date": "2025-08-05",
     "description": "Interactive poetry layout generator that helps writers align and mirror text across grid cells for symmetry.",
     "tags": ["HTML", "CSS", "Poetry"],
-    "demo": "https://monapdx.github.io/the-casual-gamer/",
+    "demo": "https://monapdx.github.io/the-casual-gamer/Poetry-Grid-Helper/",
     "repo": "https://github.com/monapdx/poetry-grid-helper",
     "image": "img/poetry-grid.png",
     "imageAlt": "Screenshot of poetry layout grid"
