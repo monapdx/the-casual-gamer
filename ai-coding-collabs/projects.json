@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Textarea Word Limit (multi-field)",
+    "date": "2025-10-15",
+    "description": "JS utility enforcing per-textarea word caps with live counters.",
+    "tags": ["JavaScript", "Forms", "UX"],
+    "demo": "https://monapdx.github.io/demos/textarea-limit/",
+    "repo": "https://github.com/monapdx/textarea-limit",
+    "image": "img/textarea-limit.png",
+    "imageAlt": "Screenshot of textarea counters"
+  },
+  {
+    "title": "Compound Word Game (React)",
+    "date": "2025-09-12",
+    "description": "Fast-paced compound word matcher built with React + Tailwind.",
+    "tags": ["React", "Game", "Tailwind"],
+    "demo": "https://monapdx.github.io/compound-rush/",
+    "repo": "https://github.com/monapdx/compound-rush",
+    "image": "img/compound-rush.png",
+    "imageAlt": "Compound Rush board"
+  }
+]

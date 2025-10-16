@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Casual Gamer — Projects</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Ash's latest coding projects and demos." />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>The Casual Gamer</h1>
+      <p class="tagline">Recent coding projects & quick demos</p>
+      <nav class="filters">
+        <input id="search" type="search" placeholder="Search title, tags, description…" />
+        <select id="tagFilter">
+          <option value="">All tags</option>
+        </select>
+        <button id="sortBtn" aria-pressed="false">Sort: Newest</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="grid" class="grid" aria-live="polite"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Built with ❤️ on GitHub Pages. <a href="https://github.com/monapdx/the-casual-gamer">Repo</a></p>
+    </div>
+  </footer>
+
+  <template id="card-tpl">
+    <article class="card">
+      <a class="thumb" target="_blank" rel="noopener"><img alt="" loading="lazy" /></a>
+      <div class="card-body">
+        <h2 class="title"></h2>
+        <p class="desc"></p>
+        <div class="meta">
+          <time class="date"></time>
+          <ul class="tags"></ul>
+        </div>
+        <div class="links">
+          <a class="demo" target="_blank" rel="noopener">Live demo</a>
+          <a class="code" target="_blank" rel="noopener">Source</a>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script>
+    const grid = document.getElementById("grid");
+    const searchInput = document.getElementById("search");
+    const tagFilter = document.getElementById("tagFilter");
+    const sortBtn = document.getElementById("sortBtn");
+    let data = [];
+    let sortNewest = true;
+
+    async function load() {
+      const res = await fetch("projects.json", { cache: "no-store" });
+      data = await res.json();
+      // Normalize & sort
+      data.forEach(p => p.dateObj = new Date(p.date));
+      renderTagOptions(data);
+      render();
+    }
+
+    function renderTagOptions(items) {
+      const tags = [...new Set(items.flatMap(p => p.tags || []))].sort((a,b)=>a.localeCompare(b));
+      tags.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t; opt.textContent = t;
+        tagFilter.appendChild(opt);
+      });
+    }
+
+    function render() {
+      grid.innerHTML = "";
+      const q = (searchInput.value || "").toLowerCase().trim();
+      const tag = tagFilter.value;
+
+      let items = data.filter(p => {
+        const hay = [p.title, p.description, ...(p.tags || [])].join(" ").toLowerCase();
+        const matchesQuery = q ? hay.includes(q) : true;
+        const matchesTag = tag ? (p.tags || []).includes(tag) : true;
+        return matchesQuery && matchesTag;
+      });
+
+      items.sort((a, b) => sortNewest ? b.dateObj - a.dateObj : a.dateObj - b.dateObj);
+
+      if (items.length === 0) {
+        grid.innerHTML = `<p class="empty">No projects match your filters.</p>`;
+        return;
+      }
+
+      const tpl = document.getElementById("card-tpl");
+      items.forEach(p => {
+        const node = tpl.content.cloneNode(true);
+        const aThumb = node.querySelector(".thumb");
+        const img = node.querySelector("img");
+        const title = node.querySelector(".title");
+        const desc = node.querySelector(".desc");
+        const date = node.querySelector(".date");
+        const tags = node.querySelector(".tags");
+        const demo = node.querySelector(".demo");
+        const code = node.querySelector(".code");
+
+        title.textContent = p.title;
+        desc.textContent = p.description || "";
+        date.textContent = new Date(p.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        (p.tags || []).forEach(t => {
+          const li = document.createElement("li");
+          li.textContent = t;
+          tags.appendChild(li);
+        });
+
+        if (p.image) {
+          img.src = p.image;
+          img.alt = p.imageAlt || p.title;
+          aThumb.href = p.demo || p.repo || "#";
+        } else {
+          aThumb.remove();
+        }
+
+        if (p.demo) { demo.href = p.demo; } else { demo.remove(); }
+        if (p.repo) { code.href = p.repo; } else { code.remove(); }
+
+        grid.appendChild(node);
+      });
+    }
+
+    searchInput.addEventListener("input", render);
+    tagFilter.addEventListener("change", render);
+    sortBtn.addEventListener("click", () => {
+      sortNewest = !sortNewest;
+      sortBtn.textContent = `Sort: ${sortNewest ? "Newest" : "Oldest"}`;
+      sortBtn.setAttribute("aria-pressed", String(!sortNewest));
+      render();
+    });
+
+    load();
+  </script>
+</body>
+</html>
