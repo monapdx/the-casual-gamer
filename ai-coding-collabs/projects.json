@@ -20,13 +20,13 @@
     "imageAlt": "Example form with grouped dropdown"
   },
   {
-    "title": "Radio Button Message Generator",
+    "title": "ePub Builder",
     "date": "2025-11-17",
-    "description": "Displays context-specific messages depending on which radio button option is selected.",
-    "tags": ["JavaScript", "Forms", "Interactivity"],
+    "description": "EPUB Builder is a client-side React application that enables users to easily create professional EPUB 3 ebooks directly in their browser.",
+    "tags": ["React", "ePub", "Generator"],
     "demo": "https://monapdx.github.io/demos/radio-message/",
     "repo": "https://github.com/monapdx/radio-message",
-    "image": "img/radio-message.png",
+    "image": "img/epub.png",
     "imageAlt": "Radio buttons with dynamic text responses"
   },
   {
