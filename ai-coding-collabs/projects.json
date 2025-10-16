@@ -70,40 +70,40 @@
     "imageAlt": "Colorful circular tag cloud visualization"
   },
   {
-    "title": "Word Cloud Generator (Python)",
-    "date": "2024-12-05",
-    "description": "Python script that reads a text file and generates a word cloud image excluding common stopwords.",
-    "tags": ["Python", "Text Analysis", "Visualization"],
+    "title": "Tag Cloud Studio",
+    "date": "",
+    "description": "App built with React, Vite, D3, and Tailwind CSS that lets users create fully customizable word cloud visualizations.",
+    "tags": ["React", "Tailwind", "Visualization"],
     "repo": "https://github.com/monapdx/wordcloud-generator",
-    "image": "img/wordcloud.png",
+    "image": "img/tag-cloud-studio.png",
     "imageAlt": "Example of a generated word cloud"
   },
   {
-    "title": "Keyword Deduplicator",
-    "date": "2024-07-10",
-    "description": "Python script that removes duplicate search keywords from a text file and logs which were removed.",
-    "tags": ["Python", "Automation", "Text Processing"],
+    "title": "Quote Image Generator",
+    "date": "",
+    "description": "Web app that allows users to design custom quote images with ease.",
+    "tags": ["HTML", "Image", "Generator"],
     "repo": "https://github.com/monapdx/keyword-deduplicator",
-    "image": "img/keyword-dedup.png",
+    "image": "img/quote-generator.png",
     "imageAlt": "Terminal screenshot of deduplication results"
   },
   {
-    "title": "HTML Cleaner",
-    "date": "2024-12-03",
-    "description": "Python utility that strips inline styles and class attributes from HTML files to produce clean semantic markup.",
-    "tags": ["Python", "HTML", "Cleanup"],
+    "title": "Audio Recorder",
+    "date": "",
+    "description": "Web app that allows users to record, play back, and download short voice memos using their computer or mobile microphone.",
+    "tags": ["Audio", "HTML", "MP3"],
     "repo": "https://github.com/monapdx/html-cleaner",
-    "image": "img/html-cleaner.png",
+    "image": "img/voice-recorder.png",
     "imageAlt": "HTML before and after cleanup comparison"
   },
   {
-    "title": "Four-Letter Word Filter",
-    "date": "2024-10-17",
-    "description": "Script that reads a word list and returns only words that are exactly four letters long and end in the same two consonants.",
-    "tags": ["Python", "Linguistics", "Text Analysis"],
+    "title": "Snippet Saver",
+    "date": "",
+    "description": "Browser-based note-taking tool that lets users quickly capture and organize short text entries.",
+    "tags": ["HTML", "Notes",],
     "repo": "https://github.com/monapdx/four-letter-filter",
-    "image": "img/four-letter.png",
-    "imageAlt": "Filtered word list output"
+    "image": "img/snippet-saver.png",
+    "imageAlt": ""
   },
   {
     "title": "SMS Template Saver",
