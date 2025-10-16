@@ -71,7 +71,7 @@
   },
   {
     "title": "Tag Cloud Studio",
-    "date": "",
+    "date": "2025-08-03",
     "description": "App built with React, Vite, D3, and Tailwind CSS that lets users create fully customizable word cloud visualizations.",
     "tags": ["React", "Tailwind", "Visualization"],
     "repo": "https://github.com/monapdx/wordcloud-generator",
@@ -80,7 +80,7 @@
   },
   {
     "title": "Quote Image Generator",
-    "date": "",
+    "date": "2025-07-25",
     "description": "Web app that allows users to design custom quote images with ease.",
     "tags": ["HTML", "Image", "Generator"],
     "repo": "https://github.com/monapdx/keyword-deduplicator",
@@ -89,7 +89,7 @@
   },
   {
     "title": "Audio Recorder",
-    "date": "",
+    "date": "2025-07-20",
     "description": "Web app that allows users to record, play back, and download short voice memos using their computer or mobile microphone.",
     "tags": ["Audio", "HTML", "MP3"],
     "repo": "https://github.com/monapdx/html-cleaner",
@@ -98,7 +98,7 @@
   },
   {
     "title": "Snippet Saver",
-    "date": "",
+    "date": "2025-07-15",
     "description": "Browser-based note-taking tool that lets users quickly capture and organize short text entries.",
     "tags": ["HTML", "Notes"],
     "repo": "https://github.com/monapdx/four-letter-filter",
@@ -107,7 +107,7 @@
   },
   {
     "title": "SMS Template Saver",
-    "date": "",
+    "date": "2025-07-10",
     "description": "Simple, responsive web app that displays a table of reusable SMS message snippets with one-click copy functionality.",
     "tags": ["HTML", "javascript", "Automation"],
     "repo": "https://github.com/monapdx/json-url-extractor",
