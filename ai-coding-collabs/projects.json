@@ -1,32 +1,117 @@
 [
   {
-    "title": "Textarea Word Limit (multi-field)",
+    "title": "Textarea Word Limit (Multi-field)",
     "date": "2025-10-15",
-    "description": "JS utility enforcing per-textarea word caps with live counters.",
+    "description": "A JavaScript utility that enforces individual max word counts across multiple textareas with live counters.",
     "tags": ["JavaScript", "Forms", "UX"],
     "demo": "https://monapdx.github.io/demos/textarea-limit/",
     "repo": "https://github.com/monapdx/textarea-limit",
     "image": "img/textarea-limit.png",
-    "imageAlt": "Screenshot of textarea counters"
+    "imageAlt": "Screenshot showing live word counters under textareas"
   },
   {
-    "title": "Compound Word Game (React)",
+    "title": "Optgroup Generator",
+    "date": "2025-11-19",
+    "description": "Converts nested text lists into HTML <select> and <optgroup> elements automatically for faster form creation.",
+    "tags": ["HTML", "JavaScript", "Forms"],
+    "demo": "https://monapdx.github.io/demos/optgroup-generator/",
+    "repo": "https://github.com/monapdx/optgroup-generator",
+    "image": "img/optgroup-generator.png",
+    "imageAlt": "Example form with grouped dropdown"
+  },
+  {
+    "title": "Radio Button Message Generator",
+    "date": "2025-11-17",
+    "description": "Displays context-specific messages depending on which radio button option is selected.",
+    "tags": ["JavaScript", "Forms", "Interactivity"],
+    "demo": "https://monapdx.github.io/demos/radio-message/",
+    "repo": "https://github.com/monapdx/radio-message",
+    "image": "img/radio-message.png",
+    "imageAlt": "Radio buttons with dynamic text responses"
+  },
+  {
+    "title": "Dropdown + Radio Combo Generator",
+    "date": "2025-11-17",
+    "description": "Combines dropdown and radio button logic to generate text output dynamically based on user selections.",
+    "tags": ["JavaScript", "UX", "Forms"],
+    "demo": "https://monapdx.github.io/demos/dropdown-radio/",
+    "repo": "https://github.com/monapdx/dropdown-radio",
+    "image": "img/dropdown-radio.png",
+    "imageAlt": "Dropdown and radio button interface example"
+  },
+  {
+    "title": "Compound Rush",
     "date": "2025-09-12",
-    "description": "Fast-paced compound word matcher built with React + Tailwind.",
+    "description": "A fast-paced browser game where players combine words to form valid compound words. Built with React + Tailwind.",
     "tags": ["React", "Game", "Tailwind"],
     "demo": "https://monapdx.github.io/compound-rush/",
     "repo": "https://github.com/monapdx/compound-rush",
     "image": "img/compound-rush.png",
-    "imageAlt": "Compound Rush board"
+    "imageAlt": "Screenshot of Compound Rush gameplay board"
   },
   {
-    "title": "Textarea Word Limit (multi-field)",
-    "date": "2025-10-15",
-    "description": "JS utility enforcing per-textarea word caps with live counters.",
-    "tags": ["JavaScript", "Forms", "UX"],
-    "demo": "https://monapdx.github.io/demos/textarea-limit/",
-    "repo": "https://github.com/monapdx/textarea-limit",
-    "image": "img/textarea-limit.png",
-    "imageAlt": "Screenshot of textarea counters"
+    "title": "Poetry Grid Helper",
+    "date": "2025-08-05",
+    "description": "Interactive poetry layout generator that helps writers align and mirror text across grid cells for symmetry.",
+    "tags": ["HTML", "CSS", "Poetry"],
+    "demo": "https://monapdx.github.io/demos/poetry-grid-helper/",
+    "repo": "https://github.com/monapdx/poetry-grid-helper",
+    "image": "img/poetry-grid.png",
+    "imageAlt": "Screenshot of poetry layout grid"
   },
+  {
+    "title": "Tag Cloud Studio",
+    "date": "2025-08-03",
+    "description": "Creates beautiful visual word clouds from any text or list of tags, with adjustable colors, fonts, and layout density.",
+    "tags": ["Visualization", "JavaScript", "Text Analysis"],
+    "demo": "https://monapdx.github.io/tag-cloud-studio/",
+    "repo": "https://github.com/monapdx/tag-cloud-studio",
+    "image": "img/tag-cloud.png",
+    "imageAlt": "Colorful circular tag cloud visualization"
+  },
+  {
+    "title": "Word Cloud Generator (Python)",
+    "date": "2024-12-05",
+    "description": "Python script that reads a text file and generates a word cloud image excluding common stopwords.",
+    "tags": ["Python", "Text Analysis", "Visualization"],
+    "repo": "https://github.com/monapdx/wordcloud-generator",
+    "image": "img/wordcloud.png",
+    "imageAlt": "Example of a generated word cloud"
+  },
+  {
+    "title": "Keyword Deduplicator",
+    "date": "2024-07-10",
+    "description": "Python script that removes duplicate search keywords from a text file and logs which were removed.",
+    "tags": ["Python", "Automation", "Text Processing"],
+    "repo": "https://github.com/monapdx/keyword-deduplicator",
+    "image": "img/keyword-dedup.png",
+    "imageAlt": "Terminal screenshot of deduplication results"
+  },
+  {
+    "title": "HTML Cleaner",
+    "date": "2024-12-03",
+    "description": "Python utility that strips inline styles and class attributes from HTML files to produce clean semantic markup.",
+    "tags": ["Python", "HTML", "Cleanup"],
+    "repo": "https://github.com/monapdx/html-cleaner",
+    "image": "img/html-cleaner.png",
+    "imageAlt": "HTML before and after cleanup comparison"
+  },
+  {
+    "title": "Four-Letter Word Filter",
+    "date": "2024-10-17",
+    "description": "Script that reads a word list and returns only words that are exactly four letters long and end in the same two consonants.",
+    "tags": ["Python", "Linguistics", "Text Analysis"],
+    "repo": "https://github.com/monapdx/four-letter-filter",
+    "image": "img/four-letter.png",
+    "imageAlt": "Filtered word list output"
+  },
+  {
+    "title": "JSON URL Extractor",
+    "date": "2024-11-03",
+    "description": "Python script that parses large exported JSON files (e.g., Google Takeout) and extracts only matching URL patterns.",
+    "tags": ["Python", "JSON", "Automation"],
+    "repo": "https://github.com/monapdx/json-url-extractor",
+    "image": "img/json-url.png",
+    "imageAlt": "Console output showing extracted URLs"
+  }
 ]
