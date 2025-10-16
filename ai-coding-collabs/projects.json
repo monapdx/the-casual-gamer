@@ -106,12 +106,12 @@
     "imageAlt": "Filtered word list output"
   },
   {
-    "title": "JSON URL Extractor",
-    "date": "2024-11-03",
-    "description": "Python script that parses large exported JSON files (e.g., Google Takeout) and extracts only matching URL patterns.",
-    "tags": ["Python", "JSON", "Automation"],
+    "title": "SMS Template Saver",
+    "date": "",
+    "description": "Simple, responsive web app that displays a table of reusable SMS message snippets with one-click copy functionality.",
+    "tags": ["HTML", "javascript", "Automation"],
     "repo": "https://github.com/monapdx/json-url-extractor",
-    "image": "img/json-url.png",
-    "imageAlt": "Console output showing extracted URLs"
+    "image": "img/sms-templates.png",
+    "imageAlt": ""
   }
 ]
