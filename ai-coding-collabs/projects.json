@@ -30,23 +30,23 @@
     "imageAlt": "Radio buttons with dynamic text responses"
   },
   {
-    "title": "Dropdown + Radio Combo Generator",
+    "title": "Chat Categories Viewer",
     "date": "2025-11-17",
-    "description": "Combines dropdown and radio button logic to generate text output dynamically based on user selections.",
-    "tags": ["JavaScript", "UX", "Forms"],
+    "description": "View your chat categories as folders after creating and exporting with Chat Categories.",
+    "tags": ["Streamlit", "Python", "JSON"],
     "demo": "https://monapdx.github.io/demos/dropdown-radio/",
     "repo": "https://github.com/monapdx/dropdown-radio",
-    "image": "img/dropdown-radio.png",
+    "image": "img/chat-folders.png",
     "imageAlt": "Dropdown and radio button interface example"
   },
   {
-    "title": "Compound Rush",
+    "title": "Chat Categories",
     "date": "2025-09-12",
-    "description": "A fast-paced browser game where players combine words to form valid compound words. Built with React + Tailwind.",
-    "tags": ["React", "Game", "Tailwind"],
+    "description": "Streamlit app that lets you create and add categories to chats like Gmail labels.",
+    "tags": ["Streamlit", "Python", "JSON"],
     "demo": "https://monapdx.github.io/compound-rush/",
     "repo": "https://github.com/monapdx/compound-rush",
-    "image": "img/compound-rush.png",
+    "image": "img/chat-categories.png",
     "imageAlt": "Screenshot of Compound Rush gameplay board"
   },
   {
