@@ -67,7 +67,7 @@
     "demo": "https://monapdx.github.io/tag-cloud-studio/",
     "repo": "https://github.com/monapdx/tag-cloud-studio",
     "image": "img/philosophical-alignment-quiz.png",
-    "imageAlt": "Colorful circular tag cloud visualization"
+    "imageAlt": ""
   },
   {
     "title": "Tag Cloud Studio",
@@ -100,7 +100,7 @@
     "title": "Snippet Saver",
     "date": "",
     "description": "Browser-based note-taking tool that lets users quickly capture and organize short text entries.",
-    "tags": ["HTML", "Notes",],
+    "tags": ["HTML", "Notes"],
     "repo": "https://github.com/monapdx/four-letter-filter",
     "image": "img/snippet-saver.png",
     "imageAlt": ""
