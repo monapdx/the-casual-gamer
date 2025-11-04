@@ -23,6 +23,10 @@ addCloseButtons();
 
 // script.js
 
+
+
+
+
 // Array of custom POG designs (add your image paths here)
 const pogDesigns = [
   'images/pog-design.png',

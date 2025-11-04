@@ -7,6 +7,8 @@
 *::after {
 	box-sizing: border-box;
 }
+body {background:#cc007d;}
+
 
 ::selection {
 	background: #333;
@@ -61,7 +63,7 @@ text-align:center;}
 	border: 2px solid;
 	width: 1000px;
 	max-width: calc(100% - 40px);
-	background:#F0C3F6;
+	background:#ff009c;
 	box-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px;
 }
 
@@ -76,6 +78,7 @@ text-align:center;}
 
 .dashboard > div:hover {
 	color: black;
+	background:#FCF7C5 ;
 }
 
 .dashboard > div:last-of-type {
@@ -835,10 +838,7 @@ input:focus {outline: none; /* Remove the default focus outline */
             max-width: 100%;
             border-radius: 10px;
         }
-        h2 {
-		font-family: "Oswald", serif;
-            margin: 10px 0;
-        }
+
 
 		input {
 
@@ -865,9 +865,31 @@ input:focus {outline: none; /* Remove the default focus outline */
       gap: 10px;
     }
     
+.grid-table {
+      display: grid;
+      border: 1px solid #dcdcdc; /* 1px solid border for the table */
+    }
+.grid-table div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid #dcdcdc; /* 1px solid border for each cell */
+    }
 
-
-  
+#generateTable {font-family: "Oswald", serif;
+  margin-top: 10px;
+  width: 100%;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  float:left;height:auto;}
 
 #input-container {
   margin-bottom: 20px;

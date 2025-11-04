@@ -4,50 +4,50 @@
     "date": "2025-10-15",
     "description": "App that uses HTML, CSS Grid, and JavaScript to create a new palette of seven random colors at the click of a button.",
     "tags": ["Javascript", "HTML", "Color"],
-    "demo": "https://monapdx.github.io/demos/textarea-limit/",
-    "repo": "https://github.com/monapdx/textarea-limit",
+    "demo": "https://monapdx.github.io/HTML-Projects/random-palette.html",
+    "repo": "https://monapdx.github.io/HTML-Projects/",
     "image": "img/color-generator.png",
-    "imageAlt": "Screenshot showing live word counters under textareas"
+    "imageAlt": ""
   },
   {
     "title": "Dictionary Word Lookup",
     "date": "2025-11-19",
     "description": "Uses the Merriam-Webster Dictionary API to look up words.",
     "tags": ["API", "Dictionary"],
-    "demo": "https://monapdx.github.io/demos/optgroup-generator/",
-    "repo": "https://github.com/monapdx/optgroup-generator",
+    "demo": "https://monapdx.github.io/HTML-Projects/dictionary.html",
+    "repo": "https://monapdx.github.io/HTML-Projects/",
     "image": "img/dictionary.png",
-    "imageAlt": "Example form with grouped dropdown"
+    "imageAlt": ""
   },
   {
     "title": "ePub Builder",
     "date": "2025-11-17",
     "description": "EPUB Builder is a client-side React application that enables users to easily create professional ebooks directly in their browser.",
     "tags": ["React", "ePub", "Generator"],
-    "demo": "https://monapdx.github.io/demos/radio-message/",
-    "repo": "https://github.com/monapdx/radio-message",
+    "demo": "",
+    "repo": "https://monapdx.github.io/HTML-Projects/",
     "image": "img/epub.png",
-    "imageAlt": "Radio buttons with dynamic text responses"
+    "imageAlt": ""
   },
   {
     "title": "Chat Categories Viewer",
     "date": "2025-11-17",
     "description": "View your chat categories as folders after creating and exporting with Chat Categories.",
     "tags": ["Streamlit", "Python", "JSON"],
-    "demo": "https://monapdx.github.io/demos/dropdown-radio/",
-    "repo": "https://github.com/monapdx/dropdown-radio",
+    "demo": "",
+    "repo": "",
     "image": "img/chat-folders.png",
-    "imageAlt": "Dropdown and radio button interface example"
+    "imageAlt": ""
   },
   {
     "title": "Chat Categories",
     "date": "2025-09-12",
     "description": "Streamlit app that lets you create and add categories to chats like Gmail labels.",
     "tags": ["Streamlit", "Python", "JSON"],
-    "demo": "https://monapdx.github.io/compound-rush/",
-    "repo": "https://github.com/monapdx/compound-rush",
+    "demo": "",
+    "repo": "",
     "image": "img/chat-categories.png",
-    "imageAlt": "Screenshot of Compound Rush gameplay board"
+    "imageAlt": ""
   },
   {
     "title": "Poetry Grid Helper",
@@ -55,7 +55,7 @@
     "description": "Interactive poetry layout generator that helps writers align and mirror text across grid cells for symmetry.",
     "tags": ["HTML", "CSS", "Poetry"],
     "demo": "https://monapdx.github.io/the-casual-gamer/Poetry-Grid-Helper/",
-    "repo": "https://github.com/monapdx/poetry-grid-helper",
+    "repo": "https://monapdx.github.io/the-casual-gamer/",
     "image": "img/poetry-grid.png",
     "imageAlt": "Screenshot of poetry layout grid"
   },
@@ -64,8 +64,8 @@
     "date": "2025-08-03",
     "description": "React web app designed to reveal which philosophical movements align most closely with a user’s worldview.",
     "tags": ["React", "Tailwind", "Quiz"],
-    "demo": "https://monapdx.github.io/tag-cloud-studio/",
-    "repo": "https://github.com/monapdx/tag-cloud-studio",
+    "demo": "https://monapdx.github.io/HTML-Projects/philosophy-quiz.html",
+    "repo": "https://monapdx.github.io/HTML-Projects/",
     "image": "img/philosophical-alignment-quiz.png",
     "imageAlt": ""
   },
@@ -74,7 +74,7 @@
     "date": "2025-08-03",
     "description": "App built with React, Vite, D3, and Tailwind CSS that lets users create fully customizable word cloud visualizations.",
     "tags": ["React", "Tailwind", "Visualization"],
-    "repo": "https://github.com/monapdx/wordcloud-generator",
+    "repo": "",
     "image": "img/tag-cloud-studio.png",
     "imageAlt": "Example of a generated word cloud"
   },
@@ -83,25 +83,28 @@
     "date": "2025-07-25",
     "description": "Web app that allows users to design custom quote images with ease.",
     "tags": ["HTML", "Image", "Generator"],
-    "repo": "https://github.com/monapdx/keyword-deduplicator",
+    "demo": "https://monapdx.github.io/HTML-Projects/quote-image-generator.html",
+    "repo": "https://monapdx.github.io/HTML-Projects/",
     "image": "img/quote-generator.png",
-    "imageAlt": "Terminal screenshot of deduplication results"
+    "imageAlt": ""
   },
   {
     "title": "Audio Recorder",
     "date": "2025-07-20",
     "description": "Web app that allows users to record, play back, and download short voice memos.",
     "tags": ["Audio", "HTML", "MP3"],
-    "repo": "https://github.com/monapdx/html-cleaner",
+    "demo": "https://monapdx.github.io/HTML-Projects/voice-record.html",
+    "repo": "https://monapdx.github.io/HTML-Projects/",
     "image": "img/voice-recorder.png",
-    "imageAlt": "HTML before and after cleanup comparison"
+    "imageAlt": ""
   },
   {
     "title": "Snippet Saver",
     "date": "2025-07-15",
     "description": "Browser-based note-taking tool that lets users quickly capture and organize short text entries.",
     "tags": ["HTML", "Notes"],
-    "repo": "https://github.com/monapdx/four-letter-filter",
+    "demo": "https://monapdx.github.io/HTML-Projects/notes.html",
+    "repo": "https://monapdx.github.io/HTML-Projects/",
     "image": "img/snippet-saver.png",
     "imageAlt": ""
   },
@@ -110,8 +113,42 @@
     "date": "2025-07-10",
     "description": "Simple, responsive web app that displays a table of reusable SMS message snippets with one-click copy functionality.",
     "tags": ["HTML", "javascript", "Automation"],
-    "repo": "https://github.com/monapdx/json-url-extractor",
+    "demo": "https://monapdx.github.io/HTML-Projects/sms-templates.html",
+    "repo": "https://monapdx.github.io/HTML-Projects/",
     "image": "img/sms-templates.png",
     "imageAlt": ""
-  }
+  },
+    {
+    "title": "Rhyme Search",
+    "date": "2025-07-15",
+    "description": "",
+    "tags": ["api", "javascript"],
+    "demo": "https://monapdx.github.io/HTML-Projects/rhymes.html",
+    "repo": "https://monapdx.github.io/HTML-Projects/",
+    "image": "",
+    "imageAlt": ""
+  },
+      {
+    "title": "",
+    "date": "2025-07-15",
+    "description": "",
+    "tags": ["", ""],
+    "demo": "",
+    "repo": "",
+    "image": "",
+    "imageAlt": ""
+  },
+      {
+    "title": "",
+    "date": "2025-07-15",
+    "description": "",
+    "tags": ["", ""],
+    "demo": "",
+    "repo": "",
+    "image": "",
+    "imageAlt": ""
+  },
 ]
+
+
+
