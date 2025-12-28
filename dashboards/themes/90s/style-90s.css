@@ -126,10 +126,58 @@ th {
 	color: #fff;
 }
 
-ul {
-	list-style-type: none;
-	padding: 0;
+.fancy-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
+
+.fancy-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Default marker */
+.fancy-list li::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background-image: url("play.png");
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 0.25rem;
+  transition: background-image 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover marker change */
+.fancy-list li:hover::before {
+  background-image: url("play-green.png");
+  transform: scale(1.1); /* optional—remove if you want no animation */
+}
+
+@media (max-width: 500px) {
+  .fancy-list li {
+    gap: 0.6rem;
+  }
+
+  .fancy-list li::before {
+    width: 18px;
+    height: 18px;
+    background-size: 18px 18px;
+  }
+}
+
+  
+  
+}
+
+}
+
 
 li {
 	padding: 5px 0;
@@ -176,16 +224,14 @@ text-align:center;}
 		grid-column: 4 / 7;
 	}
 	.dashboard .calories {
-		grid-column: 1 / 5;
+		grid-column: 1 / 4;
 	}
 	.dashboard .personal-bests {
 		grid-column: 5 / 7;
 	}
-	.dashboard .challenges {
-		grid-column: 1 / 3;
-	}
+
 	.dashboard .activity-feed {
-		grid-column: 3 / 7;
+		grid-column: 4 / 7;
 	}
 	.calories div {
 		width: 100%;

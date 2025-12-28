@@ -6,6 +6,120 @@
   <link rel="stylesheet" href="./style.css">
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+  .app {
+    max-width: 1000px;
+    margin: 24px auto;
+    padding: 0 16px 24px;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 16px;
+  }
+  .panel {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    padding: 16px 18px;
+  }
+  .panel h2 { margin: 0 0 8px; font-size: 14px; }
+  .panel p { font-family: "IBM Plex Mono", monospace;font-size: 13px; color: #666; margin: 0 0 12px; }
+  input[type="text"] {
+    width: 100%; padding: 7px 9px;
+    border: 1px solid #ccc; border-radius: 6px;
+    font-size: 13px; outline: none;
+  }
+  input[type="text"]:focus {
+    border-color: #0074d9;
+    box-shadow: 0 0 0 2px rgba(0,116,217,0.15);
+  }
+  .hint { font-family: "IBM Plex Mono", monospace;font-size: 12px; color: #777; margin-top: 8px; }
+
+  /* Export button */
+  .export-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+  }
+  #downloadBtn {
+  font-family: "Oswald", serif;
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  }
+  #downloadBtn:hover {
+     background: #0056b3;
+  }
+
+  #treeContainer {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-height: 120px;
+    background: #fffdf8;
+    overflow: auto;
+    font-size: 12px;
+  }
+  .tree-root ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 18px;
+    border-left: 1px solid #ddd;
+  }
+  .tree-node { position: relative; margin: 2px 0; }
+  .tree-node::before {
+    content: "";
+    position: absolute;
+    left: -17px;
+    top: 15px;
+    width: 16px;
+    height: 1px;
+    background: #ddd;
+  }
+  .node-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: default;
+    padding: 2px 0;
+  }
+  .caret {
+    width: 12px; text-align: center; font-size: 10px; color: #666;
+    user-select: none; transition: transform 0.15s ease-out;
+  }
+  .tree-node.folder.collapsed > ul { display: none; }
+  .tree-node.folder.collapsed .caret { transform: rotate(-90deg); }
+
+  .icon { width: 16px; text-align: center; font-family: "IBM Plex Mono", monospace;font-size: 12px; }
+  .folder .name { font-weight: 700; }
+  .file .name { font-weight: 400; }
+  .adder {
+    display: flex; gap: 4px; margin-left: 8px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.15s ease-out;
+  }
+  .tree-node.folder:hover .adder {
+    opacity: 1; pointer-events: auto;
+  }
+  .adder input { font-size: 12px; padding: 4px 6px; width: 140px; }
+  .root-empty { font-style: italic; color: #777; font-size: 13px; }
+
+  /* While exporting, hide add-inputs so the image is clean */
+  body.exporting .adder {
+    display: none !important;
+  }
+
+  @media (max-width:800px){.layout{grid-template-columns:1fr;}}
 </style>
 
 </head>
@@ -223,43 +337,46 @@
 	</div>
 
 	<div class="exercise-table">
-		<h2>QR Code Generator</h2>
-		<div class="table-wrap"> <input type="text" id="qr-text" placeholder="Enter text or URL" /><br><br>
-  <button id="generate-btn" class="search">GENERATE</button><br><br><br>
-  <button id="download-btn" disabled>DOWNLOAD</button>
-<br><br>
-  <canvas id="qr-code"></canvas>
-  
-  <script type="text/javascript">
-  document.getElementById('generate-btn').addEventListener('click', () => {
-  const qrText = document.getElementById('qr-text').value;
+		<h2>Countdown Timer</h2><br>
+		<div class="table-wrap">     <div class="countdown-wrapper">
+    <div class="label">Time Remaining Until</div>
+    <div class="label">23:59 · Dec 31, 2025 · EST</div>
+    <div id="countdown">Loading…</div>
+    <div class="note">(Countdown is accurate globally using UTC)</div>
+  </div>
 
-  if (qrText.trim() === '') {
-    alert('Please enter text or a URL!');
-    return;
-  }
+<script>
+    // Target date: 23:59 on Nov 14, 2025 EST (UTC-5)
+    const targetDate = new Date('2025-12-31T04:59:00Z');
 
-  const qr = new QRious({
-    element: document.getElementById('qr-code'),
-    value: qrText,
-    size: 200, // QR code size in pixels
-  });
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      const countdownEl = document.getElementById('countdown');
 
-  // Enable the download button
-  const downloadBtn = document.getElementById('download-btn');
-  downloadBtn.disabled = false;
+      if (diff <= 0) {
+        countdownEl.textContent = "TIME'S UP!";
+        return;
+      }
 
-  // Add click event for downloading the QR code
-  downloadBtn.addEventListener('click', () => {
-    const canvas = document.getElementById('qr-code');
-    const dataURL = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
-    link.href = dataURL;
-    link.download = 'qr-code.png';
-    link.click();
-  });
-});
-  
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      // Only show non-zero units, except always show seconds
+      const parts = [];
+      if (days > 0) parts.push(`${days}d`);
+      if (hours > 0 || days > 0) parts.push(`${hours}h`);
+      if (minutes > 0 || hours > 0 || days > 0) parts.push(`${minutes}m`);
+      parts.push(`${seconds}s`);
+
+      countdownEl.textContent = parts.join(' ');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 			
             
@@ -271,192 +388,197 @@
 		</div>
 	</div>
 
-	<div class="calories"><script type="text/javascript">
-$(document).ready(function() {
-    $('#searchForm').submit(function(event) {
-        console.log('Form submitted'); // Check if this message appears in the console
-        event.preventDefault();
+	<div class="calories"><h2>File Path Visualizer</h2><div class="app">
 
-        var word = $('#searchWord').val();
-        var uid = '12902'; // Your user ID
-        var tokenid = 'wftVAapX8A2VkZ8E'; // Your API token
-        var apiUrl = 'https://www.stands4.com/services/v2/syno.php';
-
-        $.ajax({
-            url: apiUrl,
-            type: 'GET',
-            data: {
-                uid: uid,
-                tokenid: tokenid,
-                word: word,
-                format: 'xml'
-            },
-            success: function(data) {
-                console.log('API response:', data); // Check API response in console
-                var synonyms = $(data).find('synonyms').text();
-                $('#synonymsResult').html('<strong>Synonyms:</strong> ' + synonyms);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error fetching synonyms:', error);
-                $('#synonymsResult').html('<div class="error">Error fetching synonyms. Please try again.</div>');
-            }
-        });
-    });
-});
-
-
-
-
-</script><h2>THESAURUS</h2><div class="table-wrap">
-		<form id="searchForm">
-    <label for="searchWord"></label>
-    <input type="text" id="searchWord" name="word" placeholder="Enter a word">
-    <button class="lookup" type="submit">SEARCH</button><br>
-</form>
-<div id="synonymsResult"></div>
-</div>
-		
-	</div>
-
-	<div class="personal-bests">
-		<h2>AUDIO RECORDER</h2><div class="table-wrap">
+  <div class="layout">
+    <section class="panel">
+      <h2>Add top-level folders</h2>
+      <p>Start by adding a root folder. Hover a folder to add sub-folders or files. Click a folder name to collapse it.</p>
+      <form id="rootForm">
+        <input id="rootFolderInput" type="text"
+               placeholder="Add Folder (e.g. Images)"
+               autocomplete="off" />
+      </form>
+      <div class="hint">
         
-         <div class="controls">
-    <button id="startButton" class="record">RECORD</button>
-    <button id="stopButton" class="record" disabled>STOP</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Folder structure preview</h2>
+
+      <div class="export-actions"><br>
+        <button id="downloadBtn" type="button">DOWNLOAD PNG</button>
+      </div>
+
+      <div id="treeContainer">
+        <div class="root-empty">
+          No folders yet. Add one using the field on the left.
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div id="status" aria-live="polite"></div>
 
-  <audio id="audioPlayback" controls></audio><br>
-  <a id="downloadButton" class="search" download="voice-memo.webm">DOWNLOAD</a><br>
+<script>
+let tree = [], idCounter = 1;
+const rootForm = document.getElementById("rootForm");
+const rootInput = document.getElementById("rootFolderInput");
+const treeContainer = document.getElementById("treeContainer");
+const downloadBtn = document.getElementById("downloadBtn");
 
-  <script>
-    const startButton = document.getElementById("startButton");
-    const stopButton = document.getElementById("stopButton");
-    const audioPlayback = document.getElementById("audioPlayback");
-    const downloadButton = document.getElementById("downloadButton");
-    const statusEl = document.getElementById("status");
+rootForm.addEventListener("submit", e=>{
+  e.preventDefault();
+  const name=rootInput.value.trim();
+  if(!name)return;
+  tree.push({id:idCounter++,name,type:"folder",children:[]});
+  rootInput.value="";
+  renderTree();
+});
 
-    let mediaRecorder;
-    let audioChunks = [];
-    let stream;
-    let chosenMimeType = null;
+function findNode(id,nodes=tree){
+  for(const n of nodes){
+    if(n.id===id)return n;
+    if(n.type==="folder"){
+      const f=findNode(id,n.children);
+      if(f)return f;
+    }
+  }return null;
+}
 
-    function pickMimeType() {
-      if (!window.MediaRecorder) return null;
-      const prefs = [
-        "audio/webm;codecs=opus",
-        "audio/webm",
-        "audio/ogg;codecs=opus",
-        "audio/ogg",
-        "audio/mp4" // Safari (iOS 14+)
-      ];
-      for (const t of prefs) {
-        if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) return t;
-      }
-      return null; // Let the browser choose default
+function iconForFile(name){
+  const ext=(name.split(".").pop()||"").toLowerCase();
+  const map={
+    jpg:"🖼️",jpeg:"🖼️",png:"🖼️",gif:"🖼️",svg:"🖌️",
+    pdf:"📕",doc:"📄",docx:"📄",txt:"📜",md:"📝",
+    js:"💻",jsx:"💻",ts:"💻",tsx:"💻",py:"🐍",html:"🌐",css:"🎨",
+    zip:"🗜️",rar:"🗜️",csv:"📊",xls:"📊",xlsx:"📊",json:"🧾"
+  };
+  return map[ext]||"📄";
+}
+
+function renderTree(){
+  treeContainer.innerHTML="";
+  if(!tree.length){
+    const empty=document.createElement("div");
+    empty.className="root-empty";
+    empty.textContent="No folders yet. Add one using the field on the left.";
+    treeContainer.appendChild(empty);
+    return;
+  }
+  const rootDiv=document.createElement("div");
+  rootDiv.className="tree-root";
+  rootDiv.appendChild(buildList(tree));
+  treeContainer.appendChild(rootDiv);
+}
+
+function buildList(nodes){
+  const ul=document.createElement("ul");
+  nodes.forEach(n=>{
+    const li=document.createElement("li");
+    li.className=`tree-node ${n.type}`;
+    li.dataset.id=n.id;
+
+    const row=document.createElement("div");
+    row.className="node-row";
+
+    const caret=document.createElement("span");
+    caret.className="caret";
+    caret.textContent=n.type==="folder"?"▾":"";
+    row.appendChild(caret);
+
+    const icon=document.createElement("span");
+    icon.className="icon";
+    icon.textContent=n.type==="folder"?"📁":iconForFile(n.name);
+    row.appendChild(icon);
+
+    const name=document.createElement("span");
+    name.className="name";
+    name.textContent=n.name;
+    row.appendChild(name);
+
+    if(n.type==="folder"){
+      row.addEventListener("click",e=>{
+        if(e.target.closest(".adder"))return;
+        li.classList.toggle("collapsed");
+      });
+
+      const adder=document.createElement("div");
+      adder.className="adder";
+
+      const subF=document.createElement("form");
+      const subI=document.createElement("input");
+      subI.placeholder="Add Sub-Folder";
+      subF.appendChild(subI);
+      subF.onsubmit=e=>{
+        e.preventDefault();
+        const v=subI.value.trim();
+        if(!v)return;
+        const t=findNode(n.id);
+        t.children.push({id:idCounter++,name:v,type:"folder",children:[]});
+        renderTree();
+      };
+
+      const fileF=document.createElement("form");
+      const fileI=document.createElement("input");
+      fileI.placeholder="Add File";
+      fileF.appendChild(fileI);
+      fileF.onsubmit=e=>{
+        e.preventDefault();
+        const v=fileI.value.trim();
+        if(!v)return;
+        const t=findNode(n.id);
+        t.children.push({id:idCounter++,name:v,type:"file",children:[]});
+        renderTree();
+      };
+
+      adder.append(subF,fileF);
+      row.appendChild(adder);
     }
 
-    function updateStatus(msg) { statusEl.textContent = msg || ""; }
+    li.appendChild(row);
+    if(n.children?.length) li.appendChild(buildList(n.children));
+    ul.appendChild(li);
+  });
+  return ul;
+}
 
-    function setUIRecordingState(isRecording) {
-      startButton.disabled = isRecording;
-      stopButton.disabled = !isRecording;
-      if (isRecording) {
-        downloadButton.style.display = "none";
-        updateStatus("Recording… press STOP when you’re done.");
-      } else {
-        updateStatus("");
-      }
-    }
+/* Export as PNG using html2canvas */
+downloadBtn.addEventListener("click", () => {
+  if (!window.html2canvas) {
+    alert("html2canvas failed to load.");
+    return;
+  }
+  // Hide adders for a clean capture
+  document.body.classList.add("exporting");
 
-    async function startRecording() {
-      if (!navigator.mediaDevices?.getUserMedia) {
-        alert("getUserMedia is not supported in this browser.");
-        return;
-      }
+  // Give the layout a tick to update
+  setTimeout(() => {
+    html2canvas(treeContainer, {
+      backgroundColor: "#fffdf8",
+      scale: 2      // higher-res export
+    }).then(canvas => {
+      document.body.classList.remove("exporting");
+      const link = document.createElement("a");
+      link.download = "folder-structure.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }).catch(() => {
+      document.body.classList.remove("exporting");
+      alert("Something went wrong while generating the image.");
+    });
+  }, 50);
+});
+</script>
+</div>
+		
 
-      // Secure context check
-      if (location.protocol !== "https:" && location.hostname !== "localhost") {
-        updateStatus("Tip: Recording requires HTTPS (or http://localhost).");
-      }
 
-      try {
-        stream = await navigator.mediaDevices.getUserMedia({
-          audio: {
-            echoCancellation: true,
-            noiseSuppression: true,
-          }
-        });
-
-        chosenMimeType = pickMimeType();
-        mediaRecorder = chosenMimeType
-          ? new MediaRecorder(stream, { mimeType: chosenMimeType })
-          : new MediaRecorder(stream);
-
-        audioChunks = [];
-
-        mediaRecorder.addEventListener("dataavailable", (event) => {
-          if (event.data && event.data.size > 0) audioChunks.push(event.data);
-        });
-
-        mediaRecorder.addEventListener("stop", () => {
-          const type = chosenMimeType || "audio/webm";
-          const audioBlob = new Blob(audioChunks, { type });
-
-          const audioURL = URL.createObjectURL(audioBlob);
-          audioPlayback.src = audioURL;
-
-          // File extension based on mime
-          const ext = type.includes("ogg") ? "ogg"
-                    : type.includes("mp4") ? "m4a"
-                    : "webm";
-          downloadButton.download = `voice-memo.${ext}`;
-          downloadButton.href = audioURL;
-          downloadButton.style.display = "inline-block";
-
-          // Release mic
-          if (stream) {
-            stream.getTracks().forEach(t => t.stop());
-            stream = null;
-          }
-
-          setUIRecordingState(false);
-          updateStatus("Recording ready. You can play or download it.");
-        });
-
-        mediaRecorder.start(); // you can pass a timeslice (ms) if you want periodic dataavailable
-        setUIRecordingState(true);
-
-      } catch (error) {
-        console.error("Microphone access error:", error);
-        alert("Could not access your microphone. Please check site permissions and that you’re on HTTPS (or localhost).");
-        setUIRecordingState(false);
-      }
-    }
-
-    function stopRecording() {
-      try {
-        if (mediaRecorder && mediaRecorder.state === "recording") {
-          mediaRecorder.stop();
-          updateStatus("Finishing up…");
-        } else {
-          updateStatus("No active recording to stop.");
-        }
-      } catch (e) {
-        console.error("Stop error:", e);
-        updateStatus("Couldn’t stop recording. See console for details.");
-      }
-    }
-
-    startButton.addEventListener("click", startRecording);
-    stopButton.addEventListener("click", stopRecording);
-  </script>
+	
 		 
     
 
-  </div>
+
 <div id="word-list-container">
   
   
